@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project version="4">
+  <component name="WebServers">
+    <option name="servers">
+      <webServer id="93d181fb-0747-4c55-91fc-0ef5b4467090" name="s200">
+        <fileTransfer rootFolder="/var/www/html/vietlv/ce242all" accessType="SFTP" host="dev.mageplaza.vn" port="4433" sshConfigId="dcd5f515-5c1a-4342-8adb-4e0b218360b0" sshConfig="sam@dev.mageplaza.vn:4433 password">
+          <advancedOptions>
+            <advancedOptions dataProtectionLevel="Private" passiveMode="true" shareSSLContext="true" />
+          </advancedOptions>
+        </fileTransfer>
+      </webServer>
+    </option>
+  </component>
+</project>

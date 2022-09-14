@@ -1,0 +1,51 @@
+<div css="modalClass" hasFocus="focused">
+    <div class="amgcard-field-container">
+        <p class="amgcard-title" data-bind="text: $data.isImageSettings ? $t('Image Size') : $t('Element Size')"></p>
+        <div class="amgcard-labels-container">
+            <label class="amgcard-label">
+                <span class="amgcard-name" data-bind="i18n: 'Width (px)'"></span>
+                <div class="amgcard-field">
+                    <input class="amgcard-input admin__control-text" type="text" data-bind="value: $data.current().width"/>
+                    <span class="amgcard-comment"
+                          if="$data.isImageSettings"
+                          data-bind="i18n: 'Maximum image width: 580px'"></span>
+                </div>
+            </label>
+            <label class="amgcard-label">
+                <span class="amgcard-name" data-bind="i18n: 'Height (px)'"></span>
+                <div class="amgcard-field">
+                    <input class="amgcard-input admin__control-text" type="text" data-bind="value: $data.current().height"/>
+                    <span class="amgcard-comment"
+                          if="$data.isImageSettings"
+                          data-bind="i18n: 'Maximum image height: 390px'"></span>
+                </div>
+            </label>
+        </div>
+    </div>
+    <!-- ko ifnot: $data.isImageSettings -->
+    <div class="amgcard-field-container">
+        <p class="amgcard-title" data-bind="i18n: 'Element Position'"></p>
+        <div class="amgcard-labels-container">
+            <label class="amgcard-label">
+                <span data-bind="i18n: 'Top (px)'"></span>
+                <input class="amgcard-input admin__control-text" type="text" data-bind="value: $data.current().pos_y"/>
+            </label>
+            <label class="amgcard-label">
+                <span data-bind="i18n: 'Left (px)'"></span>
+                <input class="amgcard-input admin__control-text" type="text" data-bind="value: $data.current().pos_x"/>
+            </label>
+        </div>
+    </div>
+    <div class="amgcard-field-container">
+        <p class="amgcard-title" data-bind="i18n: 'Custom CSS'"></p>
+        <textarea class="amgcard-textarea" rows="5" data-bind="value: $data.current().custom_css"></textarea>
+    </div>
+    <!-- /ko -->
+    <!-- ko if: $data.hasError() && $data.isImageSettings -->
+        <p class="admin__field-error" data-bind="i18n: 'Please enter a valid image size.'"></p>
+    <!-- /ko -->
+    <!-- ko if: $data.hasError() && !$data.isImageSettings -->
+        <p class="admin__field-error" data-bind="i18n: 'Please enter a valid values.'"></p>
+    <!-- /ko -->
+    <button class="amacard-button -update" data-bind="click: $data.update.bind($data), i18n: 'Update'"></button>
+</div>

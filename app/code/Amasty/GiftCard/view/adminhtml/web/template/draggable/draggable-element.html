@@ -1,0 +1,19 @@
+<div class="amgcard-draggable"
+     data-amgcard-element="true"
+     afterRender="$data.afterRender.bind($data, $element)"
+     data-bind="attr: {'data-code': $data.code}, event: {dblclick: $parent.removeElement.bind($parent, $data.code)}">
+    <button class="amgcard-icon -edit" data-bind="click: $data.openModal.bind($data)"></button>
+    <button class="amgcard-icon -delete" data-bind="click: $parent.removeElement.bind($parent, $data.code)"></button>
+    <!-- ko if: $data.code === 'logo' || $data.code === 'barcode' -->
+        <img class="amgcard-image"
+             data-bind="attr: {src: $data.value, alt: $data.label, 'style': $data.custom_css},
+                        css: {'-barcode': $data.code === 'barcode'}"
+        />
+    <!-- /ko -->
+    <!-- ko ifnot: $data.code === 'logo' || $data.code === 'barcode' -->
+        <span data-bind="text: $data.value, attr: {'style': $data.custom_css}"></span>
+    <!-- /ko -->
+</div>
+<!-- ko foreach: $data.elems() -->
+    <!--ko template: getTemplate()--><!-- /ko -->
+<!-- /ko -->

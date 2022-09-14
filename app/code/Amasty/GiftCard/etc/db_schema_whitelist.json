@@ -1,0 +1,84 @@
+{
+    "amasty_giftcard_code_pool": {
+        "column": {
+            "pool_id": true,
+            "title": true,
+            "template": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "amasty_giftcard_code": {
+        "column": {
+            "code_id": true,
+            "code": true,
+            "code_pool_id": true,
+            "status": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "amasty_giftcard_code_pool_rule": {
+        "column": {
+            "rule_id": true,
+            "code_pool_id": true,
+            "conditions_serialized": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_2C085299BFEDB52D0339AF9F08BA6561": true
+        }
+    },
+    "amasty_giftcard_image": {
+        "column": {
+            "image_id": true,
+            "title": true,
+            "gcard_title": true,
+            "status": true,
+            "width": true,
+            "height": true,
+            "image_path": true,
+            "user_upload": true
+        },
+        "constraint": {
+            "PRIMARY": true
+        }
+    },
+    "amasty_giftcard_image_elements": {
+        "column": {
+            "element_id": true,
+            "image_id": true,
+            "name": true,
+            "width": true,
+            "height": true,
+            "pos_x": true,
+            "pos_y": true,
+            "custom_css": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_AC5B89EB02A523E571342A31CBBBAA5E": true
+        }
+    },
+    "amasty_giftcard_price": {
+        "column": {
+            "price_id": true,
+            "product_id": true,
+            "website_id": true,
+            "attribute_id": true,
+            "value": true
+        },
+        "index": {
+            "AMASTY_GIFTCARD_PRICE_PRODUCT_ID": true,
+            "AMASTY_GIFTCARD_PRICE_WEBSITE_ID": true,
+            "AMASTY_GIFTCARD_PRICE_ATTRIBUTE_ID": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "AMASTY_GIFTCARD_PRICE_WEBSITE_ID_STORE_WEBSITE_WEBSITE_ID": true,
+            "AMASTY_GIFTCARD_PRICE_ATTRIBUTE_ID_EAV_ATTRIBUTE_ATTRIBUTE_ID": true
+        }
+    }
+}

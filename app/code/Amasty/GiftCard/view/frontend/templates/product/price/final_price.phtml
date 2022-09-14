@@ -1,0 +1,75 @@
+<?php
+/**
+* @author Amasty Team
+* @copyright Copyright (c) 2022 Amasty (https://www.amasty.com)
+* @package Amasty_GiftCard
+*/
+?>
+<?php /** @var $block \Amasty\GiftCard\Pricing\Render\FinalPriceBox */ ?>
+<?php /** @var $escaper Magento\Framework\Escaper */ ?>
+<?php $productId = $block->getSaleableItem()->getId() ?>
+
+<?php if ($block->getCanShowPrice() !== false && !$block->isProductForm()): ?>
+    <div class="price-box">
+        <?php if (!$block->isSinglePrice()): ?>
+            <span class="price-label"><?= $escaper->escapeHtml(__('From')) ?></span>
+        <?php endif; ?>
+        <span class="price"
+              id="product-price-<?= $escaper->escapeHtmlAttr($productId . $block->getIdSuffix()) ?>">
+            <?= $escaper->escapeHtml($block->convertAndFormatCurrency($block->getMinPrice(), false)) ?>
+        </span>
+    </div>
+<?php endif; ?>
+<?php if ($block->isProductForm()): ?>
+    <?php
+    $currency = $block->getCurrencyShortName();
+    ?>
+    <div class="amgiftcard-price-container" data-amcard-js="price-container" data-bind="scope: 'amfinal_price'">
+        <div class="amgiftcard-price-multiple -hide"
+             data-bind="visible: $data.showCustomPrice, css: {'-hide': !$data.isLoaded()}">
+            <p class="price-from">
+            <span class="price-container price-final_price">
+                <span class="price-label"><?= $escaper->escapeHtml(__('From')) ?></span>
+                <span data-price-amount="<?= /* @noEscape */ $block->convertCurrency($block->getMinPrice()) ?>" data-price-type="minPrice" class="price-wrapper">
+                    <span class="price"><?= $escaper->escapeHtml($block->convertAndFormatCurrency($block->getMinPrice(), false)) ?></span>
+                </span>
+            </span>
+            </p>
+            <p class="price-to">
+            <span class="price-container price-final_price tax weee">
+                <span class="price-label"><?= $escaper->escapeHtml(__('To')) ?></span>
+                <span data-price-amount="<?= /* @noEscape */ $block->convertCurrency($block->getMaxPrice()) ?>" data-price-type="maxPrice" class="price-wrapper">
+                    <span class="price"><?= $escaper->escapeHtml($block->convertAndFormatCurrency($block->getMaxPrice(), false)) ?></span>
+                </span>
+            </span>
+            </p>
+        </div>
+        <span class="price-final_price -hide"
+              data-bind="visible: !$data.showCustomPrice(), css: {'-hide': !$data.isLoaded()}">
+        <span class="price-wrapper"
+              data-price-amount="<?= $block->isSinglePrice()
+                  ? $escaper->escapeHtmlAttr($block->convertCurrency($block->getFinalPrice()))
+                  : '0'; ?>"
+              data-price-type="finalPrice"
+              id="product-price-<?= $escaper->escapeHtmlAttr($productId . $block->getIdSuffix()) ?>">
+            <span class="price">
+                <?= $escaper->escapeHtml($block->convertAndFormatCurrency($block->getMinPrice(), false)) ?>
+            </span>
+        </span>
+    </span>
+    </div>
+<?php endif; ?>
+<script type="text/x-magento-init">
+{
+    "*": {
+        "Magento_Ui/js/core/app": {
+            "components": {
+                "amfinal_price": {
+                    "component": "Amasty_GiftCard/js/final-price",
+                    "priceComponentName": "<?= /* @noEscape */ 'price_' . $productId ?>"
+                }
+            }
+        }
+    }
+}
+</script>

@@ -1,0 +1,30 @@
+<div class="admin__field" visible="visible" css="$data.additionalClasses">
+    <label class="admin__field-label" if="$data.label" attr="for: uid" visible="$data.labelVisible">
+        <span translate="label" attr="'data-config-scope': $data.scopeLabel"></span>
+    </label>
+
+    <div class="admin__field-control" css="'_with-tooltip': $data.tooltip">
+        <div class="file-uploader" data-role="drop-zone" css="_loading: isLoading">
+            <div class="file-uploader-area amgcard-file-upload" css="'-mode': $data.addImageMode">
+                <!-- ko ifnot: $data.addImageMode -->
+                    <span class="amgcard-upload-image"></span>
+                    <span translate="'Drag & Drop to Upload Image'"></span>
+                    <span translate="'or'"></span>
+                <!-- /ko -->
+                <span class="file-uploader-spinner"></span>
+                <input type="file" afterRender="onElementRender" accept=".jpg, .jpeg, .png, .gif" attr="id: uid, name: inputName, multiple: isMultipleFiles" disable="disabled" />
+                <label class="file-uploader-button action-default" attr="for: uid" translate="'Browse Image'"></label>
+                <render args="fallbackResetTpl" if="$data.showFallbackReset && $data.isDifferedFromDefault"></render>
+            </div>
+
+            <render args="tooltipTpl" if="$data.tooltip"></render>
+
+            <div class="admin__field-note" if="$data.notice" attr="id: noticeId">
+                <span html="notice"></span>
+            </div>
+
+            <label class="admin__field-error" if="error" attr="for: uid" text="error"></label>
+        </div>
+        <render args="$data.service.template" if="$data.hasService()"></render>
+    </div>
+</div>

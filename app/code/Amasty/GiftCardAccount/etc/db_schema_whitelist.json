@@ -1,0 +1,108 @@
+{
+    "amasty_giftcard_order": {
+        "column": {
+            "entity_id": true,
+            "order_id": true,
+            "gift_cards": true,
+            "gift_amount": true,
+            "base_gift_amount": true,
+            "invoice_gift_amount": true,
+            "base_invoice_gift_amount": true,
+            "refund_gift_amount": true,
+            "base_refund_gift_amount": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "AMASTY_GIFTCARD_ORDER_ORDER_ID_SALES_ORDER_ENTITY_ID": true
+        }
+    },
+    "amasty_giftcard_invoice": {
+        "column": {
+            "entity_id": true,
+            "invoice_id": true,
+            "gift_amount": true,
+            "base_gift_amount": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "AMASTY_GIFTCARD_INVOICE_INVOICE_ID_SALES_INVOICE_ENTITY_ID": true
+        }
+    },
+    "amasty_giftcard_creditmemo": {
+        "column": {
+            "entity_id": true,
+            "creditmemo_id": true,
+            "gift_amount": true,
+            "base_gift_amount": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_23A68702E520CAD37C37455AE288E91C": true
+        }
+    },
+    "amasty_giftcard_quote": {
+        "column": {
+            "entity_id": true,
+            "quote_id": true,
+            "gift_cards": true,
+            "gift_amount": true,
+            "base_gift_amount": true,
+            "gift_amount_used": true,
+            "base_gift_amount_used": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "AMASTY_GIFTCARD_QUOTE_QUOTE_ID_QUOTE_ENTITY_ID": true
+        }
+    },
+    "amasty_giftcard_account": {
+        "column": {
+            "account_id": true,
+            "code_id": true,
+            "image_id": true,
+            "order_item_id": true,
+            "website_id": true,
+            "status": true,
+            "initial_value": true,
+            "current_value": true,
+            "expired_date": true,
+            "comment": true,
+            "date_delivery": true,
+            "is_sent": true,
+            "customer_created_id": true,
+            "recipient_email": true,
+            "is_redeemable": true,
+            "usage": true,
+            "mobilenumber": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "AMASTY_GIFTCARD_ACCOUNT_WEBSITE_ID_STORE_WEBSITE_WEBSITE_ID": true,
+            "AMASTY_GIFTCARD_ACCOUNT_CODE_ID_AMASTY_GIFTCARD_CODE_CODE_ID": true
+        }
+    },
+    "amasty_giftcard_customer_card": {
+        "column": {
+            "customer_card_id": true,
+            "account_id": true,
+            "customer_id": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_51B69DE42967A4C0267E0FAAA3B0961A": true,
+            "AMASTY_GIFTCARD_CSTR_CARD_CSTR_ID_CSTR_ENTT_ENTT_ID": true
+        }
+    },
+    "amasty_giftcard_account_transaction": {
+        "column": {
+            "transaction_id": true,
+            "account_id": true,
+            "started_in": true
+        },
+        "constraint": {
+            "PRIMARY": true,
+            "FK_4436F8BC93E45537FED0592C6E798859": true,
+            "AMASTY_GIFTCARD_ACCOUNT_TRANSACTION_ACCOUNT_ID": true
+        }
+    }
+}

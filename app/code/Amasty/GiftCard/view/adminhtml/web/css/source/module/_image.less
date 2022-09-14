@@ -1,0 +1,372 @@
+//
+//  Gift Card image
+//  ____________________________________________
+
+//
+//  Variables
+//  --------------------------------------------
+
+@amgcard-upload-image__background: url('@{baseDir}Amasty_GiftCard/images/uploader.svg') no-repeat center;
+@amgcard-icon-delete__background: url('@{baseDir}Amasty_GiftCard/images/delete.svg') no-repeat center;
+@amgcard-icon-edit__background: url('@{baseDir}Amasty_GiftCard/images/edit.svg') no-repeat center;
+@amgcard-icon-drag__background: url('@{baseDir}Amasty_GiftCard/images/drag-gripper.svg') no-repeat center;
+
+//
+//  Common
+//  --------------------------------------------
+
+& when (@media-common = true) {
+    .amgcard-image-edit .colorpicker {
+        z-index: 10;
+    }
+
+    .amcard-upload-image {
+        .amcard-draggable {
+            position: absolute;
+            padding: 10px;
+            border: 1px solid rgb(0, 0, 0);
+            background-color: #fff;
+            text-align: center;
+            font-weight: 600;
+            font-size: 15px;
+            cursor: move;
+        }
+
+        .amcard-draggable.-balance {
+            font-size: 40px;
+        }
+
+        .file-uploader-preview {
+            width: auto;
+            height: auto;
+        }
+
+        .admin__field-tooltip-content {
+            right: -5rem;
+        }
+
+        .admin__field-control._with-tooltip {
+            width: auto;
+        }
+    }
+
+    .amgcard-field-input .admin__field-control {
+        max-width: 631px;
+    }
+
+    .amgcard-field-uploader {
+        .admin__field-control {
+            position: relative;
+            max-width: 631px;
+        }
+
+        .admin__field-tooltip {
+            margin-left: 10px;
+        }
+
+        .action-basic {
+            margin-top: 30px;
+        }
+
+        .admin__field-tooltip-content {
+            right: -5rem;
+        }
+    }
+
+    .amgcard-file-upload {
+        & {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            justify-content: center;
+            border-image-width: 18px;
+            text-align: center;
+        }
+
+        &.-mode {
+            justify-content: flex-end;
+        }
+
+        &.-mode .file-uploader-button {
+            margin-bottom: 25px;
+        }
+
+        .file-uploader-button {
+            margin-top: 10px;
+        }
+    }
+
+    .amgcard-image-edit .amacard-button,
+    .amgcard-file-upload .file-uploader-button {
+        & {
+            box-sizing: border-box;
+            padding: 8px 20px;
+            border: 1px solid #adadad;
+            border-radius: 3px;
+            background: #f6f6f6;
+            transition: background-color .3s ease-in;
+        }
+
+        &:hover {
+            background-color: #dbdbdb;
+            box-shadow: none;
+        }
+
+        &.-dark {
+            & {
+                background: #5a5552;
+                color: #fff;
+            }
+
+            &:hover {
+                background-color: #7b776b;
+            }
+        }
+
+        &.-light {
+            & {
+                border: none;
+                background: #fff;
+                color: #303030;
+                transition: opacity .3s ease-in;
+            }
+
+            &:hover {
+                opacity: .7;
+            }
+        }
+    }
+
+    .amgcard-upload-image {
+        display: block;
+        margin-bottom: 15px;
+        width: 48px;
+        height: 34px;
+        background: @amgcard-upload-image__background;
+    }
+
+    .amgcard-file-upload,
+    .amacard-image-draggable {
+        width: 100%;
+        height: 490px;
+        border: 1px dashed #adadad;
+        border-radius: 8px;
+    }
+
+    .amacard-image-draggable {
+        & {
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+        }
+
+        &.-hovered {
+            border-color: #007bdb;
+            background: #f1f7ff;
+        }
+
+        &.-empty {
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: 0;
+        }
+
+        &.-empty .amgcard-image-container {
+            border: 1px solid #c0d6f5;
+        }
+
+        .amgcard-icon {
+            padding: 0;
+            height: 14px;
+            border: none;
+        }
+
+        .amgcard-icon.-delete {
+            width: 10px;
+            background: @amgcard-icon-delete__background;
+        }
+
+        .amgcard-icon.-edit {
+            margin-right: 7px;
+            width: 14px;
+            background: @amgcard-icon-edit__background;
+        }
+    }
+
+    .amgcard-image-container {
+        & {
+            position: relative;
+            display: flex;
+            align-items: center;
+            flex-direction: column;
+            margin: 5px 25px 15px;
+            max-width: 580px;
+            max-height: 390px;
+            background: #fff;
+        }
+
+        &.-wall > .amgcard-image {
+            opacity: .1;
+        }
+
+        &.-wall .amgcard-draggable {
+            border: 1px dashed #303030;
+            border-radius: 3px;
+            cursor: pointer;
+            pointer-events: all;
+
+            &:hover {
+                .amgcard-icon {
+                    &.-edit,
+                    &.-delete {
+                        display: block;
+                    }
+                }
+            }
+        }
+
+        .amgcard-image {
+            & {
+                width: 100%;
+                height: 100%;
+            }
+
+            &.-barcode {
+                padding: 5px 0 1px 0;
+            }
+        }
+
+        .amgcard-draggable {
+            position: absolute;
+            padding: 15px;
+            overflow: hidden;
+            border: none;
+            pointer-events: none;
+        }
+
+        .amgcard-draggable[data-code="logo"] {
+            box-sizing: unset;
+        }
+
+        .amgcard-icon {
+            &.-edit,
+            &.-delete {
+                display: none;
+            }
+        }
+
+        &.-wall .amgcard-icon {
+            &.-edit,
+            &.-delete {
+                position: absolute;
+                top: 0;
+                display: none;
+                margin: 4px;
+                height: 12px;
+                width: 12px;
+            }
+
+            &.-delete {
+                right: 0;
+                background-size: 8px;
+            }
+
+            &.-edit {
+                right: 16px;
+                background-size: 10px;
+            }
+        }
+    }
+
+    .amgcard-edit-block {
+        & {
+            align-self: flex-end;
+            margin: 6px 10px 0;
+            line-height: 11px;
+        }
+    }
+
+    .amgcard-elems-container {
+        & {
+            margin-left: ~'calc( 100% * 0.25 + 10px )';
+            max-width: 630px;
+        }
+
+        &.-hovered {
+            padding: 10px;
+            border: 1px dashed #007bdb;
+            background: #f1f7ff;
+        }
+
+        &.-hovered .amgcard-draggable {
+            margin-right: 4px;
+        }
+    }
+
+    .amgcard-draggable-elems {
+        & {
+            display: flex;
+            flex-wrap: wrap;
+        }
+
+        .amgcard-draggable {
+            position: relative;
+            margin: 0 15px 15px 0;
+            padding: 8px 8px 8px 48px;
+            width: 200px;
+            border: none;
+            border-radius: 3px;
+            background-color: #3f7bd4;
+            color: #fff;
+            list-style: none;
+            cursor: pointer;
+            transition: background-color .3s ease-in;
+        }
+
+        .amgcard-draggable:before {
+            position: absolute;
+            top: 50%;
+            left: 20px;
+            width: 8px;
+            height: 20px;
+            background: @amgcard-icon-drag__background;
+            content: '';
+            transform: translateY(-50%);
+        }
+
+        .amgcard-draggable:nth-child(3n) {
+            margin-right: 0;
+        }
+
+        .amgcard-draggable:hover {
+            background-color: #3063b1;
+            box-shadow: 0 3px 6px #aac2e4;
+        }
+
+        .amgcard-draggable.-used {
+            background-color: #c0d6f5;
+            pointer-events: none;
+        }
+
+        .amgcard-draggable.-used:hover {
+            box-shadow: none;
+            cursor: default;
+        }
+    }
+
+    .amgcard-alert-container {
+        .modal-title {
+            margin: 0;
+        }
+
+        .modal-inner-wrap {
+            max-width: 600px;
+        }
+    }
+
+    .amgcard-uploader-container {
+        position: relative;
+        z-index: 10;
+    }
+}

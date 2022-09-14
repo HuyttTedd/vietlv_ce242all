@@ -1,0 +1,44 @@
+<div class="amacard-image-draggable"
+     visible="$data.visible() || $data.addImageMode()"
+     data-bind="css: {'-empty': $data.addImageMode}">
+        <div class="amgcard-edit-block">
+            <button class="amgcard-icon -edit"
+                    if="$data.isShowEditButton"
+                    data-bind="attr: {title: $t('Edit')}, click: $data.openModal.bind($data)"></button>
+            <button class="amgcard-icon -delete"
+                    data-bind="attr: {title: $t('Delete')}, click: $data.deleteImage.bind($data)"></button>
+        </div>
+        <div class="amgcard-image-container"
+             afterRender="$data.afterRender.bind($data, $element)"
+             data-bind="css: {'-wall': $data.isDesignMode}">
+            <!-- ko if: $data.image -->
+            <img class="amgcard-image"
+                 data-bind="attr: {src: $data.image().url, alt: $data.image().name}"/>
+            <!-- /ko -->
+            <!-- ko foreach: $data.elems() -->
+                <!-- ko if: $data.isDraggableElem -->
+                    <!--ko template: getTemplate()--><!-- /ko -->
+                <!-- /ko -->
+            <!-- /ko -->
+        </div>
+        <!-- ko ifnot: $data.addImageMode -->
+            <!-- ko ifnot: $data.isDesignMode -->
+            <button class="amacard-button"
+                    data-bind="i18n: 'Design Card', click: $data.useChangeMode.bind($data)"></button>
+            <!-- /ko -->
+            <!-- ko if: $data.isDesignMode -->
+            <div class="amgcard-button-group">
+                <button class="amacard-button -dark"
+                        data-bind="i18n: 'Apply', click: $data.apply.bind($data)"></button>
+                <button class="amacard-button -light"
+                        data-bind="i18n: 'Cancel', click: $data.cancel.bind($data)"></button>
+            </div>
+            <!-- /ko -->
+        <!-- /ko -->
+</div>
+
+<!-- ko foreach: $data.elems() -->
+    <!-- ko ifnot: $data.isDraggableElem -->
+        <!--ko template: getTemplate()--><!-- /ko -->
+    <!-- /ko -->
+<!-- /ko -->

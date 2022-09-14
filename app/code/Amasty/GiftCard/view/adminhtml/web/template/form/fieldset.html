@@ -1,0 +1,20 @@
+<div class="admin__field _required" css="$data.additionalClasses">
+    <label class="admin__field-label" if="$data.label" visible="$data.labelVisible">
+        <span translate="label" attr="'data-config-scope': $data.scopeLabel"></span>
+    </label>
+
+    <div class="admin__field-control" css="'_with-tooltip': $data.tooltip">
+        <!-- ko if: $data.elems() -->
+            <!-- ko foreach: $data.elems() -->
+                <!--ko template: getTemplate()--><!-- /ko -->
+            <!-- /ko -->
+        <!-- /ko -->
+        <div class="admin__field-note" if="$data.notice">
+            <span html="notice"></span>
+        </div>
+        <!-- ko if: $data.isShowDeleteButton -->
+        <button class="action-basic" data-bind="i18n: 'Delete Card', click: $data.deleteImage.bind($data)"></button>
+        <!-- /ko -->
+    </div>
+    <render args="tooltipTpl" if="$data.tooltip"></render>
+</div>

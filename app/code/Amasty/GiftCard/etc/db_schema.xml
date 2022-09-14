@@ -1,0 +1,84 @@
+<?xml version="1.0"?>
+<!--
+/**
+* @author Amasty Team
+* @copyright Copyright (c) 2022 Amasty (https://www.amasty.com)
+* @package Amasty_GiftCard
+*/
+-->
+<schema xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Setup/Declaration/Schema/etc/schema.xsd">
+  <table name="amasty_giftcard_code_pool" resource="default" engine="innodb" comment="Amasty GiftCard Code Pool Table">
+    <column xsi:type="int" name="pool_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Code Pool ID"/>
+    <column xsi:type="varchar" name="title" nullable="false" length="225" comment="Code Pool Title"/>
+    <column xsi:type="varchar" name="template" nullable="false" length="225" comment="Code Pool Template"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="pool_id"/>
+    </constraint>
+  </table>
+  <table name="amasty_giftcard_code" resource="default" engine="innodb" comment="Amasty GiftCard Code Table">
+    <column xsi:type="int" name="code_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Code ID"/>
+    <column xsi:type="varchar" name="code" nullable="false" length="255" comment="Code"/>
+    <column xsi:type="int" name="code_pool_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Code Pool ID"/>
+    <column xsi:type="smallint" name="status" padding="6" unsigned="false" nullable="false" identity="false" default="0" comment="Code Status"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="code_id"/>
+    </constraint>
+  </table>
+  <table name="amasty_giftcard_code_pool_rule" resource="default" engine="innodb" comment="Amasty GiftCard Code Pool Rule Table">
+    <column xsi:type="int" name="rule_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Code Pool Rule ID"/>
+    <column xsi:type="int" name="code_pool_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Code Pool ID"/>
+    <column xsi:type="text" name="conditions_serialized" nullable="false" comment="Serialized Conditions"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="rule_id"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="FK_2C085299BFEDB52D0339AF9F08BA6561" table="amasty_giftcard_code_pool_rule" column="code_pool_id" referenceTable="amasty_giftcard_code_pool" referenceColumn="pool_id" onDelete="CASCADE"/>
+  </table>
+  <table name="amasty_giftcard_image" resource="default" engine="innodb" comment="Amasty GiftCard Image Table">
+    <column xsi:type="int" name="image_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Image ID"/>
+    <column xsi:type="varchar" name="title" nullable="false" length="255" comment="Image Title"/>
+    <column xsi:type="varchar" name="gcard_title" nullable="true" length="255" comment="Gift Card Title"/>
+    <column xsi:type="smallint" name="status" padding="6" unsigned="false" nullable="false" identity="false" default="0" comment="Image Status"/>
+    <column xsi:type="int" name="width" padding="10" unsigned="true" nullable="false" identity="false" default="580" comment="Gift Card Image Width"/>
+    <column xsi:type="int" name="height" padding="10" unsigned="true" nullable="false" identity="false" default="390" comment="Gift Card Image Height"/>
+    <column xsi:type="varchar" name="image_path" nullable="true" length="255" comment="Image Path"/>
+    <column xsi:type="boolean" name="user_upload" nullable="false" default="0" comment="Is Image Uploaded by User"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="image_id"/>
+    </constraint>
+  </table>
+  <table name="amasty_giftcard_image_elements" resource="default" engine="innodb" comment="Amasty GiftCard Image Elements Table">
+    <column xsi:type="int" name="element_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Image Element ID"/>
+    <column xsi:type="int" name="image_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Image ID"/>
+    <column xsi:type="varchar" name="name" nullable="false" length="225" comment="Image Element Name"/>
+    <column xsi:type="int" name="width" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="Image Element Width"/>
+    <column xsi:type="int" name="height" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="Image Element Height"/>
+    <column xsi:type="int" name="pos_x" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="Image Element X Position"/>
+    <column xsi:type="int" name="pos_y" padding="10" unsigned="true" nullable="false" identity="false" default="0" comment="Image Element Y Position"/>
+    <column xsi:type="varchar" name="custom_css" nullable="true" length="225" comment="Image Element Name"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="element_id"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="FK_AC5B89EB02A523E571342A31CBBBAA5E" table="amasty_giftcard_image_elements" column="image_id" referenceTable="amasty_giftcard_image" referenceColumn="image_id" onDelete="CASCADE"/>
+  </table>
+  <table name="amasty_giftcard_price" resource="default" engine="innodb" comment="Amasty GiftCard Price Table">
+    <column xsi:type="int" name="price_id" padding="10" unsigned="true" nullable="false" identity="true" comment="Price ID"/>
+    <column xsi:type="int" name="product_id" padding="10" unsigned="true" nullable="false" identity="false" comment="Product ID"/>
+    <column xsi:type="smallint" name="website_id" padding="5" unsigned="true" nullable="false" identity="false" comment="Website ID"/>
+    <column xsi:type="smallint" name="attribute_id" padding="5" unsigned="true" nullable="false" identity="false" comment="Attribute ID"/>
+    <column xsi:type="decimal" name="value" scale="2" precision="12" unsigned="true" nullable="false" comment="Price Value"/>
+    <constraint xsi:type="primary" referenceId="PRIMARY">
+      <column name="price_id"/>
+    </constraint>
+    <constraint xsi:type="foreign" referenceId="AMASTY_GIFTCARD_PRICE_WEBSITE_ID_STORE_WEBSITE_WEBSITE_ID" table="amasty_giftcard_price" column="website_id" referenceTable="store_website" referenceColumn="website_id" onDelete="CASCADE"/>
+    <constraint xsi:type="foreign" referenceId="AMASTY_GIFTCARD_PRICE_ATTRIBUTE_ID_EAV_ATTRIBUTE_ATTRIBUTE_ID" table="amasty_giftcard_price" column="attribute_id" referenceTable="eav_attribute" referenceColumn="attribute_id" onDelete="CASCADE"/>
+    <index referenceId="AMASTY_GIFTCARD_PRICE_PRODUCT_ID" indexType="btree">
+      <column name="product_id"/>
+    </index>
+    <index referenceId="AMASTY_GIFTCARD_PRICE_WEBSITE_ID" indexType="btree">
+      <column name="website_id"/>
+    </index>
+    <index referenceId="AMASTY_GIFTCARD_PRICE_ATTRIBUTE_ID" indexType="btree">
+      <column name="attribute_id"/>
+    </index>
+  </table>
+</schema>

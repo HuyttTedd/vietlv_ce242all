@@ -1,0 +1,14 @@
+<!-- ko if: $data.isDesignMode -->
+    <div class="amgcard-elems-container">
+        <ul afterRender="$data.initDroppable.bind($data, $element)"
+            class="amgcard-draggable-elems">
+            <!-- ko foreach: $data.elements -->
+            <li class="amgcard-draggable"
+                afterRender="$parent.initDnd.bind($parent, $element, $data)"
+                data-bind="text: $data.label, css: {'-used': $parent.isElementUsed($data.name)},
+                       attr: {'data-code': $data.name},
+                       event: {dblclick: $parent.createDragElement.bind($parent, $data, $element)}"></li>
+            <!-- /ko -->
+        </ul>
+    </div>
+<!-- /ko -->

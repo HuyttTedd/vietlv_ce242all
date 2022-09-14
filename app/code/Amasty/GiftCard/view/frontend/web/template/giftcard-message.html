@@ -1,0 +1,11 @@
+<span class="amcard-title" data-bind="i18n: 'Message'"></span>
+<div class="amcard-field-block">
+    <textarea class="amcard-field"
+              name="am_giftcard_message"
+              cols="30" rows="2"
+              data-amgiftcard-js="textarea"
+              data-amcard-js="field"
+              afterRender="$data.remainingCharacters"
+              data-bind="value: getPreconfiguredValue($element.name), attr: {placeholder: $t('Enter your message')}"></textarea>
+    <span data-amcard-js="char-counter"></span>
+</div>
