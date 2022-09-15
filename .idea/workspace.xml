@@ -1,7 +1,350 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="41042a45-571e-4a5c-9b5f-423943333085" name="Default Changelist" comment="" />
+    <list default="true" id="41042a45-571e-4a5c-9b5f-423943333085" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Api/Data/GiftRuleInterface.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Api/Data/TotalsItemImageInterface.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Block/Add.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Block/Adminhtml/System/Config/Information.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Block/Banner.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Block/Catalog/Product/View/Type/Bundle.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Block/Items.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Block/Popup.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Controller/Cart/Add.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Controller/Popup/Reload.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/CustomerData/Messages.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Helper/Cart.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Helper/Config.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Helper/Data.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Helper/Item.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Helper/Messages.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Model/Config.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Model/Config/Source/Attribute.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Model/Config/Source/AutoAdd/Discount.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Model/Config/Source/AutoAdd/Mode.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Model/Config/Source/GiftRepresentationMode.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Model/Config/Source/Selection/Mode.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Model/DiscountCalculator.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Model/ImageMigrate.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Model/ItemRegistry/PromoItemData.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Model/ItemRegistry/PromoItemFactory.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Model/ItemRegistry/PromoItemInterface.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Model/ItemRegistry/PromoItemRegistry.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Model/Order/Creditmemo/Item/Checker.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Model/Order/Item/PromoChecker.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Model/Prefix.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Model/Product.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Model/Quote/Totals/Item/ImageData.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Model/Registry.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Model/ResourceModel/GetProductTypesBySkus.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Model/ResourceModel/Rule.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Model/ResourceModel/Rule/Collection.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Model/Rule.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Model/Rule/Action/Discount/AbstractDiscount.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Model/Rule/Action/Discount/Cart.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Model/Rule/Action/Discount/Eachn.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Model/Rule/Action/Discount/Product.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Model/Rule/Action/Discount/SameProduct.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Model/Rule/Action/Discount/Spent.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Model/RuleResolver.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Model/SalesRule/ReadHandler.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Model/SalesRule/SaveHandler.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Model/Storage.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Observer/AddPromoOptionsToCandidate.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Observer/Admin/DeleteConditionHandle.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Observer/CheckOutwithMultipleAddresses.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Observer/CheckoutCartUpdateItemsBefore.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Observer/CollectTotalsAfterObserver.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Observer/FixCouponsUsageObserver.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Observer/OrderPlaceAfterObserver.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Observer/Quote/Cart/Totals/ItemConverterObserver.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Observer/Quote/SetFlagBeforeSave.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Observer/QuoteRemoveItemObserver.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Observer/Salesrule/Discount.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Observer/SetMarkToQuoteItem.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Plugin/Block/Product/Configurable.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Plugin/Block/Product/Simple.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Plugin/Bundle/Block/Catalog/Product/View/Type/Bundle/ForceLoadOptions.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Plugin/CalculatorFactory.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Plugin/Checkout/Block/Cart/Item/RendererPlugin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Plugin/Checkout/Model/ItemManagementPlugin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Plugin/Checkout/Model/TotalsInformationManagementPlugin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Plugin/CheckoutStaging/Model/ResourceModel/PreviewQuotaPlugin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Plugin/FixCouponsUsage.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Plugin/Model/CustomerData/Cart.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Plugin/Model/GiftCard/Validator/Discount.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Plugin/OfflineShipping/Model/SalesRule/Calculator.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Plugin/Quote/Item.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Plugin/Quote/Model/Quote/Item/AbstractItem/SkipChildCheck.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Plugin/Quote/Model/Quote/Item/ProcessorPlugin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Plugin/Quote/Model/Quote/TotalsCollectorPlugin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Plugin/Quote/Model/QuotePlugin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Plugin/Quote/Model/QuoteRepository/SaveHandlerPlugin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Plugin/Quote/Model/ShippingMethodManagementPlugin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Plugin/QuoteTotalItems.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Plugin/Reorder/Reorder.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Plugin/Reorder/ReorderItemsCleaner.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Plugin/Sales/Model/Order/Creditmemo/Item/AdjustBundleQty.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Plugin/Sales/Model/Order/Creditmemo/Item/ResetBundlePrice.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Plugin/Sales/Model/Order/Item/SkipChildCheck.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Plugin/SalesRule.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Plugin/SalesRule/Conditions/Product.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Plugin/SalesRule/Model/DataProviderPlugin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Plugin/SalesRule/Model/Rule/Condition/Product/CombinePlugin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Plugin/SalesRule/Model/ToDataModelPlugin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Plugin/SalesRuleStaging/Model/Rule/HydratorPlugin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Plugin/Tax/Model/Sales/Total/Quote/CommonTaxCollector.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Plugin/Tax/Model/TaxDetails/TaxDetails.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Plugin/ValueProvider.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Plugin/Weee/Model/TaxPlugin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Setup/InstallSchema.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Setup/Operation/ChangeFk.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Setup/Operation/ClearActionsForWholeCart.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Setup/Operation/UpgradeSchemaTo242.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Setup/UpgradeData.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Setup/UpgradeSchema.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Test/Unit/Helper/DataTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Test/Unit/Model/DiscountCalculatorTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Test/Unit/Model/ItemRegistry/PromoItemRegistryTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Test/Unit/Model/ProductTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Test/Unit/Model/RegistryTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Test/Unit/Model/Rule/Action/Discount/AbstractDiscountTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Test/Unit/Plugin/Quote/Model/Quote/TotalsCollectorPlugin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Test/Unit/Traits/ObjectManagerTrait.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/Test/Unit/Traits/ReflectionTrait.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/ViewModel/Checkout/Messenger.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/ViewModel/Product/View/Type/Bundle.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/composer.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/etc/acl.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/etc/adminhtml/events.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/etc/adminhtml/system.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/etc/config.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/etc/di.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/etc/events.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/etc/extension_attributes.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/etc/frontend/di.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/etc/frontend/events.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/etc/frontend/routes.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/etc/frontend/sections.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/etc/less_to_css.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/etc/module.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/etc/webapi_rest/di.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/etc/webapi_rest/events.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/i18n/en_US.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/registration.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/view/adminhtml/layout/sales_rule_promo_quote_edit.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/view/adminhtml/ui_component/sales_rule_form.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/view/adminhtml/ui_component/salesrulestaging_update_form.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/view/adminhtml/web/css/source/_module.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/view/adminhtml/web/css/source/mkcss/ampromo.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/view/adminhtml/web/css/source/mkcss/ampromo.less_" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/view/adminhtml/web/js/form.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/view/adminhtml/web/js/form/element/gift-image-toggle.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/view/adminhtml/web/js/form_script.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/view/frontend/layout/amasty_promo_popup_reload.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/view/frontend/layout/ampromo_items.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/view/frontend/layout/ampromo_popup.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/view/frontend/layout/catalog_product_view.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/view/frontend/layout/checkout_cart_index.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/view/frontend/layout/checkout_index_index.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/view/frontend/layout/default.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/view/frontend/requirejs-config.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/view/frontend/templates/add.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/view/frontend/templates/ampromo_messenger.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/view/frontend/templates/banner.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/view/frontend/templates/catalog/product/links.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/view/frontend/templates/items.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/view/frontend/templates/popup.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/view/frontend/templates/product/price/final_price.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/view/frontend/templates/product/view/type/bundle/option/checkbox.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/view/frontend/templates/product/view/type/bundle/option/multi.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/view/frontend/templates/product/view/type/bundle/option/radio.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/view/frontend/templates/product/view/type/bundle/option/select.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/view/frontend/templates/product/view/type/options/bundle.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/view/frontend/templates/product/view/type/options/configurable.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/view/frontend/web/css/banner.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/view/frontend/web/css/source/_module.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/view/frontend/web/css/source/compatibility/_am-jet-theme.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/view/frontend/web/css/source/mkcss/ampromo.less" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/view/frontend/web/fonts/slick.eot" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/view/frontend/web/fonts/slick.svg" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/view/frontend/web/fonts/slick.ttf" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/view/frontend/web/fonts/slick.woff" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/view/frontend/web/images/close_icon.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/view/frontend/web/images/gift.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/view/frontend/web/js/amastyNoticeDisable.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/view/frontend/web/js/checkout/cart-items-counter-update.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/view/frontend/web/js/checkout/sidebar-image-update.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/view/frontend/web/js/discount-calculator.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/view/frontend/web/js/model/coupon-apply-response-processor-mixin.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/view/frontend/web/js/model/promo-subscribe.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/view/frontend/web/js/popup.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/view/frontend/web/js/price-updater.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/view/frontend/web/js/type/bundle.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/view/frontend/web/js/type/configurable.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Promo/view/frontend/web/js/view/messages.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Api/Data/DiscountBreakdownLineInterface.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Api/Data/RuleInterface.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Api/ExtendedValidatorInterface.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Api/RuleProviderInterface.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Block/Adminhtml/System/Config/Information.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Block/Adminhtml/System/Config/Notice.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Block/Cart/Item/Debug.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Block/Cart/LayoutProcessor.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Helper/Data.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Helper/Discount.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Model/ConfigModel.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Model/Debug.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Model/DiscountBreakdownLine.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Model/DiscountRegistry.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Model/Registry.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Model/ResourceModel/Rule.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Model/Rule.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Model/Rule/Action/Discount/AbstractRule.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Model/Rule/Action/Discount/AbstractSetof.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Model/Rule/Action/Discount/BuyxgetnFixdisc.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Model/Rule/Action/Discount/BuyxgetnFixprice.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Model/Rule/Action/Discount/BuyxgetnPerc.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Model/Rule/Action/Discount/Buyxgety.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Model/Rule/Action/Discount/EachmaftnFixdisc.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Model/Rule/Action/Discount/EachmaftnFixprice.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Model/Rule/Action/Discount/EachmaftnPerc.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Model/Rule/Action/Discount/Eachn.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Model/Rule/Action/Discount/EachnFixdisc.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Model/Rule/Action/Discount/EachnFixprice.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Model/Rule/Action/Discount/EachnPerc.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Model/Rule/Action/Discount/Groupn.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Model/Rule/Action/Discount/GroupnDisc.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Model/Rule/Action/Discount/Moneyamount.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Model/Rule/Action/Discount/SetofFixed.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Model/Rule/Action/Discount/SetofPercent.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Model/Rule/Action/Discount/Thecheapest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Model/Rule/Action/Discount/Themostexpencive.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Model/Rule/Action/Discount/TieredBuyxgetcheapern.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Model/Rule/Action/Discount/TieredWholecheaper.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Model/Rule/ItemCalculationPrice.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Model/Rule/Validator/CheckActionItemValidator.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Model/Rule/Validator/ValidatorPool.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Model/RuleProvider.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Model/RuleResolver.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Model/SalesRule/ReadHandler.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Model/SalesRule/SaveHandler.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Observer/Salesrule/Discount.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Plugin/CalculatorFactory.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Plugin/Cart/CartTotalRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Plugin/CheckoutStaging/Model/ResourceModel/PreviewQuotaPlugin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Plugin/Condition/Combine.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Plugin/Condition/Product.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Plugin/Framework/Api/DataObjectHelperPlugin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Plugin/LayoutProcessor.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Plugin/Model/Condition/AbstractConditionPlugin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Plugin/SalesRule.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Plugin/SalesRule/Model/DataProviderPlugin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Plugin/SalesRule/Model/ResourceModel/Rule/Collection.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Plugin/SalesRule/Model/RulesApplier.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Plugin/SalesRule/Model/ToDataModelPlugin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Plugin/SalesRule/Model/Utility.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Plugin/SalesRuleStaging/Model/Rule/HydratorPlugin.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Plugin/ValueProvider.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Setup/Patch/Schema/UpdateForeignKey.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Setup/Uninstall.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Test/Integration/Model/Discount/BaseDiscount.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Test/Integration/Model/Discount/BuygetnPercTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Test/Integration/Model/Discount/BuyxgetnFixdiscTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Test/Integration/Model/Discount/BuyxgetnFixpriceTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Test/Integration/_files/cart_rule_buy_x_get_y_10_percent_discount.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Test/Integration/_files/cart_rule_buy_x_get_y_10_percent_discount_rollback.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Test/Integration/_files/cart_rule_buy_x_gey_y_30_discount_amount.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Test/Integration/_files/cart_rule_buy_x_gey_y_30_discount_amount_rollback.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Test/Integration/_files/product_rollback.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Test/Integration/_files/products.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Test/Integration/_files/quote_with_simple_products.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Test/Integration/_files/quote_with_simple_products_rollback.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Test/Unit/Model/Rule/Action/Discount/AbstractRuleTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Test/Unit/Model/Rule/Action/Discount/BuyxgetnPercTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Test/Unit/Model/Rule/Action/Discount/MoneyamountTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Test/Unit/Model/Rule/Action/Discount/SetofFixedTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Test/Unit/Model/Rule/Action/Discount/TheCheapestTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Test/Unit/Model/Rule/ItemCalculationPriceTest.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Test/Unit/TestHelper/ObjectCreatorTrait.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Test/Unit/TestHelper/ReflectionTrait.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/Ui/Form/Rule/CalculateDiscountBasedOnOptions.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/composer.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/etc/acl.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/etc/adminhtml/events.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/etc/adminhtml/system.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/etc/config.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/etc/db_schema.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/etc/db_schema_whitelist.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/etc/di.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/etc/events.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/etc/extension_attributes.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/etc/frontend/di.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/etc/module.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/i18n/en_US.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/registration.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/view/adminhtml/layout/sales_rule_promo_quote_edit.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/view/adminhtml/templates/form_scripts.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/view/adminhtml/ui_component/sales_rule_form.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/view/adminhtml/ui_component/salesrulestaging_update_form.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/view/adminhtml/web/css/am-highlight-promotion.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/view/adminhtml/web/js/form.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/view/frontend/layout/checkout_cart_index.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/view/frontend/layout/checkout_cart_item_renderers.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/view/frontend/layout/checkout_index_index.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/view/frontend/templates/cart/item/debug.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/view/frontend/web/css/amrules.css" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/view/frontend/web/js/view/cart/totals/discount-breakdown.js" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/view/frontend/web/template/summary/discount-breakdown.html" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/RulesLoyalty/Block/Adminhtml/System/Config/Editor.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/RulesLoyalty/Block/Index.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/RulesLoyalty/Controller/Index/Index.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/RulesLoyalty/Helper/Calculator.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/RulesLoyalty/Model/ConfigProvider.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/RulesLoyalty/composer.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/RulesLoyalty/etc/acl.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/RulesLoyalty/etc/adminhtml/system.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/RulesLoyalty/etc/frontend/routes.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/RulesLoyalty/etc/module.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/RulesLoyalty/i18n/en_US.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/RulesLoyalty/registration.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/RulesLoyalty/view/frontend/layout/amrules_index_index.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/RulesLoyalty/view/frontend/layout/customer_account.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/RulesLoyalty/view/frontend/templates/index.phtml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/RulesPro/Api/RuleUsageRepositoryInterface.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/RulesPro/Helper/Calculator.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/RulesPro/Model/ResourceModel/Order.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/RulesPro/Model/ResourceModel/RuleUsageCounter.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/RulesPro/Model/ResourceModel/RuleUsageLimit.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/RulesPro/Model/Rule/Condition/Customer.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/RulesPro/Model/Rule/Condition/Orders.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/RulesPro/Model/Rule/Condition/Total.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/RulesPro/Model/Rule/Condition/Total/Period.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/RulesPro/Model/Rule/Condition/Total/Status.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/RulesPro/Model/Rule/Validator/UsageLimitValidator.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/RulesPro/Model/RuleUsageRepository.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/RulesPro/Model/SalesRule/ReadHandler.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/RulesPro/Model/SalesRule/SaveHandler.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/RulesPro/Model/SalesRule/UpdateHandler.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/RulesPro/Observer/RuleConditionCombineObserver.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/RulesPro/Observer/Sales/Order/AfterPlaceOrder.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/RulesPro/Plugin/SalesRule/Model/Rule/Metadata/ValueProvider.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/RulesPro/Setup/Patch/Schema/CreateLimitForeignKey.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/RulesPro/Setup/Uninstall.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/RulesPro/composer.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/RulesPro/etc/adminhtml/events.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/RulesPro/etc/db_schema.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/RulesPro/etc/db_schema_whitelist.json" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/RulesPro/etc/di.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/RulesPro/etc/events.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/RulesPro/etc/extension_attributes.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/RulesPro/etc/module.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/RulesPro/i18n/en_US.csv" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/RulesPro/registration.php" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/RulesPro/view/adminhtml/ui_component/sales_rule_form.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/app/code/Amasty/RulesPro/view/adminhtml/ui_component/salesrulestaging_update_form.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+    </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
@@ -10,7 +353,11 @@
   <component name="ComposerSettings">
     <execution />
   </component>
+  <component name="Git.Settings">
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
   <component name="ProjectId" id="2Dkby6eDXCYz6pPkV1qSwA6Lw5p" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
@@ -19,14 +366,20 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/code/Amasty" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
     <property name="node.js.path.for.package.tslint" value="project" />
     <property name="node.js.selected.package.eslint" value="(autodetect)" />
     <property name="node.js.selected.package.tslint" value="(autodetect)" />
+    <property name="nodejs_package_manager_path" value="npm" />
     <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/app/code/Amasty" />
+    </key>
   </component>
   <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="TaskManager">
@@ -38,11 +391,24 @@
       <updated>1661246289141</updated>
       <workItem from="1661246290230" duration="12542000" />
       <workItem from="1661748095902" duration="1407000" />
-      <workItem from="1663058408291" duration="7489000" />
+      <workItem from="1663058408291" duration="12568000" />
+      <workItem from="1663130163295" duration="5905000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
     <option name="version" value="3" />
+  </component>
+  <component name="Vcs.Log.Tabs.Properties">
+    <option name="TAB_STATES">
+      <map>
+        <entry key="MAIN">
+          <value>
+            <State />
+          </value>
+        </entry>
+      </map>
+    </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
 </project>
