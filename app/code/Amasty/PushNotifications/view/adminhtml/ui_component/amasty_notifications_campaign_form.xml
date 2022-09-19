@@ -1,0 +1,418 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<form xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="js_config" xsi:type="array">
+            <item name="provider" xsi:type="string">amasty_notifications_campaign_form.amasty_notifications_campaign_form_data_source</item>
+            <item name="deps" xsi:type="string">amasty_notifications_campaign_form.amasty_notifications_campaign_form_data_source</item>
+        </item>
+        <item name="config" xsi:type="array">
+            <item name="dataScope" xsi:type="string">data</item>
+            <item name="namespace" xsi:type="string">amasty_notifications_campaign_form_data_source</item>
+        </item>
+        <item name="template" xsi:type="string">templates/form/collapsible</item>
+        <item name="buttons" xsi:type="array">
+            <item name="back" xsi:type="array">
+                <item name="name" xsi:type="string">back</item>
+                <item name="label" xsi:type="string" translate="true">Back</item>
+                <item name="class" xsi:type="string">back</item>
+                <item name="url" xsi:type="string">*/*/</item>
+            </item>
+            <item name="delete" xsi:type="string">Amasty\PushNotifications\Block\Adminhtml\Campaign\Edit\DeleteButton</item>
+            <item name="save_and_send" xsi:type="string">Amasty\PushNotifications\Block\Adminhtml\Campaign\Edit\SaveAndSendButton</item>
+            <item name="save" xsi:type="string">Amasty\PushNotifications\Block\Adminhtml\Campaign\Edit\SaveButton</item>
+            <item name="save_and_continue" xsi:type="string">Amasty\PushNotifications\Block\Adminhtml\Campaign\Edit\SaveAndContinueButton</item>
+            <item name="clone" xsi:type="string">Amasty\PushNotifications\Block\Adminhtml\Campaign\Edit\CloneButton</item>
+        </item>
+    </argument>
+
+    <dataSource name="amasty_notifications_form_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Amasty\PushNotifications\Ui\DataProvider\Form\CampaignDataProvider</argument>
+            <argument name="name" xsi:type="string">amasty_notifications_campaign_form_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string">campaign_id</argument>
+            <argument name="requestFieldName" xsi:type="string">id</argument>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="submit_url" xsi:type="url" path="*/*/save"/>
+                </item>
+            </argument>
+        </argument>
+        <argument name="data" xsi:type="array">
+            <item name="js_config" xsi:type="array">
+                <item name="component" xsi:type="string">Magento_Ui/js/form/provider</item>
+            </item>
+        </argument>
+    </dataSource>
+    <fieldset name="general">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">General</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="opened" xsi:type="boolean">true</item>
+                <item name="sortOrder" xsi:type="number">10</item>
+            </item>
+        </argument>
+        <field name="name">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Name</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="notification_type">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="number">0</item>
+                    <item name="label" xsi:type="string" translate="true">Notification Type</item>
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="sortOrder" xsi:type="number">15</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="switcherConfig" xsi:type="array">
+                        <item name="enabled" xsi:type="boolean">true</item>
+                        <item name="rules" xsi:type="array">
+                            <item name="0" xsi:type="array">
+                                <item name="value" xsi:type="string">cron</item>
+                                <item name="actions" xsi:type="array">
+                                    <item name="0" xsi:type="array">
+                                        <item name="target" xsi:type="string">amasty_notifications_campaign_form.amasty_notifications_campaign_form.general.scheduled</item>
+                                        <item name="callback" xsi:type="string">show</item>
+                                    </item>
+                                    <item name="1" xsi:type="array">
+                                        <item name="target" xsi:type="string">amasty_notifications_campaign_form.amasty_notifications_campaign_form.general.events</item>
+                                        <item name="callback" xsi:type="string">hide</item>
+                                    </item>
+                                </item>
+                            </item>
+                            <item name="1" xsi:type="array">
+                                <item name="value" xsi:type="string">event</item>
+                                <item name="actions" xsi:type="array">
+                                    <item name="0" xsi:type="array">
+                                        <item name="target" xsi:type="string">amasty_notifications_campaign_form.amasty_notifications_campaign_form.general.scheduled</item>
+                                        <item name="callback" xsi:type="string">hide</item>
+                                    </item>
+                                    <item name="1" xsi:type="array">
+                                        <item name="target" xsi:type="string">amasty_notifications_campaign_form.amasty_notifications_campaign_form.general.events</item>
+                                        <item name="callback" xsi:type="string">show</item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </item>
+                <item name="options" xsi:type="object">Amasty\PushNotifications\Model\OptionSource\Campaign\NotificationType</item>
+            </argument>
+        </field>
+        <field name="events">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Amasty_PushNotifications/js/form/element/multiselect</item>
+                    <item name="elementTmpl" xsi:type="string">Amasty_PushNotifications/form/element/multiselect</item>
+                    <item name="additionalInfo" xsi:type="string" translate="true">Please mind, that Amasty Abandoned Cart Email Events is available when Amasty Abandoned Cart extension is installed.</item>
+                    <item name="label" xsi:type="string" translate="true">Trigger Event</item>
+                    <item name="dataType" xsi:type="string">multiselect</item>
+                    <item name="formElement" xsi:type="string">multiselect</item>
+                    <item name="source" xsi:type="string">events</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="sortOrder" xsi:type="string">20</item>
+                </item>
+                <item name="options" xsi:type="object">Amasty\PushNotifications\Model\OptionSource\Campaign\Events\EventNotificationCombine</item>
+            </argument>
+        </field>
+        <field name="scheduled">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Schedule to</item>
+                    <item name="formElement" xsi:type="string">date</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="dateFormat" xsi:type="string">MM/dd/YYYY HH:mm:ss</item>
+                    <item name="sortOrder" xsi:type="number">22</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="options" xsi:type="array">
+                        <item name="timeFormat" xsi:type="string">HH:mm:ss</item>
+                        <item name="showsTime" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="segmentation_source">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Amasty_PushNotifications/js/form/element/select</item>
+                    <item name="elementTmpl" xsi:type="string">Amasty_PushNotifications/form/element/select</item>
+                    <item name="default" xsi:type="number">0</item>
+                    <item name="additionalInfo" xsi:type="string" translate="true">Please mind, that Customer Segments Source is available when Amasty 'Customer Segmentation' extension is installed. Only registered users from a segmentation will receive push notifications.</item>
+                    <item name="label" xsi:type="string" translate="true">Segmentation Source</item>
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="formElement" xsi:type="string">select</item>
+                    <item name="sortOrder" xsi:type="number">25</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                    <item name="switcherConfig" xsi:type="array">
+                        <item name="enabled" xsi:type="boolean">true</item>
+                        <item name="rules" xsi:type="array">
+                            <item name="0" xsi:type="array">
+                                <item name="value" xsi:type="number">0</item>
+                                <item name="actions" xsi:type="array">
+                                    <item name="0" xsi:type="array">
+                                        <item name="target" xsi:type="string">amasty_notifications_campaign_form.amasty_notifications_campaign_form.general.customer_groups</item>
+                                        <item name="callback" xsi:type="string">show</item>
+                                    </item>
+                                    <item name="1" xsi:type="array">
+                                        <item name="target" xsi:type="string">amasty_notifications_campaign_form.amasty_notifications_campaign_form.general.customer_segments</item>
+                                        <item name="callback" xsi:type="string">hide</item>
+                                    </item>
+                                </item>
+                            </item>
+                            <item name="1" xsi:type="array">
+                                <item name="value" xsi:type="number">1</item>
+                                <item name="actions" xsi:type="array">
+                                    <item name="0" xsi:type="array">
+                                        <item name="target" xsi:type="string">amasty_notifications_campaign_form.amasty_notifications_campaign_form.general.customer_groups</item>
+                                        <item name="callback" xsi:type="string">hide</item>
+                                    </item>
+                                    <item name="1" xsi:type="array">
+                                        <item name="target" xsi:type="string">amasty_notifications_campaign_form.amasty_notifications_campaign_form.general.customer_segments</item>
+                                        <item name="callback" xsi:type="string">show</item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                    </item>
+                </item>
+                <item name="options" xsi:type="object">Amasty\PushNotifications\Model\OptionSource\Campaign\SegmentationSource</item>
+            </argument>
+        </field>
+        <field name="customer_groups">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Customer Groups</item>
+                    <item name="notice" xsi:type="string" translate="true">Leave empty to apply campaign to all customer groups.</item>
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="formElement" xsi:type="string">multiselect</item>
+                    <item name="sortOrder" xsi:type="number">26</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="visibleValue" xsi:type="string">0</item>
+                </item>
+                <item name="options" xsi:type="object">Amasty\PushNotifications\Model\OptionSource\Campaign\CustomerGroups</item>
+            </argument>
+        </field>
+        <field name="customer_segments">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Customer Segments</item>
+                    <item name="notice" xsi:type="string" translate="true">Leave empty to apply campaign to all customer segments.</item>
+                    <item name="dataType" xsi:type="string">number</item>
+                    <item name="formElement" xsi:type="string">multiselect</item>
+                    <item name="sortOrder" xsi:type="number">27</item>
+                    <item name="visible" xsi:type="boolean">false</item>
+                    <item name="visibleValue" xsi:type="string">1</item>
+                </item>
+                <item name="options" xsi:type="object">Amasty\PushNotifications\Model\OptionSource\Campaign\CustomerSegments</item>
+            </argument>
+        </field>
+        <field name="stores">
+            <argument name="data" xsi:type="array">
+                <item name="options" xsi:type="object">Amasty\Base\Ui\Component\Listing\Column\StoreOptions</item>
+                <item name="config" xsi:type="array">
+                    <item name="dataType" xsi:type="string">int</item>
+                    <item name="label" xsi:type="string" translate="true">Store View</item>
+                    <item name="formElement" xsi:type="string">multiselect</item>
+                    <item name="sortOrder" xsi:type="number">30</item>
+                    <item name="dataScope" xsi:type="string">stores</item>
+                    <item name="default" xsi:type="string">0</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="is_active">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="number">1</item>
+                    <item name="label" xsi:type="string" translate="true">Active</item>
+                    <item name="dataType" xsi:type="string">boolean</item>
+                    <item name="formElement" xsi:type="string">checkbox</item>
+                    <item name="sortOrder" xsi:type="number">40</item>
+                    <item name="valueMap" xsi:type="array">
+                        <item name="true" xsi:type="number">1</item>
+                        <item name="false" xsi:type="number">0</item>
+                    </item>
+                    <item name="prefer" xsi:type="string">toggle</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <container name="note_container">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="sortOrder" xsi:type="number">40</item>
+                </item>
+            </argument>
+            <htmlContent name="html_content">
+                <argument name="block" xsi:type="object">Amasty\PushNotifications\Block\Adminhtml\Campaign\Form\LocalTime</argument>
+            </htmlContent>
+        </container>
+    </fieldset>
+    <fieldset name="notification_settings">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="label" xsi:type="string" translate="true">Notification Settings</item>
+                <item name="collapsible" xsi:type="boolean">true</item>
+                <item name="opened" xsi:type="boolean">true</item>
+                <item name="sortOrder" xsi:type="number">20</item>
+            </item>
+        </argument>
+        <field name="message_title">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Message Title</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="sortOrder" xsi:type="number">10</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="message_body">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Message Body</item>
+                    <item name="formElement" xsi:type="string">textarea</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="sortOrder" xsi:type="number">20</item>
+                    <item name="validation" xsi:type="array">
+                        <item name="required-entry" xsi:type="boolean">true</item>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <field name="logo_path">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="default" xsi:type="array"></item>
+                    <item name="showFallbackReset" xsi:type="boolean">true</item>
+                    <item name="label" xsi:type="string" translate="true">Logo Image</item>
+                    <item name="componentType" xsi:type="string">fileUploader</item>
+                    <item name="notice" xsi:type="string" translate="true">Allowed file types: jpg, jpeg, gif, png. Recommended width to height ratio is 1:1 (e.g. 360*360px, 720*720px).</item>
+                    <item name="allowedExtensions" xsi:type="string">jpg jpeg png gif svg</item>
+                    <item name="maxFileSize" xsi:type="number">2097152</item>
+                    <item name="formElement" xsi:type="string">fileUploader</item>
+                    <item name="uploaderConfig" xsi:type="array">
+                        <item name="url" xsi:type="url" path="amasty_notifications/campaign_fileUploader/save"/>
+                    </item>
+                </item>
+            </argument>
+        </field>
+        <!--TODO: next feature-->
+        <!--<field name="button_notification_enable">-->
+            <!--<argument name="data" xsi:type="array">-->
+                <!--<item name="config" xsi:type="array">-->
+                    <!--<item name="formElement" xsi:type="string">checkbox</item>-->
+                    <!--<item name="dataType" xsi:type="string">boolean</item>-->
+                    <!--<item name="default" xsi:type="number">1</item>-->
+                    <!--<item name="label" xsi:type="string">Add button to notification (Chrome browser only)</item>-->
+                    <!--<item name="valueMap" xsi:type="array">-->
+                        <!--<item name="false" xsi:type="string">0</item>-->
+                        <!--<item name="true" xsi:type="string">1</item>-->
+                    <!--</item>-->
+                    <!--<item name="switcherConfig" xsi:type="array">-->
+                        <!--<item name="enabled" xsi:type="boolean">true</item>-->
+                        <!--<item name="rules" xsi:type="array">-->
+                            <!--<item name="0" xsi:type="array">-->
+                                <!--<item name="value" xsi:type="number">0</item>-->
+                                <!--<item name="actions" xsi:type="array">-->
+                                    <!--<item name="0" xsi:type="array">-->
+                                        <!--<item name="target" xsi:type="string">amasty_notifications_campaign_form.amasty_notifications_campaign_form.notification_settings.button_notification_text</item>-->
+                                        <!--<item name="callback" xsi:type="string">hide</item>-->
+                                    <!--</item>-->
+                                    <!--<item name="1" xsi:type="array">-->
+                                        <!--<item name="target" xsi:type="string">amasty_notifications_campaign_form.amasty_notifications_campaign_form.notification_settings.button_notification_url</item>-->
+                                        <!--<item name="callback" xsi:type="string">hide</item>-->
+                                    <!--</item>-->
+                                    <!--<item name="2" xsi:type="array">-->
+                                        <!--<item name="target" xsi:type="string">amasty_notifications_campaign_form.amasty_notifications_campaign_form.notification_settings.utm_params</item>-->
+                                        <!--<item name="callback" xsi:type="string">hide</item>-->
+                                    <!--</item>-->
+                                <!--</item>-->
+                            <!--</item>-->
+                            <!--<item name="1" xsi:type="array">-->
+                                <!--<item name="value" xsi:type="number">1</item>-->
+                                <!--<item name="actions" xsi:type="array">-->
+                                    <!--<item name="0" xsi:type="array">-->
+                                        <!--<item name="target" xsi:type="string">amasty_notifications_campaign_form.amasty_notifications_campaign_form.notification_settings.button_notification_text</item>-->
+                                        <!--<item name="callback" xsi:type="string">show</item>-->
+                                    <!--</item>-->
+                                    <!--<item name="1" xsi:type="array">-->
+                                        <!--<item name="target" xsi:type="string">amasty_notifications_campaign_form.amasty_notifications_campaign_form.notification_settings.button_notification_url</item>-->
+                                        <!--<item name="callback" xsi:type="string">show</item>-->
+                                    <!--</item>-->
+                                    <!--<item name="2" xsi:type="array">-->
+                                        <!--<item name="target" xsi:type="string">amasty_notifications_campaign_form.amasty_notifications_campaign_form.notification_settings.utm_params</item>-->
+                                        <!--<item name="callback" xsi:type="string">show</item>-->
+                                    <!--</item>-->
+                                <!--</item>-->
+                            <!--</item>-->
+                        <!--</item>-->
+                    <!--</item>-->
+                <!--</item>-->
+            <!--</argument>-->
+        <!--</field>-->
+
+        <!--<field name="button_notification_text">-->
+            <!--<argument name="data" xsi:type="array">-->
+                <!--<item name="config" xsi:type="array">-->
+                    <!--<item name="label" xsi:type="string" translate="true">Context button text</item>-->
+                    <!--<item name="placeholder" xsi:type="string" translate="true">Start saving!</item>-->
+                    <!--<item name="formElement" xsi:type="string">input</item>-->
+                    <!--<item name="dataType" xsi:type="string">text</item>-->
+                    <!--<item name="sortOrder" xsi:type="number">50</item>-->
+                <!--</item>-->
+            <!--</argument>-->
+        <!--</field>-->
+        <!--TODO: next feature-->
+
+        <field name="button_notification_url">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">Pop-up notification URL</item>
+                    <item name="notice" xsi:type="string" translate="true">Paste the link you want to direct your pop-up recipients.</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="sortOrder" xsi:type="number">60</item>
+                </item>
+            </argument>
+        </field>
+        <field name="utm_params">
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="label" xsi:type="string" translate="true">UTM parameters for tracking</item>
+                    <item name="placeholder" xsi:type="string" translate="true"><![CDATA[utm_medium=cpc&utm_source=google]]></item>
+                    <item name="notice" xsi:type="string" translate="true">Use Urchin Tracking Module parameters as an advanced GA tracking option to understand how your visitors interact with your store pages.</item>
+                    <item name="formElement" xsi:type="string">input</item>
+                    <item name="dataType" xsi:type="string">text</item>
+                    <item name="sortOrder" xsi:type="number">70</item>
+                </item>
+            </argument>
+        </field>
+    </fieldset>
+</form>

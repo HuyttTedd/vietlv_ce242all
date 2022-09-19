@@ -3,6 +3,7 @@
   <component name="ChangeListManager">
     <list default="true" id="41042a45-571e-4a5c-9b5f-423943333085" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/app/code/Amasty/Rules/view/adminhtml/web/js/form.js" beforeDir="false" afterPath="$PROJECT_DIR$/app/code/Amasty/Rules/view/adminhtml/web/js/form.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -25,7 +26,7 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/app/code/Amasty" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/../../UnitTestPattern/B2S" />
     <property name="node.js.detected.package.eslint" value="true" />
     <property name="node.js.detected.package.tslint" value="true" />
     <property name="node.js.path.for.package.eslint" value="project" />
@@ -81,5 +82,16 @@
   <component name="VcsManagerConfiguration">
     <MESSAGE value="test add module" />
     <option name="LAST_COMMIT_MESSAGE" value="test add module" />
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/vendor/magento/framework/ObjectManager/FactoryInterface.php</url>
+          <line>24</line>
+          <option name="timeStamp" value="2" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>

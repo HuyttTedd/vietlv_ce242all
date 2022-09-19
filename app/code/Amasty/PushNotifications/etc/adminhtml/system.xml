@@ -1,0 +1,106 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="amasty_notifications" translate="label" type="text" sortOrder="162114" showInDefault="1" showInWebsite="1" showInStore="1">
+            <resource>Amasty_PushNotifications::config</resource>
+            <class>separator-top</class>
+            <label>Push Notifications</label>
+            <tab>amasty</tab>
+            <group id="amasty_information" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Information</label>
+                <frontend_model>Amasty\PushNotifications\Block\Adminhtml\System\Config\Information</frontend_model>
+            </group>
+            <group id="general" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General Settings</label>
+                <field id="enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="api_key" translate="label comment" type="text" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Firebase API Key</label>
+                    <comment>
+                        <![CDATA[Please follow the <a href="https://firebase.google.com/docs/cloud-messaging/js/client" target="_blank">Guide</a> to get an API key.]]>
+                    </comment>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="sender_id" translate="label comment" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Sender ID</label>
+                    <comment>
+                        <![CDATA[Please follow the <a href="https://firebase.google.com/docs/cloud-messaging/js/client" target="_blank">Guide</a> to get a Sender ID.]]>
+                    </comment>
+                    <validate>required-entry</validate>
+                </field>
+            </group>
+            <group id="design" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="0" showInStore="0">
+                <label>Design Settings</label>
+                <field id="logo" translate="label comment" type="image" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
+                    <frontend_model>Amasty\PushNotifications\Block\Adminhtml\System\Config\Logo</frontend_model>
+                    <label>Default Logo</label>
+                    <backend_model>Magento\Config\Model\Config\Backend\Image</backend_model>
+                    <upload_dir config="system/filesystem/media" scope_info="1">amasty/push_notifications</upload_dir>
+                    <base_url type="media" scope_info="1">amasty/push_notifications</base_url>
+                    <comment>Allowed file types: jpg, jpeg, gif, png. Recommended width to height ratio is 1:1 (e.g. 360*360px, 720*720px).</comment>
+                </field>
+            </group>
+            <group id="prompt" translate="label" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>Prompt (Subscription Pop-Up) Settings</label>
+                <field id="prompt_enable" translate="label" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enabled</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="device" translate="label" type="multiselect" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable Prompt for</label>
+                    <can_be_empty>1</can_be_empty>
+                    <frontend_class>amnotification-device-multiselect</frontend_class>
+                    <source_model>Amasty\PushNotifications\Model\OptionSource\DeviceType</source_model>
+                    <depends>
+                        <field id="prompt_enable">1</field>
+                    </depends>
+                </field>
+                <field id="text" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Prompt Text</label>
+                </field>
+                <field id="position" translate="label" type="select" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Prompt Position</label>
+                    <source_model>Amasty\PushNotifications\Model\OptionSource\Prompt\Position</source_model>
+                </field>
+                <field id="delay" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show delay (seconds)</label>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                    <comment>The time interval between a page load and the subscription pop-up appearance</comment>
+                </field>
+                <field id="frequency" sortOrder="60" translate="label comment" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Set Frequency of Prompt Display for the Same Customer</label>
+                    <source_model>Amasty\PushNotifications\Model\Config\Source\PromptFrequency</source_model>
+                    <comment>Choose how frequently to show the prompt to those who haven't consented yet</comment>
+                </field>
+                <field id="all_pages" sortOrder="70" translate="label" type="select" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Show Prompt on All Pages</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+                <field id="pages" sortOrder="80" translate="label comment" type="textarea" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Pages to show the prompt on</label>
+                    <comment><![CDATA[List of pages, where the prompt will show. Each page on a separate line.]]></comment>
+                    <depends>
+                        <field id="all_pages">0</field>
+                    </depends>
+                </field>
+            </group>
+            <group id="no_spam" translate="label comment" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>No Spam</label>
+                <field id="max_limit" sortOrder="10" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Max. Number of Notifications per Customer Daily</label>
+                    <validate>validate-number validate-zero-or-greater</validate>
+                    <comment><![CDATA[0 for no limit]]></comment>
+                </field>
+                <!-- TODO new feature Expire notifications in days -->
+                <!--<field id="expire_days" sortOrder="20" translate="label comment" type="text" showInDefault="1" showInWebsite="1" showInStore="1">-->
+                    <!--<label>Expire notifications in (days)</label>-->
+                    <!--<validate>validate-number validate-zero-or-greater</validate>-->
+                    <!--<comment><![CDATA[0 for no limit]]></comment>-->
+                <!--</field>-->
+            </group>
+        </section>
+    </system>
+</config>

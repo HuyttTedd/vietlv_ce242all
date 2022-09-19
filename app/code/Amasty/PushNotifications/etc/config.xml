@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <amasty_notifications>
+            <general>
+                <enable>1</enable>
+                <api_key></api_key>
+                <sender_id></sender_id>
+            </general>
+            <design>
+                <logo></logo>
+            </design>
+            <prompt>
+                <prompt_enable>1</prompt_enable>
+                <device>desktop,tablet,mobile</device>
+                <text>Shall we send you a message when we have discounts available?</text>
+                <position>right</position>
+                <delay>30</delay>
+                <frequency>1</frequency>
+                <all_pages>1</all_pages>
+                <pages>/</pages>
+            </prompt>
+            <no_spam>
+                <max_limit>0</max_limit>
+            </no_spam>
+        </amasty_notifications>
+    </default>
+</config>

@@ -1,0 +1,196 @@
+"Firebase API key is not set.","Firebase API key is not set."
+" Test notification won't be sent."," Test notification won't be sent."
+" Please click <a href=""%1"">here</a> to submit an API key to your configuration."," Please click <a href=""%1"">here</a> to submit an API key to your configuration."
+"New company will be created. Are you sure?","New company will be created. Are you sure?"
+"Clone Campaign","Clone Campaign"
+"Are you sure that you want to delete this campaign?","Are you sure that you want to delete this campaign?"
+Delete,Delete
+"Save and Continue Edit","Save and Continue Edit"
+"Send Test Notification","Send Test Notification"
+Save,Save
+"Local Time:","Local Time:"
+"Magento cron doesn't seem to be running. Please check <a target=""_blank"" href=""%1"">this article</a>
+                   to learn why Magento cron is important and how to configure it.","Magento cron doesn't seem to be running. Please check <a target=""_blank"" href=""%1"">this article</a>
+                   to learn why Magento cron is important and how to configure it."
+Name,Name
+"Scheduled At","Scheduled At"
+Clicks,Clicks
+"%1 (%2%)","%1 (%2%)"
+Scheduled,Scheduled
+"Latest campaigns","Latest campaigns"
+"+ Start a new Campaign","+ Start a new Campaign"
+"Please update Amasty Base module. Re-upload it and replace all the files.","Please update Amasty Base module. Re-upload it and replace all the files."
+Logo,Logo
+"Oops! Notifications are disabled.","Oops! Notifications are disabled."
+"We can't change item right now. Please review the log and try again.","We can't change item right now. Please review the log and try again."
+"A total of %1 record(s) have been changed.","A total of %1 record(s) have been changed."
+"No records have been changed.","No records have been changed."
+"This Campaign no longer exists.","This Campaign no longer exists."
+"You deleted the campaign.","You deleted the campaign."
+"We can't delete item right now. Please review the log and try again.","We can't delete item right now. Please review the log and try again."
+"This campaign no longer exists.","This campaign no longer exists."
+Campaign,Campaign
+"New Campaign","New Campaign"
+Campaigns,Campaigns
+"Manage Campaigns","Manage Campaigns"
+"A total of %1 record(s) have been deleted.","A total of %1 record(s) have been deleted."
+"No records have been deleted.","No records have been deleted."
+"A total of %1 record(s) have been activated.","A total of %1 record(s) have been activated."
+"No records have been activated.","No records have been activated."
+"A total of %1 record(s) have been deactivated.","A total of %1 record(s) have been deactivated."
+"No records have been deactivated.","No records have been deactivated."
+"Email can not be sent. Email field is empty.","Email can not be sent. Email field is empty."
+"You saved the item.","You saved the item."
+Dashboard,Dashboard
+"We updated lifetime statistic.","We updated lifetime statistic."
+"We can't refresh lifetime statistics.","We can't refresh lifetime statistics."
+"Subscriber is deleted.","Subscriber is deleted."
+"Subscriber ID is not found.","Subscriber ID is not found."
+Subscribers,Subscribers
+"Manage Subscribers","Manage Subscribers"
+"User is successfully subscribed","User is successfully subscribed"
+"Module is disabled","Module is disabled"
+"Today %1 ago","Today %1 ago"
+"Today in %1","Today in %1"
+Now,Now
+"Tomorrow %1","Tomorrow %1"
+"%1 ago","%1 ago"
+"in %1","in %1"
+"Campaign data not found","Campaign data not found"
+"Notification has been sent.","Notification has been sent."
+"Notification send error.","Notification send error."
+"Unable to save campaign with ID %1. Error: %2","Unable to save campaign with ID %1. Error: %2"
+"Unable to save new campaign. Error: %1","Unable to save new campaign. Error: %1"
+"Campaign with specified ID ""%1"" not found.","Campaign with specified ID ""%1"" not found."
+"Unable to remove question with ID %1. Error: %2","Unable to remove question with ID %1. Error: %2"
+"Unable to remove campaign. Error: %1","Unable to remove campaign. Error: %1"
+"Every time","Every time"
+Hourly,Hourly
+Daily,Daily
+Weekly,Weekly
+Active,Active
+Inactive,Inactive
+"Abandoned Shopping Cart","Abandoned Shopping Cart"
+Registration,Registration
+Login,Login
+Logout,Logout
+"Group Changing","Group Changing"
+Birthday,Birthday
+"Option Group has empty name","Option Group has empty name"
+"Option Source with code %1 not implements OptionSourceInterface","Option Source with code %1 not implements OptionSourceInterface"
+name,name
+Subscription,Subscription
+"Subscription Cancellation","Subscription Cancellation"
+"Order Status Changing","Order Status Changing"
+"Order Cancellation","Order Cancellation"
+"Scheduled Notification","Scheduled Notification"
+"Event Notification","Event Notification"
+"Use Customer Groups (Default)","Use Customer Groups (Default)"
+"Use Amasty Customer Segments","Use Amasty Customer Segments"
+Passed,Passed
+Edited,Edited
+"By Event","By Event"
+Desktop,Desktop
+Tablet,Tablet
+Mobile,Mobile
+"Bottom Right","Bottom Right"
+"Bottom Left","Bottom Left"
+"Bottom Center","Bottom Center"
+"No valid Campaigns or Subscribers was found.","No valid Campaigns or Subscribers was found."
+"Error in process Push Notification.","Error in process Push Notification."
+"Campaign with ID ""%1"" not found.","Campaign with ID ""%1"" not found."
+"Invalid value ""results"" received from the server response.","Invalid value ""results"" received from the server response."
+"Unable to save subscriber with ID %1. Error: %2","Unable to save subscriber with ID %1. Error: %2"
+"Unable to save new subscriber. Error: %1","Unable to save new subscriber. Error: %1"
+"Customer Id or Visitor Id is not defined","Customer Id or Visitor Id is not defined"
+"Field value is not defined.","Field value is not defined."
+"Unable to remove subscriber. Error: %1","Unable to remove subscriber. Error: %1"
+Edit,Edit
+Remove,Remove
+"Open Customer","Open Customer"
+Guest,Guest
+"Latest campaign click-through rate","Latest campaign click-through rate"
+"Clicks total","Clicks total"
+"Campaigns finished","Campaigns finished"
+"Remind me later","Remind me later"
+Allow,Allow
+"Thank you! Please check your email inbox to confirm.","Thank you! Please check your email inbox to confirm."
+"We couldn't find any records.","We couldn't find any records."
+Error,Error
+Success,Success
+Fail,Fail
+"Token getting error.","Token getting error."
+"Not possible getting Request permissions.","Not possible getting Request permissions."
+"Push Notifications","Push Notifications"
+Information,Information
+"General Settings","General Settings"
+Enabled,Enabled
+"Firebase API Key","Firebase API Key"
+"Please follow the <a href=""https://firebase.google.com/docs/cloud-messaging/js/client"" target=""_blank"">Guide</a> to get an API key.","Please follow the <a href=""https://firebase.google.com/docs/cloud-messaging/js/client"" target=""_blank"">Guide</a> to get an API key."
+"Sender ID","Sender ID"
+"Please follow the <a href=""https://firebase.google.com/docs/cloud-messaging/js/client"" target=""_blank"">Guide</a> to get a Sender ID.","Please follow the <a href=""https://firebase.google.com/docs/cloud-messaging/js/client"" target=""_blank"">Guide</a> to get a Sender ID."
+"Design Settings","Design Settings"
+"Default Logo","Default Logo"
+"Allowed file types: jpg, jpeg, gif, png. Recommended width to height ratio is 1:1 (e.g. 360*360px, 720*720px).","Allowed file types: jpg, jpeg, gif, png. Recommended width to height ratio is 1:1 (e.g. 360*360px, 720*720px)."
+"Prompt (Subscription Pop-Up) Settings","Prompt (Subscription Pop-Up) Settings"
+"Enable Prompt for","Enable Prompt for"
+"Prompt Text","Prompt Text"
+"Prompt Position","Prompt Position"
+"Show delay (seconds)","Show delay (seconds)"
+"The time interval between a page load and the subscription pop-up appearance","The time interval between a page load and the subscription pop-up appearance"
+"Set Frequency of Prompt Display for the Same Customer","Set Frequency of Prompt Display for the Same Customer"
+"Choose how frequently to show the prompt to those who haven't consented yet","Choose how frequently to show the prompt to those who haven't consented yet"
+"Show Prompt on All Pages","Show Prompt on All Pages"
+"Pages to show the prompt on","Pages to show the prompt on"
+"List of pages, where the prompt will show. Each page on a separate line.","List of pages, where the prompt will show. Each page on a separate line."
+"No Spam","No Spam"
+"Max. Number of Notifications per Customer Daily","Max. Number of Notifications per Customer Daily"
+"0 for no limit","0 for no limit"
+Customer,Customer
+Newsletter,Newsletter
+Sales,Sales
+"Amasty Abandoned Cart Email","Amasty Abandoned Cart Email"
+Back,Back
+General,General
+"Notification Type","Notification Type"
+"Please mind, that Amasty Abandoned Cart Email Events is available when Amasty Abandoned Cart extension is installed.","Please mind, that Amasty Abandoned Cart Email Events is available when Amasty Abandoned Cart extension is installed."
+"Trigger Event","Trigger Event"
+"Schedule to","Schedule to"
+"Please mind, that Customer Segments Source is available when Amasty 'Customer Segmentation' extension is installed. Only registered users from a segmentation will receive push notifications.","Please mind, that Customer Segments Source is available when Amasty 'Customer Segmentation' extension is installed. Only registered users from a segmentation will receive push notifications."
+"Segmentation Source","Segmentation Source"
+"Customer Groups","Customer Groups"
+"Leave empty to apply campaign to all customer groups.","Leave empty to apply campaign to all customer groups."
+"Customer Segments","Customer Segments"
+"Leave empty to apply campaign to all customer segments.","Leave empty to apply campaign to all customer segments."
+"Store View","Store View"
+"Notification Settings","Notification Settings"
+"Message Title","Message Title"
+"Message Body","Message Body"
+"Logo Image","Logo Image"
+"Pop-up notification URL","Pop-up notification URL"
+"Paste the link you want to direct your pop-up recipients.","Paste the link you want to direct your pop-up recipients."
+"UTM parameters for tracking","UTM parameters for tracking"
+utm_medium=cpc&utm_source=google,utm_medium=cpc&utm_source=google
+"Use Urchin Tracking Module parameters as an advanced GA tracking option to understand how your visitors interact with your store pages.","Use Urchin Tracking Module parameters as an advanced GA tracking option to understand how your visitors interact with your store pages."
+Activate,Activate
+"Activate campaigns","Activate campaigns"
+"Are you sure that you want to activate selected items?","Are you sure that you want to activate selected items?"
+Deactivate,Deactivate
+"Deactivate campaigns","Deactivate campaigns"
+"Are you sure that you want to deactivate selected items?","Are you sure that you want to deactivate selected items?"
+"Delete items","Delete items"
+"Are you sure that you want to delete selected items?","Are you sure that you want to delete selected items?"
+ID,ID
+"Is Active","Is Active"
+Status,Status
+"Number of Subscribers","Number of Subscribers"
+Views,Views
+"Unique Views","Unique Views"
+"Click Rate, %","Click Rate, %"
+"Test Notification","Test Notification"
+Source,Source
+Location,Location
+"Customer Id","Customer Id"
+"Subscriber Since","Subscriber Since"
+IP,IP
+Token,Token

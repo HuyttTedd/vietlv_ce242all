@@ -1,0 +1,64 @@
+<?php
+/** @var \Amasty\PushNotifications\Block\Adminhtml\Dashboard\Dashboard $block */
+
+// @codingStandardsIgnoreFile
+
+?>
+<div class="am-pn-dashboard dashboard-container row">
+    <div class="dashboard-main col-m-7 col-m-push-5">
+        <div class="dashboard-item">
+            <div class="dashboard-item-title">Stats</div>
+            <div class="am-stats-wrapper dashboard-item-content">
+                <div class="am-item am-subscribers-count">
+                    <div class="am-title"><span class="am-text">
+                            <?= /* @escapeNotVerified */ __('Subscribers'); ?>
+                        </span></div>
+                    <div class="am-info"><span class="am-text">
+                            <?= $block->getSubscribersCount(); ?>
+                        </span></div>
+                </div>
+                <div class="am-item am-click-rate">
+                    <div class="am-title">
+                        <span class="am-text">
+                            <?= /* @escapeNotVerified */ __('Latest campaign click-through rate'); ?>
+                        </span>
+                    </div>
+                    <div class="am-info <?php if ($block->isCountIncreased()): ?>-increase<?php else: ?>-decrease<?php endif; ?>">
+                        <span class="am-text">
+                            <?= $block->getLatestCampaignRate(); ?>%</span>
+                    </div>
+                </div>
+                <div class="am-item am-clicks-total">
+                    <div class="am-title"><span class="am-text">
+                            <?= /* @escapeNotVerified */ __('Clicks total'); ?>
+                        </span>
+                    </div>
+                    <div class="am-info"><span class="am-text">
+                            <?= $block->getClicksTotal(); ?>
+                        </span>
+                    </div>
+                </div>
+                <div class="am-item am-finished-campaigns-count">
+                    <div class="am-title"><span class="am-text">
+                            <?= /* @escapeNotVerified */ __('Campaigns finished'); ?>
+                        </span></div>
+                    <div class="am-info"><span class="am-text">
+                            <?= $block->getFinishedCampaigns(); ?>
+                        </span></div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="dashboard-secondary col-m-5 col-m-pull-7">
+        <div class="dashboard-item">
+            <div class="dashboard-item-title"><?= /* @escapeNotVerified */ $block->getCampaignGridTitle(); ?></div>
+            <div class="dashboard-item-content">
+                <?= $block->getChildHtml('lastCampaigns') ?>
+            </div>
+        </div>
+        <a class="action-primary" href="<?= /* @escapeNotVerified */ $block->getAddCampaignButtonLink(); ?>"
+                title="<?= /* @escapeNotVerified */ $block->getAddCampaignButtonTitle(); ?>">
+            <?= /* @escapeNotVerified */ $block->getAddCampaignButtonTitle(); ?>
+        </a>
+    </div>
+</div>

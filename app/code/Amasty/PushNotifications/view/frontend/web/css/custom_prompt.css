@@ -1,0 +1,165 @@
+.am-notification-wrapper {
+    display: none;
+    position: fixed;
+    bottom: 50px;
+    z-index: 9999999;
+    min-width: 270px;
+    padding: 15px;
+    font-size: 14px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(99, 161, 255, 0.25);
+}
+
+.am-notification-wrapper.right {
+    right: 10px;
+    left: 10px;
+}
+
+.am-notification-wrapper.left {
+    right: 10px;
+    left: 10px;
+}
+
+.am-notification-wrapper.center {
+    left: 50%;
+    transform: translate(-50%, 0);
+}
+
+.am-notification-error  {
+    display: none;
+    position: fixed;
+    right: 30%;
+    bottom: 50%;
+    z-index: 9999999;
+    max-width: 550px;
+    padding: 15px;
+    font-size: 14px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(99, 161, 255, 0.25);
+}
+
+.am-close {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    width: 15px;
+    height: 15px;
+    opacity: 0.3;
+}
+
+.am-close:hover {
+    opacity: 1;
+}
+
+.am-close:before,
+.am-close:after {
+    content: ' ';
+    position: absolute;
+    left: 6px;
+    width: 3px;
+    height: 15px;
+    background-color: #4e4e4e;
+}
+
+.am-close:before {
+    transform: rotate(45deg);
+}
+
+.am-close:after {
+    transform: rotate(-45deg);
+}
+
+.am-notification-wrapper.center .am-message {
+    max-width: 860px;
+}
+
+.am-message {
+    margin: 25px 10px;
+    max-width: 420px;
+}
+
+.am-answer-wrapper {
+    text-align: right;
+}
+
+.am-submit,
+.am-submit:focus {
+    padding: 8px 22px;
+    background: #1979c3;
+    border: none;
+    border-radius: 0;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: none;
+}
+
+.am-submit:hover,
+.am-submit:active {
+    background: #2a93e4;
+    border: none;
+    color: #fff;
+    box-shadow: none;
+}
+
+.am-defer {
+    margin-right: 25px;
+    color: #1979c3;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.am-success-wrapper {
+    display: none;
+}
+
+.am-success-message, .am-error-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.am-success-message .am-message {
+    margin: 0 10px 0;
+}
+
+.am-error-message .am-message {
+    margin: 0 10px 0;
+}
+
+.am-success-message .am-error-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.am-success-icon:after {
+    content: '\e60e';
+    font-size: 33px;
+    font-family: luma-icons;
+    color: #1979c3;
+}
+
+.am-error-icon:after {
+    content: '\e602';
+    font-size: 33px;
+    font-family: luma-icons;
+    color: #1979c3;
+}
+
+@media screen and (min-width: 600px) {
+    .am-notification-wrapper {
+        min-width: 320px;
+    }
+
+    .am-notification-wrapper.right {
+        right: 50px;
+        left: auto;
+    }
+
+    .am-notification-wrapper.left {
+        left: 50px;
+        right: auto;
+    }
+}

@@ -1,0 +1,58 @@
+<?php
+/**
+ * @var $block \Amasty\PushNotifications\Block\Adminhtml\System\Config\Logo
+ */
+?>
+<div class="amlogo-container">
+    <span class="amclose"></span>
+        <span class="amlogo"
+              data-role="amasty-notifications-logo-text"
+            <?php if ($block->getValue()): ?> style="display: none" <?php endif; ?>>
+            <?php echo $block->getLogoText(); ?>
+        </span>
+
+    <img id="amimage_logo"
+         class="image-logo"
+        <?php if (!$block->getImageUrl()): ?> style="display: none" <?php endif; ?>
+         src="<?php echo $block->getImageUrl(); ?>"
+    />
+    <label class="custom-file-input" for="<?php echo $block->getHtmlId(); ?>" >
+    </label>
+    <input id="<?php echo $block->getHtmlId(); ?>"
+           class="amchoose-file input-file"
+           type="<?php echo $block->getInputType(); ?>"
+           name="<?php echo $block->getNamePrefix(); ?>"
+           value="<?php echo $block->getImageUrl(); ?>"
+    />
+</div>
+
+<script>
+    require([
+        'jquery'
+    ], function($) {
+        function readURL(input) {
+            if (input.files && input.files[0]) {
+                var reader = new FileReader();
+                reader.onload = function(e) {
+                    $('#amimage_logo').show().attr('src', e.target.result);
+                };
+
+                $('.amlogo').hide();
+
+                reader.readAsDataURL(input.files[0]);
+            }
+        }
+
+        var fileInputId = '<?php echo $block->getHtmlId(); ?>';
+
+        $("#" + fileInputId).change(function() {
+            readURL(this);
+        });
+
+        $( ".amclose" ).click(function() {
+            $('#amimage_logo').attr('src', '');
+            $('.amlogo').show();
+            $('.amdelete-image').val(1);
+        });
+    });
+</script>

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <body>
+        <referenceContainer name="content">
+            <block class="Amasty\PushNotifications\Block\Adminhtml\CronNotification"
+                   name="cron_notification"/>
+            <block class="Amasty\PushNotifications\Block\Adminhtml\Campaign\ApiKeyNotification"
+                   name="apikey_warning_notification"/>
+            <uiComponent name="amasty_notifications_campaign_listing"/>
+        </referenceContainer>
+    </body>
+</page>

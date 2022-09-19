@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="customer_login">
+        <observer name="amasty_pushnotifications_login" instance="Amasty\PushNotifications\Observer\CustomerLogin" />
+        <observer name="amasty_pushnotifications_birthday" instance="Amasty\PushNotifications\Observer\Customer\Birthday" />
+        <observer name="send_notifications_after_login" instance="Amasty\PushNotifications\Observer\Customer\SendPush" />
+    </event>
+    <event name="customer_register_success">
+        <observer name="amasty_pushnotifications_registration" instance="Amasty\PushNotifications\Observer\Customer\SendPush" />
+    </event>
+    <event name="customer_logout">
+        <observer name="amasty_pushnotifications_logout" instance="Amasty\PushNotifications\Observer\Customer\SendPush" />
+    </event>
+</config>
