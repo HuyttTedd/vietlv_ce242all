@@ -1,0 +1,22 @@
+{
+    "name": "amasty\/module-stripe",
+    "description": "Stripe by Amasty",
+    "require": {
+        "php": "^7.1.0",
+        "stripe\/stripe-php": ">=7.0.0",
+        "amasty\/base": ">=1.12.15"
+    },
+    "type": "magento2-module",
+    "version": "3.0.11",
+    "license": [
+        "Commercial"
+    ],
+    "autoload": {
+        "files": [
+            "registration.php"
+        ],
+        "psr-4": {
+            "Amasty\\Stripe\\": ""
+        }
+    }
+}

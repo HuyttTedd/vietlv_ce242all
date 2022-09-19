@@ -1,0 +1,8 @@
+<?php /** @var \Amasty\Checkout\Block\Adminhtml\System\Config\Expander $block **/ ?>
+<script type="text/javascript">
+    //<![CDATA[
+    require(['Amasty_Checkout/js/fieldset-expander'], function (expander) {
+        expander.init('<?=$block->escapeHtml($block->getSection())?>','<?=$block->escapeHtml($block->getExpand())?>');
+    });
+    //]]>
+</script>

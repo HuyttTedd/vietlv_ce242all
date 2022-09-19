@@ -1,0 +1,7 @@
+</section><section class="admin__page-section amasty-deliverydate">
+    <div class="admin__page-section-title">
+        <span class="title"><?= $block->escapeHtml(__('Delivery Information')) ?></span>
+    </div>
+    <?php foreach ($this->getFormElements() as $element): ?>
+        <?= $element->toHtml() ?>
+    <?php endforeach; ?>

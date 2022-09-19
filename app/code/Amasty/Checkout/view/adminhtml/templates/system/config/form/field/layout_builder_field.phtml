@@ -1,0 +1,10 @@
+<?php
+/** @var Amasty\Checkout\Block\Config\LayoutBuilderField $block */
+$element = $block->getElement();
+?>
+
+<input type="hidden"
+       id="amcheckout-frontend-config"
+       name="<?= /* @noEscape */ $element->getName() ?>"
+       value="<?= /* @noEscape */ $element->getEscapedValue() ?>" />
+
