@@ -1,0 +1,11 @@
+--- app/code/Amasty/Checkout/view/frontend/web/js/view/shipping-mixin.js	2021-07-03 16:34:59.257359992 +0300
++++ app/code/Amasty/Checkout/view/frontend/web/js/view/shipping-mixin.js	2021-07-03 16:34:59.253359992 +0300
+@@ -137,7 +137,7 @@
+ 
+                     shippingRegistry.isAddressChanged.subscribe(this.additionalFieldsObserver.bind(this));
+                     shippingService.isLoading.subscribe(function (isLoading) {
+-                        if (!isLoading) {
++                        if (!isLoading && !window.amcheckoutcomp) {
+                             this.validateAndSaveIfChanged();
+                         }
+                     }, this);
