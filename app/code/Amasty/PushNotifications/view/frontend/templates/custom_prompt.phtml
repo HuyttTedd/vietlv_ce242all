@@ -1,0 +1,57 @@
+<?php
+/**
+ * @var \Amasty\PushNotifications\Block\CustomPrompt $block
+ * @var \Magento\Framework\Escaper $escaper
+ */
+?>
+
+<div class="am-notification-wrapper <?= $escaper->escapeHtmlAttr($block->getCustomPromptCssClass()); ?>">
+    <span class="am-close"></span>
+    <div class="am-notification">
+        <p class="am-message">
+            <?= $escaper->escapeHtml($block->getCustomPromptContent()); ?>
+        </p>
+        <div class="am-answer-wrapper">
+            <span class="am-defer">
+                <?= $escaper->escapeHtml(__('Remind me later')); ?>
+            </span>
+            <button class="am-submit" id="am-submit">
+                <?= $escaper->escapeHtml(__('Allow')); ?>
+            </button>
+        </div>
+    </div>
+
+    <div class="am-success-wrapper">
+        <div class="am-success-message">
+            <span class="am-success-icon"></span>
+            <p class="am-message">
+                <?= $escaper->escapeHtml(__('Thank you! Please check your email inbox to confirm.')); ?>
+            </p>
+        </div>
+    </div>
+</div>
+
+<div class="am-notification-error">
+    <span class="am-close"></span>
+    <div class="am-error-message">
+        <span class="am-error-icon"></span>
+        <p class="am-message">
+            <?= $escaper->escapeHtml($block->getErrorMessage()); ?>
+        </p>
+    </div>
+</div>
+
+<script type="text/x-magento-init">
+        {
+            "*": {
+                "Amasty_PushNotifications/js/custom_prompt": {
+                    "senderId": "<?= $escaper->escapeJs($block->getSenderId()) ?>",
+                    "subscribeActionUrl": "<?= $escaper->escapeUrl($block->getSubscribeActionUrl()) ?>",
+                    "promptFrequency": <?= (int)$block->getPromptFrequency() ?>,
+                    "promptDelay": <?= (int)$block->getPromptDelay() ?>,
+                    "maxNotificationsPerDay": <?= (int)$block->getMaxNotificationsPerDay() ?>,
+                    "isEnableModule": <?= (bool)$block->isEnableModule() ?>
+                }
+            }
+        }
+</script>

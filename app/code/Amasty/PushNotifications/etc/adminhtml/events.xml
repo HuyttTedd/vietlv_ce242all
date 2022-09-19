@@ -1,0 +1,7 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="adminhtml_customer_prepare_save">
+        <observer name="amasty_pushnotifications_group_changed" instance="Amasty\PushNotifications\Observer\Customer\GroupChanging"/>
+    </event>
+</config>

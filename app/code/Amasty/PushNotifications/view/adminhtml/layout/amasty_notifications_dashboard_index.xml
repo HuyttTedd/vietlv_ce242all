@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <update handle="styles" />
+    <head>
+        <css src="Amasty_PushNotifications::css/dashboard.css"/>
+    </head>
+    <body>
+        <referenceContainer name="page.main.actions">
+            <block class="Magento\Backend\Block\Template" name="refresh_statistics" after="store_switcher" template="Magento_Backend::dashboard/totalbar/refreshstatistics.phtml"/>
+        </referenceContainer>
+        <referenceContainer name="content">
+            <block class="Amasty\PushNotifications\Block\Adminhtml\CronNotification"
+                   name="cron_notification"/>
+            <block class="Amasty\PushNotifications\Block\Adminhtml\Campaign\ApiKeyNotification"
+                   name="apikey_warning_notification"/>
+            <block class="Amasty\PushNotifications\Block\Adminhtml\Dashboard\Dashboard" name="dashboard"/>
+        </referenceContainer>
+    </body>
+</page>

@@ -1,0 +1,5 @@
+<?php /** @var $block \Amasty\PushNotifications\Block\BaseUrl */ ?>
+<!-- Using global js vars to get access to magento base url for firebase component registration -->
+<script>
+    window.firebaseUrl = <?= json_encode($block->getBaseUrl()); ?>
+</script>

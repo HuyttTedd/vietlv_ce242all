@@ -1,0 +1,89 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <preference for="Amasty\PushNotifications\Api\Data\CampaignInterface" type="Amasty\PushNotifications\Model\Campaign"/>
+    <preference for="Amasty\PushNotifications\Api\CampaignRepositoryInterface" type="Amasty\PushNotifications\Model\CampaignRepository"/>
+    <preference for="Amasty\PushNotifications\Api\Data\SubscriberInterface" type="Amasty\PushNotifications\Model\Subscriber"/>
+    <preference for="Amasty\PushNotifications\Api\SubscriberRepositoryInterface" type="Amasty\PushNotifications\Model\SubscriberRepository"/>
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="amasty_notifications_listing_data_source" xsi:type="string">Amasty\PushNotifications\Model\ResourceModel\Campaign\Collection</item>
+                <item name="amasty_notifications_subsctiber_listing_data_source" xsi:type="string">Amasty\PushNotifications\Model\ResourceModel\Subscriber\Collection</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Amasty\PushNotifications\Model\ResourceModel\Campaign">
+        <arguments>
+            <argument name="entityRelationComposite" xsi:type="object">CampaignRelationsComposite</argument>
+        </arguments>
+    </type>
+    <virtualType name="CampaignRelationsComposite" type="Magento\Framework\Model\ResourceModel\Db\VersionControl\RelationComposite">
+        <arguments>
+            <argument name="relationProcessors" xsi:type="array">
+                <item name="store" xsi:type="object">Amasty\PushNotifications\Model\ResourceModel\Campaign\RelationProcessor\Store</item>
+                <item name="event" xsi:type="object">Amasty\PushNotifications\Model\ResourceModel\Campaign\RelationProcessor\Event</item>
+                <item name="customer_group" xsi:type="object">Amasty\PushNotifications\Model\ResourceModel\Campaign\RelationProcessor\CustomerGroup</item>
+                <item name="segment" xsi:type="object">Amasty\PushNotifications\Model\ResourceModel\Campaign\RelationProcessor\Segment</item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <virtualType name="AssociatedCampaignEntityMap" type="Magento\Framework\DataObject">
+        <arguments>
+            <argument name="data" xsi:type="array">
+                <item name="stores" xsi:type="array">
+                    <item name="column" xsi:type="const">Amasty\PushNotifications\Model\CampaignStore::STORE_ID</item>
+                    <item name="table" xsi:type="const">Amasty\PushNotifications\Setup\Operation\CreateCampaignStoreTable::TABLE_NAME</item>
+                </item>
+                <item name="customer_groups" xsi:type="array">
+                    <item name="column" xsi:type="const">Amasty\PushNotifications\Model\CampaignCustomerGroup::GROUP_ID</item>
+                    <item name="table" xsi:type="const">Amasty\PushNotifications\Model\ResourceModel\CampaignCustomerGroup::TABLE_NAME</item>
+                </item>
+                <item name="events" xsi:type="array">
+                    <item name="column" xsi:type="const">Amasty\PushNotifications\Model\CampaignEvent::EVENT_TYPE</item>
+                    <item name="table" xsi:type="const">Amasty\PushNotifications\Model\ResourceModel\CampaignEvent::TABLE_NAME</item>
+                </item>
+                <item name="customer_segments" xsi:type="array">
+                    <item name="column" xsi:type="const">Amasty\PushNotifications\Model\CampaignSegments::SEGMENT_ID</item>
+                    <item name="table" xsi:type="const">Amasty\PushNotifications\Model\ResourceModel\CampaignSegments::TABLE_NAME</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Amasty\PushNotifications\Model\ResourceModel\Campaign">
+        <arguments>
+            <argument name="associatedCampaignEntityMap" xsi:type="object">AssociatedCampaignEntityMap</argument>
+        </arguments>
+    </type>
+    <type name="Amasty\PushNotifications\Model\OptionSource\Campaign\Events\EventNotificationCombine">
+        <arguments>
+            <argument name="optionGroups" xsi:type="array">
+                <item name="customer" xsi:type="array">
+                    <item name="name" xsi:type="string" translatable="true">Customer</item>
+                    <item name="optionSources" xsi:type="array">
+                        <item name="customer" xsi:type="object">Amasty\PushNotifications\Model\OptionSource\Campaign\Events\CustomerEvent</item>
+                    </item>
+                </item>
+                <item name="newsletter" xsi:type="array">
+                    <item name="name" xsi:type="string" translatable="true">Newsletter</item>
+                    <item name="optionSources" xsi:type="array">
+                        <item name="newsletter" xsi:type="object">Amasty\PushNotifications\Model\OptionSource\Campaign\Events\NewsletterEvent</item>
+                    </item>
+                </item>
+                <item name="sales" xsi:type="array">
+                    <item name="name" xsi:type="string" translatable="true">Sales</item>
+                    <item name="optionSources" xsi:type="array">
+                        <item name="sales" xsi:type="object">Amasty\PushNotifications\Model\OptionSource\Campaign\Events\SalesEvent</item>
+                    </item>
+                </item>
+                <item name="acart" xsi:type="array">
+                    <item name="name" xsi:type="string" translatable="true">Amasty Abandoned Cart Email</item>
+                    <item name="optionSources" xsi:type="array">
+                        <item name="abandoned_cart" xsi:type="object">Amasty\PushNotifications\Model\OptionSource\Campaign\Events\AbandonedCartEvent</item>
+                    </item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+</config>

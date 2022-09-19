@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:Event/etc/events.xsd">
+    <event name="order_cancel_after">
+        <observer name="amasty_pushnotifications_order_cancel" instance="Amasty\PushNotifications\Observer\Order\Cancel" />
+    </event>
+    <event name="sales_order_save_after">
+        <observer name="amasty_pushnotifications_order_changing" instance="Amasty\PushNotifications\Observer\Order\StatusChanging" />
+    </event>
+    <event name="newsletter_subscriber_save_before">
+        <observer name="amasty_pushnotifications_subscriber" instance="Amasty\PushNotifications\Observer\Customer\Newsletter" />
+    </event>
+    <event name="amasty_pushnotifications_by_event">
+        <observer name="amasty_pushnotifications_by_event" instance="Amasty\PushNotifications\Observer\SendPushByEvent" />
+    </event>
+</config>

@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+      xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Amasty_PushNotifications::css/custom_prompt.css"/>
+    </head>
+    <body>
+        <referenceContainer name="before.body.end">
+            <block class="Amasty\PushNotifications\Block\CustomPrompt" template="custom_prompt.phtml" after="-"/>
+        </referenceContainer>
+    </body>
+</page>

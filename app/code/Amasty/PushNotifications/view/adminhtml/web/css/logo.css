@@ -1,0 +1,89 @@
+.amlogo-container {
+    position: relative;
+    display: -webkit-box;
+    display: -ms-flexbox;
+    display: flex;
+    -webkit-box-align: end;
+    -ms-flex-align: end;
+    align-items: flex-end;
+    height: 250px;
+    -webkit-box-pack: center;
+    -ms-flex-pack: center;
+    justify-content: center;
+    width: 250px;
+}
+
+.amclose {
+    position: absolute;
+    top: 5px;
+    right: 5px;
+    padding: 8px;
+    line-height: 8px;
+    cursor: pointer;
+    background: #fff;
+    border: 1px solid #ccc;
+    z-index: 2;
+}
+
+.amclose:hover {
+    background: #ccc;
+}
+
+.amclose:before {
+    content: 'x';
+    color: #000;
+    font-weight: 300;
+    font-family: Arial, sans-serif;
+    background: none;
+}
+
+.amchoose-file {
+    width: 200px;
+    margin-bottom: 75px;
+    visibility: hidden;
+}
+
+.custom-file-input::-webkit-file-upload-button {
+    visibility: hidden;
+}
+.custom-file-input::before {
+    content: 'Browse...';
+    display: inline-block;
+    background: -webkit-linear-gradient(top, #f9f9f9, #e3e3e3);
+    border: 1px solid #999;
+    border-radius: 3px;
+    padding: 5px 8px;
+    outline: none;
+    white-space: nowrap;
+    -webkit-user-select: none;
+    cursor: pointer;
+    text-shadow: 1px 1px #fff;
+    font-weight: 700;
+    font-size: 10pt;
+    right: 35%;
+    position: absolute;
+    top: 60%;
+}
+.custom-file-input:hover::before {
+    border-color: black;
+}
+.custom-file-input:active::before {
+    background: -webkit-linear-gradient(top, #e3e3e3, #f9f9f9);
+}
+
+span[data-role="amasty-notifications-logo-text"] {
+    font-weight: bold;
+    font-size: 40px;
+    position: absolute;
+    top: 35%;
+    right: 30%;
+    padding: 8px;
+    line-height: 40px;
+}
+
+.image-logo {
+    position: absolute;
+    width: auto;
+    top: 0;
+    max-height: 250px;
+}

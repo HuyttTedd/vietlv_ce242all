@@ -1,0 +1,98 @@
+.am-notification-wrapper {
+    position: fixed;
+    right: 50px;
+    bottom: 50px;
+    z-index: 9999999;
+    max-width: 550px;
+    padding: 15px;
+    font-size: 14px;
+    background: #fff;
+    border-radius: 10px;
+    box-shadow: 0px 4px 10px rgba(99, 161, 255, 0.25);
+}
+
+.am-close {
+    position: absolute;
+    right: 15px;
+    top: 15px;
+    width: 15px;
+    height: 15px;
+    opacity: 0.3;
+}
+
+.am-close:hover {
+    opacity: 1;
+}
+
+.am-close:before,
+.am-close:after {
+    content: ' ';
+    position: absolute;
+    left: 6px;
+    width: 3px;
+    height: 15px;
+    background-color: #4e4e4e;
+}
+
+.am-close:before {
+    transform: rotate(45deg);
+}
+
+.am-close:after {
+    transform: rotate(-45deg);
+}
+
+.am-message {
+    margin: 25px 10px;
+}
+
+.am-answer-wrapper {
+    text-align: right;
+}
+
+.am-submit,
+.am-submit:focus {
+    padding: 8px 22px;
+    background: #1979c3;
+    border: none;
+    border-radius: 0;
+    color: #fff;
+    cursor: pointer;
+    box-shadow: none;
+}
+
+.am-submit:hover,
+.am-submit:active {
+    background: #2a93e4;
+    border: none;
+    color: #fff;
+    box-shadow: none;
+}
+
+.am-defer {
+    margin-right: 25px;
+    color: #1979c3;
+    text-decoration: none;
+    cursor: pointer;
+}
+
+.am-success-wrapper {
+    display: none;
+}
+
+.am-success-message {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.am-success-message .am-message {
+    margin: 0 10px 0;
+}
+
+.am-success-icon:after {
+    content: '\e60e';
+    font-size: 33px;
+    font-family: luma-icons;
+    color: #1979c3;
+}
