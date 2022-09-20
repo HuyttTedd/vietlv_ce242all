@@ -2,7 +2,6 @@
 
 namespace Smartosc\MidSplitPayment\Model;
 
-use Smartosc\Eshop\Helper\Data as EshopHelper;
 use RealexPayments\HPP\Model\Config\Source\DMFields;
 use RealexPayments\HPP\Model\Config\Source\FraudMode;
 use RealexPayments\HPP\Model\Config\Source\SettleMode;
@@ -348,7 +347,7 @@ class PaymentMethod extends \RealexPayments\HPP\Model\PaymentMethod
 
         foreach ($order->getAllItems() as $item) {
             $product_id = $item->getData('product_id');
-            if ($this->productRepository->getById($product_id)->getData(EshopHelper::ESHOP_REGULATED_TYPE) == 'regulated') {
+            if ($this->productRepository->getById($product_id)->getData('is_regulated') == 'regulated') {
                 $merchantAccount = $this->scopeConfig->getValue(self::MERCHANT_UKVI, ScopeInterface::SCOPE_STORE, $order->getStoreId());
             } else {
                 $merchantAccount = $this->scopeConfig->getValue(self::MERCHANT_TLSCONTACT, ScopeInterface::SCOPE_STORE, $order->getStoreId());
