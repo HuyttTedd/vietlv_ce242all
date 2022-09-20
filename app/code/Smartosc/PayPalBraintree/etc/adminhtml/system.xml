@@ -4,7 +4,7 @@
         <section id="smartosc_paypal_braintree" translate="label" type="text" sortOrder="20" showInDefault="1" showInWebsite="0" showInStore="0">
             <class>separator-top</class>
             <label>Paypal Braintree</label>
-            <tab>amasty</tab>
+            <tab>eshop</tab>
             <resource>Smartosc_PayPalBraintree::configuration</resource>
             <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="0" showInStore="0">
                 <label>General</label>
