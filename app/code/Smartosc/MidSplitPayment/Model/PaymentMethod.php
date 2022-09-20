@@ -2,6 +2,7 @@
 
 namespace Smartosc\MidSplitPayment\Model;
 
+use Magento\Sales\Model\Order;
 use RealexPayments\HPP\Model\Config\Source\DMFields;
 use RealexPayments\HPP\Model\Config\Source\FraudMode;
 use RealexPayments\HPP\Model\Config\Source\SettleMode;
@@ -257,7 +258,7 @@ class PaymentMethod extends \RealexPayments\HPP\Model\PaymentMethod
         $order = $payment->getOrder();
         $order->setCanSendNewEmailFlag(false);
 
-        $stateObject->setState(\Magento\Sales\Model\Order::STATE_NEW);
+        $stateObject->setState(Order::STATE_NEW);
         $stateObject->setStatus($this->_helper->getConfigData('order_status'));
         $stateObject->setIsNotified(false);
     }
@@ -343,6 +344,7 @@ class PaymentMethod extends \RealexPayments\HPP\Model\PaymentMethod
     public function getFormFields()
     {
         $paymentInfo = $this->getInfoInstance();
+        /** @var Order $order */
         $order = $paymentInfo->getOrder();
 
         foreach ($order->getAllItems() as $item) {
@@ -359,6 +361,7 @@ class PaymentMethod extends \RealexPayments\HPP\Model\PaymentMethod
         if (empty($merchantAccount)) {
             $merchantAccount = trim($this->_helper->getConfigData('merchant_account'));
         }
+
         $realOrderId = $order->getRealOrderId();
         $fieldOrderId = $realOrderId . '_' . $timestamp;
         $orderCurrencyCode = $order->getBaseCurrencyCode();
