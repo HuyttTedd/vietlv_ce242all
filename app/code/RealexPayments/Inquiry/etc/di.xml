@@ -1,0 +1,15 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Magento\Framework\Console\CommandList">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="realexpayments_inquiry_command" xsi:type="object">RealexPayments\Inquiry\Console\Command\Inquiry</item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="RealexPayments\Inquiry\Console\Command\Inquiry">
+        <arguments>
+            <argument name="inquiryHandler" xsi:type="object">RealexPayments\Inquiry\Model\Inquiry\Handler\Proxy</argument>
+        </arguments>
+    </type>
+</config>
