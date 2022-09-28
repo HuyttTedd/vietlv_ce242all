@@ -95,6 +95,10 @@ class RealexPaymentManagement implements \RealexPayments\HPP\Api\RealexPaymentMa
      */
     public function processResponse($order, $response)
     {
+        $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/processResponse.log');
+        $logger = new \Zend\Log\Logger();
+        $logger->addWriter($writer);
+        $logger->info('processResponse');
         $payment = $order->getPayment();
         if (!$this->_validateResponseFields($response)) {
             try {
@@ -299,6 +303,10 @@ class RealexPaymentManagement implements \RealexPayments\HPP\Api\RealexPaymentMa
      */
     public function restoreCart($cartId)
     {
+        $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/restoreCart.log');
+        $logger = new \Zend\Log\Logger();
+        $logger->addWriter($writer);
+        $logger->info('restoreCart');
         $session = $this->_session;
         $order = $session->getLastRealOrder();
         if ($order->getId()) {
