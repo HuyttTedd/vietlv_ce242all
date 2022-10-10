@@ -2,7 +2,9 @@
 
 namespace Smartosc\MidSplitPayment\Model;
 
-use Magento\Sales\Model\Order;
+use Smartosc\Eshop\Helper\Data as EshopHelper;
+use Magento\Sales\Model\Order\Address;
+use RealexPayments\HPP\Model\Config\Source\ChallengePreference;
 use RealexPayments\HPP\Model\Config\Source\DMFields;
 use RealexPayments\HPP\Model\Config\Source\FraudMode;
 use RealexPayments\HPP\Model\Config\Source\SettleMode;
@@ -258,7 +260,7 @@ class PaymentMethod extends \RealexPayments\HPP\Model\PaymentMethod
         $order = $payment->getOrder();
         $order->setCanSendNewEmailFlag(false);
 
-        $stateObject->setState(Order::STATE_NEW);
+        $stateObject->setState(\Magento\Sales\Model\Order::STATE_NEW);
         $stateObject->setStatus($this->_helper->getConfigData('order_status'));
         $stateObject->setIsNotified(false);
     }
@@ -344,7 +346,6 @@ class PaymentMethod extends \RealexPayments\HPP\Model\PaymentMethod
     public function getFormFields()
     {
         $paymentInfo = $this->getInfoInstance();
-        /** @var Order $order */
         $order = $paymentInfo->getOrder();
 
         foreach ($order->getAllItems() as $item) {
@@ -356,12 +357,14 @@ class PaymentMethod extends \RealexPayments\HPP\Model\PaymentMethod
             }
             break;
         }
-        $timestamp = strftime('%Y%m%d%H%M%S');
+        $timestamp = $paymentInfo->getAdditionalInformation('TIMESTAMP');
+        if (!$timestamp) {
+            $timestamp = $this->_helper->generateTimestamp();
+        }
         $merchantId = trim($this->_helper->getConfigData('merchant_id'));
         if (empty($merchantAccount)) {
             $merchantAccount = trim($this->_helper->getConfigData('merchant_account'));
         }
-
         $realOrderId = $order->getRealOrderId();
         $fieldOrderId = $realOrderId . '_' . $timestamp;
         $orderCurrencyCode = $order->getBaseCurrencyCode();
@@ -414,9 +417,14 @@ class PaymentMethod extends \RealexPayments\HPP\Model\PaymentMethod
                 }
             }
             $billingPostalCode = $postalBit . '|' . $addresBit;
+            /** @var \Magento\Sales\Model\Order $order */
+            $billingFirstName = $order->getBillingAddress()->getFirstName();
+            $billingLastName  = $order->getBillingAddress()->getLastname();
         } else {
             $billingCountryCode = '';
             $billingPostalCode = '';
+            $billingFirstName = '';
+            $billingLastName = '';
         }
         if ($order->getShippingAddress()) {
             $shippingCountryCode = $order->getShippingAddress()->getCountryId();
@@ -477,6 +485,7 @@ class PaymentMethod extends \RealexPayments\HPP\Model\PaymentMethod
             $formFields['HPP_POST_DIMENSIONS'] = $baseUrl;
         }
         $formFields['COMMENT1'] = $baseUrl;
+        $formFields['HPP_CAPTURE_ADDRESS'] = true;
         $formFields = $this->setDMFields($formFields, $order);
         $formFields = $this->setAPMFields($formFields, $order->getShippingAddress());
         $formFields['MERCHANT_RESPONSE_URL'] = $baseUrl . 'realexpayments_hpp/process/result';
@@ -500,8 +509,92 @@ class PaymentMethod extends \RealexPayments\HPP\Model\PaymentMethod
             $fieldsToSign = $fieldsToSign . '.' . $fraudMode;
         }
         $sha1hash = $this->_helper->signFields($fieldsToSign);
-        $this->_helper->logDebug('Gateway Request:' .
-            print_r($this->_helper->stripFields($formFields), true));
+
+        // additional hpp fields
+        /** @var \Magento\Sales\Model\Order $order */
+        /** @var Address $billingAddress */
+        $billingAddress = $order->getBillingAddress();
+
+        $hppChallengeRequestOptions = [
+            ChallengePreference::CHALLENGE_NO_PREFERENCE => 'NO_PREFERENCE',
+            ChallengePreference::CHALLENGE_NO_CHALLENGE => 'NO_CHALLENGE_REQUESTED',
+            ChallengePreference::CHALLENGE_3DS_PREFERENCE => 'CHALLENGE_PREFERRED',
+            ChallengePreference::CHALLENGE_3DS_MANDATE => 'CHALLENGE_MANDATED'
+        ];
+
+        $hppChallengeRequestPreference = $this->_helper->getConfigData('hpp_challenge_preference') ?: "01";
+
+        $additionalHppData = [
+            "HPP_CHALLENGE_REQUEST_INDICATOR" => isset($hppChallengeRequestOptions[$hppChallengeRequestPreference]) ? $hppChallengeRequestOptions[$hppChallengeRequestPreference] : "NO_PREFERENCE"
+        ];
+
+        $additionalHppData[] = [
+            // customer fields
+            "HPP_CUSTOMER_EMAIL" => $order->getCustomerEmail(),
+        ];
+
+        $hppBillingFields = [
+            "HPP_BILLING_STREET1" => $billingAddress->getStreetLine(1),
+            "HPP_BILLING_STREET2" => $billingAddress->getStreetLine(2),
+            "HPP_BILLING_STREET3" => $billingAddress->getStreetLine(3),
+            "HPP_BILLING_CITY" => $billingAddress->getCity(),
+            "HPP_BILLING_STATE" => in_array(
+                $billingAddress->getCountryId(),
+                ['US', 'CA']
+            ) ? $billingAddress->getRegionCode() : '',
+            "HPP_BILLING_POSTALCODE" => $billingAddress->getPostcode(),
+            "HPP_BILLING_COUNTRY" => $this->_helper->getCountryNumericCode($billingAddress->getCountryId()),
+        ];
+        $additionalHppData[] = $hppBillingFields;
+
+        $isOrderVirtual = $order->getIsVirtual();
+        $shippingAddress = $order->getShippingAddress();
+
+        $hppShippingFields = [
+            "HPP_SHIPPING_STREET1" => !$isOrderVirtual && $shippingAddress ? $shippingAddress->getStreetLine(1) : '',
+            "HPP_SHIPPING_STREET2" => !$isOrderVirtual && $shippingAddress ? $shippingAddress->getStreetLine(2) : '',
+            "HPP_SHIPPING_STREET3" => !$isOrderVirtual && $shippingAddress ? $shippingAddress->getStreetLine(3) : '',
+            "HPP_SHIPPING_CITY" => !$isOrderVirtual && $shippingAddress ? $shippingAddress->getCity() : '',
+            "HPP_SHIPPING_STATE" => !$isOrderVirtual && $shippingAddress ? (in_array(
+                $shippingAddress->getCountryId(),
+                ['US', 'CA']
+            ) ? $shippingAddress->getRegionCode() : '') : '',
+            "HPP_SHIPPING_POSTALCODE" => !$isOrderVirtual && $shippingAddress ? $shippingAddress->getPostcode() : '',
+            "HPP_SHIPPING_COUNTRY" => !$isOrderVirtual && $shippingAddress ? $this->_helper->getCountryNumericCode(
+                $shippingAddress->getCountryId()
+            ) : ''
+        ];
+
+        // order and type does matter
+        if (array_values($hppBillingFields) === array_values($hppShippingFields)) {
+            $additionalHppData["HPP_ADDRESS_MATCH_INDICATOR"] = "TRUE";
+            $additionalHppData[] = $hppShippingFields;
+        } else {
+            $additionalHppData["HPP_ADDRESS_MATCH_INDICATOR"] = "FALSE";
+            $additionalHppData[] = $hppShippingFields;
+        }
+
+        if ($this->_helper->isApmEnabled()) {
+            $additionalHppData["HPP_CUSTOMER_COUNTRY"]   = $billingCountryCode;
+            $additionalHppData["HPP_CUSTOMER_FIRSTNAME"] = $billingFirstName;
+            $additionalHppData["HPP_CUSTOMER_LASTNAME"]  = $billingLastName;
+            $additionalHppData["HPP_TX_STATUS_URL"]      = $this->_helper->getMerchantBaseResponseUrl() . '/realexpayments_hpp/apm/result';
+        }
+
+        foreach ($additionalHppData as $additionalHppProp => $additionalHppValue) {
+            if (is_array($additionalHppValue)) {
+                foreach ($additionalHppValue as $additionalHppPropChild => $additionalHppValueChild) {
+                    $formFields[$additionalHppPropChild] = $additionalHppValueChild;
+                }
+            } else {
+                $formFields[$additionalHppProp] = $additionalHppValue;
+            }
+        }
+
+        $this->_helper->logDebug(
+            'Gateway Request:' .
+            print_r($this->_helper->stripFields($formFields), true)
+        );
 
         $formFields['SHA1HASH'] = $sha1hash;
         // Sort the array by key using SORT_STRING order

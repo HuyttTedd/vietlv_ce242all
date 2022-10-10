@@ -45,7 +45,7 @@ define(
 
                 var self = this;
 
-                if ('Notification' in window) {
+                // if ('Notification' in window) {
                     this.messaging = firebase.messaging();
 
                     this.messaging.onMessage(function (payload) {
@@ -57,7 +57,7 @@ define(
                                 }
                             });
                     });
-                }
+                // }
 
                 return this;
             },
@@ -205,6 +205,7 @@ define(
              * @return {boolean}
              */
             isNotificationsPermitted: function () {
+                return true;
                 if ('Notification' in window && Notification.permission === 'granted') {
                     return true;
                 }
