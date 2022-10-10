@@ -276,7 +276,7 @@ define([
                 case 'buyxgetn_fixprice':
                 case 'buyxgetn_fixdisc':
                     discountAmount.text($.mage.__("Discount Amount"));
-                    discountStep.text($.mage.__("Number of X Products"));
+                    discountStep.text($.mage.__("Numberaa of X Products"));
                     discountRuleTree.text($.mage.__("Define X product (leave blank for any product)"));
                     break;
                 case 'groupn_disc':

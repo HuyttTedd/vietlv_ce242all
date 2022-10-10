@@ -169,10 +169,6 @@ class Request
      */
     public function build()
     {
-        $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/Responsefields.log');
-        $logger = new \Zend\Log\Logger();
-        $logger->addWriter($writer);
-        $logger->info($this->_paymentMethod);
         if ($this->_paymentMethod == 'paypal') {
             if ($this->_type == self::TYPE_PAYMENT_SETTLE) {
                 return $this->_buildPaypalSettleRequestXml();
@@ -315,7 +311,7 @@ class Request
             $this->_xmlWriter->writeAttribute('type', $this->_type);
         }
 
-        $this->_timestamp = strftime('%Y%m%d%H%M%S');
+        $this->_timestamp = $this->_helper->generateTimestamp();
         $this->_xmlWriter->writeAttribute('timestamp', $this->_timestamp);
     }
 
