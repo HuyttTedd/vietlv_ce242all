@@ -1,0 +1,23 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Mageplaza_CustomizeOsc::menu"
+             title="OSC HuyTT" module="Mageplaza_CustomizeOsc"
+             sortOrder="20"
+             resource="Magento_Backend::content"
+        />
+        <!-- START: new node -->
+<!--        <add id="Mageplaza_CustomizeOsc::customize_osc"-->
+<!--             title="Customize OSC" module="Mageplaza_CustomizeOsc"-->
+<!--             sortOrder="10" parent="Mageplaza_CustomizeOsc::menu"-->
+<!--             action="mpcustomize/show"-->
+<!--             resource="Mageplaza_ReportCustomize::report_customize"-->
+<!--        />-->
+        <add id="Mageplaza_CustomizeOsc::configuration" title="Configuration"
+             module="Mageplaza_CustomizeOsc" sortOrder="1000"
+             action="adminhtml/system_config/edit/section/customize_osc"
+             resource="Mageplaza_CustomizeOsc::configuration"
+             parent="Mageplaza_CustomizeOsc::menu"/>
+        <!-- END:   new node -->
+    </menu>
+</config>

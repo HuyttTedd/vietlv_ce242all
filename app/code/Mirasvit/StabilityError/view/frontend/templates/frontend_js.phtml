@@ -1,0 +1,12 @@
+<?php
+/** @var \Mirasvit\Stability\Block\FrontendJs $block */
+?>
+<div data-mage-init='<?= json_encode($block->getMageInit()) ?>' data-microtime="<?= microtime(true) ?>"></div>
+<script>
+    window.onerror = function (error) {
+        if (!window.jsErrors) {
+            window.jsErrors = [];
+        }
+        window.jsErrors.push(error);
+    }
+</script>

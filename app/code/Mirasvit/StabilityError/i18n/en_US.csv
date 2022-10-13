@@ -1,0 +1,12 @@
+Errors,Errors
+"Server Error Rate","Server Error Rate"
+"PHP Exception","PHP Exception"
+"Magento Error","Magento Error"
+"JavaScript Error","JavaScript Error"
+ID,ID
+"Snapshot ID","Snapshot ID"
+Type,Type
+Timestamp,Timestamp
+Message,Message
+"Times Seen","Times Seen"
+URL,URL

@@ -1,0 +1,101 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_BetterChangeQty
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+// @codingStandardsIgnoreFile
+
+/* @var \Magento\Wishlist\Block\Customer\Wishlist\Item\Column\Cart $block*/
+/* @var \Magento\Wishlist\Model\Item $item */
+$item    = $block->getItem();
+$product = $item->getProduct();
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+/** @var \Mageplaza\BetterChangeQty\Helper\Data $helper */
+$helper           = $objectManager->get(\Mageplaza\BetterChangeQty\Helper\Data::class);
+$options          = $helper->getQtyOptions($product);
+$default          = $block->getAddToCartQty($item) * 1 ?: 1;
+$canHaveBetterQty = $product->isSaleable() && $helper->isApplied($product) && !in_array($product->getTypeId(), \Mageplaza\BetterChangeQty\Helper\Data::NOT_ALLOWED_IN_WISHLIST);
+?>
+<?php foreach ($block->getChildNames() as $childName): ?>
+    <?php echo $block->getLayout()->renderElement($childName, false); ?>
+<?php endforeach;?>
+<div class="box-tocart">
+    <fieldset class="fieldset <?php echo $canHaveBetterQty ? 'can-have-better-qty' : ''; ?>">
+        <?php if ($item->canHaveQty() && $product->isVisibleInSiteVisibility()): ?>
+            <div class="field qty">
+                <label class="label" for="qty[<?php echo $item->getId() ?>]"><span><?php echo __('Qty') ?></span></label>
+                <div class="control">
+                    <?php if ($canHaveBetterQty): ?>
+                    <select class="mp-better-qty-input">
+                        <?php foreach ($options as $option): ?>
+                            <?php $selected = ($default == $option['value']) ? 'selected="selected"' : ''; ?>
+                            <option value="<?php echo $option['value'] ?>" <?php echo $selected ?>><?php echo $option['title'] ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <?php endif; ?>
+                    <input type="number" data-role="qty" id="qty[<?php echo $item->getId() ?>]" class="input-text qty" data-validate="{'required-number':true,'validate-greater-than-zero':true}"
+                           name="qty[<?php echo $item->getId() ?>]" value="<?php echo $default ?>"
+                           <?php if ($canHaveBetterQty): ?> style="display: none;" <?php endif; ?>>
+                </div>
+            </div>
+        <?php endif; ?>
+        <?php if ($product->isSaleable()): ?>
+            <div class="product-item-actions">
+                <div class="actions-primary">
+                    <button type="button" data-role="tocart" data-post='<?php echo $block->getItemAddToCartParams($item)?>' title="<?php echo __('Add to Cart') ?>" data-item-id="<?php echo $item->getId()?>" class="action tocart primary">
+                        <span><?php echo __('Add to Cart') ?></span>
+                    </button>
+                </div>
+            </div>
+        <?php else: ?>
+            <?php if ($product->getIsSalable()): ?>
+                <p class="available stock" title="<?php echo __('Availability') ?>">
+                    <span><?php echo __('In stock') ?></span>
+                </p>
+            <?php else: ?>
+                <p class="unavailable stock" title="<?php echo __('Availability') ?>">
+                    <span><?php echo __('Out of stock') ?></span>
+                </p>
+            <?php endif; ?>
+        <?php endif; ?>
+    </fieldset>
+</div>
+
+<?php if ($item->canHaveQty() && $product->isVisibleInSiteVisibility() && $canHaveBetterQty): ?>
+<script type="text/javascript">
+    require(['jquery'], function ($) {
+        var qtyInput = $('.mp-better-qty-input');
+
+        qtyInput.on('change', function () {
+            var input = $(this).next().filter('input[type="number"]');
+            if ($(this).val() === '0') {
+                input.show();
+                input.prop('disabled', false);
+            } else {
+                input.hide();
+                input.prop('disabled', true);
+                input.val($(this).val());
+            }
+        });
+
+        qtyInput.trigger('change');
+    });
+</script>
+<?php endif; ?>

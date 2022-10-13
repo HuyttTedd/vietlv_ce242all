@@ -1,0 +1,17 @@
+<?php
+/** @var \Mirasvit\Banner\Block\Placeholder\PopupRenderer $block */
+$placeholder = $block->getPlaceholder();
+?>
+<div data-banner-renderer="<?= $placeholder->getId() ?>" class="mstBanner-placeholder__popupRenderer">
+    <div class="mstBanner__close" data-element="close">&times;</div>
+    <?php foreach ($block->getBanners() as $banner): ?><?= $block->getBannerHtml($banner) ?><?php endforeach ?>
+</div>
+
+<script type="text/x-magento-init"><?= \Zend_Json::encode([
+        '[data-banner-renderer="' . $placeholder->getId() . '"]' => [
+            'Mirasvit_Banner/js/placeholder/popup-renderer' => [
+                \Mirasvit\Banner\Api\Data\PlaceholderInterface::ID => $placeholder->getId(),
+            ],
+        ],
+    ]) ?></script>
+

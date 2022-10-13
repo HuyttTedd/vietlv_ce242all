@@ -1,0 +1,19 @@
+<ul class="health-data">
+    <li class="group" repeat="foreach: $snapshot().health_data, item: '$group'">
+        <b text="$group().label"></b>
+
+        <ul>
+            <li class="metric" repeat="foreach: $group().values, item: '$metric'"
+                data-bind="css: { uncon2fident: $metric().confidence < 100 }">
+
+                <b text="$metric().label"/>
+
+                <div class="data" html="renderHealthMetric($metric())"/>
+
+                <if args="$metric().confidence < 100">
+                    <!--<div class="collecting">Collecting data...</div>-->
+                </if>
+            </li>
+        </ul>
+    </li>
+</ul>

@@ -1,0 +1,6 @@
+.admin__menu .level-0.item-menu > a:before {
+    content: url('../images/pacman.svg');
+    height: 28px;
+    margin: 0 auto;
+    width: 30px;
+}

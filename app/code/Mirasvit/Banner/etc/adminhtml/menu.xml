@@ -1,0 +1,15 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Mirasvit_Banner::banner" title="Promo Banners" module="Mirasvit_Banner"
+             resource="Mirasvit_Banner::banner" sortOrder="100" parent="Magento_Backend::marketing"/>
+
+        <add id="Mirasvit_Banner::banner_banner" title="Banners" module="Mirasvit_Banner"
+             resource="Mirasvit_Banner::banner_banner" sortOrder="10" parent="Mirasvit_Banner::banner"
+             action="mst_banner/banner"/>
+
+        <add id="Mirasvit_Banner::banner_placeholder" title="Placeholders" module="Mirasvit_Banner"
+             resource="Mirasvit_Banner::banner_placeholder" sortOrder="20" parent="Mirasvit_Banner::banner"
+             action="mst_banner/placeholder"/>
+    </menu>
+</config>

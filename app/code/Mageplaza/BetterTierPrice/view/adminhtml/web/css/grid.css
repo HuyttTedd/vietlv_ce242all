@@ -1,0 +1,59 @@
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_BetterTierPrice
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+.admin__control-fields .control-grouped {
+    display: -webkit-inline-flex;
+    display: -ms-inline-flexbox;
+    display: inline-flex;
+    -webkit-flex-direction: row;
+    -ms-flex-direction: row;
+    flex-direction: row;
+}
+
+.admin__control-fields .control-grouped .admin__field + .admin__field {
+    margin-left: 1rem;
+    margin-top: 0;
+}
+
+.mp-specific-customer .admin__field-control .admin__field-label {
+    display: none;
+}
+
+.mp-specific-customer._required > .admin__field-label > span:after {
+    content: '';
+}
+
+.admin__field[data-index="mp_tier_group_data"]:not(.admin__field-option) > .admin__field-label:before {
+    content: unset;
+}
+
+[data-index="tier_price"] .admin__field-label {
+    display: none;
+}
+
+[data-index="mp_specific_customer"] .mp-specific-customer-customer input:enabled {
+    background-color: #ffffff;
+    opacity: 1;
+    cursor: text;
+}
+
+.add-before {
+    padding-bottom: 2%;
+}

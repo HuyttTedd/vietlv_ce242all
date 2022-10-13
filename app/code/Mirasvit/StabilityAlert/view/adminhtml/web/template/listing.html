@@ -1,0 +1,18 @@
+<div class="stability-alert__listing">
+    <ul>
+        <li repeat="foreach: alerts, item: '$alert'">
+            <div class="col-status">
+                <span data-bind="attr: { 'data-status': $alert().status }"/>
+            </div>
+
+            <div class="col-importance">
+                <span text="$alert().importanceLabel" data-bind="attr: { 'data-importance': $alert().importance }"/>
+            </div>
+
+            <div class="col-info">
+                <div text="$alert().name" class="name"/>
+                <div html="$alert().description" class="description"/>
+            </div>
+        </li>
+    </ul>
+</div>

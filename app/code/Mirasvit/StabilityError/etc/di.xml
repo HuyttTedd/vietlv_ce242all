@@ -1,0 +1,55 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <preference for="Mirasvit\StabilityError\Api\Data\ErrorInterface" type="Mirasvit\StabilityError\Model\Error"/>
+
+    <preference for="Mirasvit\StabilityError\Api\Repository\ErrorRepositoryInterface" type="Mirasvit\StabilityError\Repository\ErrorRepository"/>
+
+    <type name="Mirasvit\StabilitySnapshot\Api\Repository\SnapshotRepositoryInterface">
+        <arguments>
+            <argument name="healthData" xsi:type="array">
+                <item name="serverErrorRate" xsi:type="object">Mirasvit\StabilityError\Repository\HealthData\ServerErrorRate</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\EntityManager\MetadataPool">
+        <arguments>
+            <argument name="metadata" xsi:type="array">
+                <item name="Mirasvit\StabilityError\Api\Data\ErrorInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="const">Mirasvit\StabilityError\Api\Data\ErrorInterface::TABLE_NAME</item>
+                    <item name="identifierField" xsi:type="const">Mirasvit\StabilityError\Api\Data\ErrorInterface::ID</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\EntityManager\HydratorPool">
+        <arguments>
+            <argument name="hydrators" xsi:type="array">
+                <item name="Mirasvit\StabilityError\Api\Data\ErrorInterface" xsi:type="string">Magento\Framework\EntityManager\AbstractModelHydrator</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\Logger\Monolog">
+        <arguments>
+            <argument name="handlers" xsi:type="array">
+                <item name="system" xsi:type="object">Magento\Framework\Logger\Handler\System</item>
+                <item name="debug" xsi:type="object">Magento\Framework\Logger\Handler\Debug</item>
+                <item name="mstStabilityError" xsi:type="object">Mirasvit\StabilityError\Plugin\Framework\Logger\Monolog\ErrorHandlerPlugin</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\App\Http">
+        <plugin name="mstStabilityError" type="Mirasvit\StabilityError\Plugin\Framework\App\Http\ExceptionHandlerPlugin"/>
+    </type>
+
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="stability_error_listing_data_source" xsi:type="string">Mirasvit\StabilityError\Model\ResourceModel\Error\Grid</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

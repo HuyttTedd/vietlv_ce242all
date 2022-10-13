@@ -1,0 +1,53 @@
+<div class="stability-snapshot__listing">
+    <ul data-bind="visible: snapshots.length > 0">
+        <li class="snapshot header">
+            <div class="col-id">Snapshot ID</div>
+            <div class="col-status">Status</div>
+            <div class="col-data">Changes</div>
+        </li>
+
+        <li repeat="foreach: snapshots, item: '$snapshot'">
+            <div class="col-id">
+                #<b text="$snapshot().snapshot_id"></b>
+            </div>
+
+            <div class="col-status">
+                <div class="status-wrapper">
+                    <div data-bind="if: $snapshot().status == 'running'">
+                        <div class="status live">
+                            Live
+                        </div>
+                    </div>
+                    <div data-bind="ifnot: $snapshot().status == 'running'">
+                        <div class="status closed">Archived</div>
+                    </div>
+                </div>
+
+                <div class="dates" data-bind="if: $snapshot().closed_at">
+                    <span text="moment($snapshot().created_at).format('MMM D, HH\:mm A')"></span>
+                    <br>
+                    -
+                    <br>
+                    <span text="moment($snapshot().closed_at).format('MMM D, HH\:mm A')"></span>
+                </div>
+                <div class="dates" data-bind="ifnot: $snapshot().closed_at">
+                    <span text="moment($snapshot().created_at).format('MMM D, HH\:mm A')"></span>
+                </div>
+            </div>
+
+            <div class="col-data">
+                <div class="row-health">
+                    <!-- ko template: 'Mirasvit_StabilitySnapshot/listing/health-data' --><!-- /ko -->
+                </div>
+
+                <div class="row-environment">
+                    <div class="environment-data" html="renderEnvironmentData($snapshot().environment_data)"></div>
+                </div>
+            </div>
+        </li>
+    </ul>
+
+    <div data-bind="visible: snapshots.length == 0">
+        There is no snapshots yet. First snapshot will be created automatically by cron.
+    </div>
+</div>

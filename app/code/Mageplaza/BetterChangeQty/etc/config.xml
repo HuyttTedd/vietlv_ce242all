@@ -1,0 +1,42 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_BetterChangeQty
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Store:etc/config.xsd">
+    <default>
+        <mpbetterchangeqty>
+            <general>
+                <enabled>1</enabled>
+                <change_qty_step>1</change_qty_step>
+                <max_qty_step>1</max_qty_step>
+                <limit_number_option>10</limit_number_option>
+                <allow_open_qty>1</allow_open_qty>
+                <opt_tmpl>Buy {{qty}}</opt_tmpl>
+                <opt_tmpl_multi_qty>Buy {{qty}} for {{price}} each</opt_tmpl_multi_qty>
+                <opt_tmpl_tier_price>Buy {{qty}} for {{price}} each and save {{percent}}</opt_tmpl_tier_price>
+                <apply_category>0</apply_category>
+                <apply_page>category,product,wishlist</apply_page>
+                <apply_product>simple,virtual,bundle,grouped,configurable</apply_product>
+                <hide_tier_price_notice>1</hide_tier_price_notice>
+            </general>
+        </mpbetterchangeqty>
+    </default>
+</config>

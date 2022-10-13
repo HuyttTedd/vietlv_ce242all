@@ -1,0 +1,44 @@
+& when (@media-common = true) {
+    .mstBanner-placeholder__popupRenderer {
+        background: #fff;
+        border-radius: .4rem;
+        box-sizing: border-box;
+        position: fixed;
+        bottom: 1rem;
+        right: -100%;
+        z-index: 10000000;
+        box-shadow: 0 0 2rem 0 rgba(0, 0, 0, 0.4);
+        overflow: hidden;
+        transition: right 1.5s;
+        max-width: 40rem;
+
+        &._active {
+            right: 1rem;
+        }
+
+        .mstBanner__close {
+            position: absolute;
+            right: 1rem;
+            top: 1rem;
+            background: #fff;
+            border: .2rem solid #eee;
+            border-radius: 2rem;
+            width: 1.5rem;
+            height: 1.5rem;
+            display: flex;
+            align-items: center;
+            font-weight: bold;
+            justify-content: center;
+            color: #666;
+            cursor: pointer;
+
+            &:hover {
+                color: #000;
+            }
+        }
+
+        img {
+            display: block;
+        }
+    }
+}

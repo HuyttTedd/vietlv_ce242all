@@ -1,0 +1,7 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Mirasvit_Stability::stability" title="Health Monitoring Suite" module="Mirasvit_Stability" resource="Mirasvit_Stability::stability" sortOrder="15"
+             parent="Magento_Backend::system_tools" action="stability/dashboard/index"/>
+    </menu>
+</config>

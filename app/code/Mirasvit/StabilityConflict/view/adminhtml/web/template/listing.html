@@ -1,0 +1,26 @@
+<div class="stability-conflict__listing">
+    <table class="data-grid" data-bind="visible: conflicts.length > 0">
+        <thead>
+        <tr>
+            <th class="data-grid-th">Parent Class</th>
+            <th class="data-grid-th">Rewrites</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr repeat="foreach: conflicts, item: '$conflict'">
+            <td>
+                <span text="$conflict().parent"/>
+            </td>
+            <td>
+                <div repeat="foreach: $conflict().preferences, item: '$preference'">
+                    <span style="color: red;" text="$preference()"/>
+                </div>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+
+    <div data-bind="visible: conflicts.length == 0">
+        No conflicts found.
+    </div>
+</div>

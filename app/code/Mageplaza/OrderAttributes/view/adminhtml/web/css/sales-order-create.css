@@ -1,0 +1,55 @@
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_OrderAttributes
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+.admin__field-tooltip .admin__field-tooltip-content {
+    right: -7rem;
+}
+
+.admin__field-control .admin__control-text[name*='mpOrderAttributes'] {
+    width: auto;
+}
+
+.admin__field-control .admin__control-textarea[name*='mpOrderAttributes'] {
+    max-width: 60rem;
+}
+
+.admin__field-control ._has-datepicker.admin__control-text {
+    width: 15rem;
+}
+
+.tooltip {
+    margin-left: 0.5em;
+}
+
+.mceEditor.defaultSkin {
+    display: inline-block !important;
+}
+
+.admin__page-section-item-title, .admin__page-section-content .admin__page-section-title.additional-shipping-information {
+    margin-top: 20px;
+}
+
+.order-shipping-method .admin__page-section-title.additional-shipping-information > span:after {
+    content: '';
+}
+
+.required > .admin__field-label > span:after, ._required > .admin__field-label > span:after {
+    top: 0;
+}

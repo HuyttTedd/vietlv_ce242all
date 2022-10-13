@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+           xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+
+    <argument name="data" xsi:type="array">
+        <item name="template" xsi:type="string">templates/containers/container</item>
+    </argument>
+
+    <dataSource name="stability_report_general_data_source">
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Mirasvit\Stability\Ui\Shared\DataProvider</argument>
+            <argument name="name" xsi:type="string">stability_report_general_data_source</argument>
+            <argument name="primaryFieldName" xsi:type="string"/>
+            <argument name="requestFieldName" xsi:type="string"/>
+            <argument name="data" xsi:type="array">
+                <item name="config" xsi:type="array">
+                    <item name="component" xsi:type="string">Magento_Ui/js/grid/provider</item>
+                    <item name="update_url" xsi:type="url" path="mui/index/render"/>
+                </item>
+            </argument>
+        </argument>
+    </dataSource>
+
+    <container name="shared_switcher" class="Mirasvit\Stability\Ui\Shared\Component\Switcher">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="component" xsi:type="string">Mirasvit_Stability/js/shared/switcher</item>
+            </item>
+        </argument>
+    </container>
+
+    <container name="general_listing" class="Mirasvit\Stability\Ui\General\Component\Listing">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="component" xsi:type="string">Mirasvit_Stability/js/general/listing</item>
+            </item>
+        </argument>
+    </container>
+</container>

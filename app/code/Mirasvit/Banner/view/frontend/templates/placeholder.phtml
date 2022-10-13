@@ -1,0 +1,19 @@
+<?php
+/** @var \Mirasvit\Banner\Block\Placeholder $block */
+$placeholder = $block->getPlaceholder();
+
+$cssClass = $block->isDebug() ? '_debug ' : '';
+$cssClass .= ' mst-banner__placeholder-' . $placeholder->getIdentifier();
+
+$html = $block->getRendererHtml();
+?>
+<div
+    data-banner-placeholder="<?= $placeholder->getId() ?>"
+    data-loaded="<?= $html ? true : false ?>"
+    class="mst-banner__placeholder <?= $cssClass ?>">
+    <?= $html ?>
+</div>
+
+<?php if ($placeholder->getCss()): ?>
+    <style><?= $placeholder->getCss() ?></style>
+<?php endif ?>

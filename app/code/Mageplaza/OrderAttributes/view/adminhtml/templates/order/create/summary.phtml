@@ -1,0 +1,229 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_OrderAttributes
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+use Mageplaza\OrderAttributes\Helper\Data as HelperData;
+
+?>
+
+<?php
+/** @var Mageplaza\OrderAttributes\Block\Adminhtml\SalesOrderCreate $block */
+?>
+
+<?php if (count($block->getAttributes([1, 6]))): ?>
+    <section class="admin__page-section additional-order-information">
+        <div class="admin__page-section-title">
+            <span class="title"><?= /* @noEscape */ __('Additional Order Information') ?></span>
+        </div>
+        <div class="admin__page-section-content">
+            <fieldset class="admin__fieldset">
+                <?= /* @noEscape */ $block->getForm()->getHtml() ?>
+            </fieldset>
+        </div>
+    </section>
+<?php endif; ?>
+
+<script type="text/javascript">
+    require([
+        'jquery',
+        'Mageplaza_OrderAttributes/js/init-editor-content'
+    ], function ($, initEditorContent) {
+        'use strict';
+
+        var config = <?= /* @noEscape */ HelperData::jsonEncode($block->getConfig()) ?>,
+            shippingMethod = config.selectedShippingMethod,
+            attributeDepend = config.attributeDepend,
+            shippingDepend = config.shippingDepend,
+            contentType = config.contentType,
+            afterTrigger = false,
+            saveTimeout = 0,
+            tinymceConfig = config.tinymceConfig;
+
+        if ($('#order-data').is(':visible')) {
+
+            processAttributes();
+
+            $.each(config.attributes, function (index, attribute) {
+                var elem = $('#' + getAttributeCode(attribute));
+
+                if (elem.length && elem.prop('type') !== 'file') {
+                    $('body').on('change', elem.selector, function () {
+                        if (afterTrigger) {
+                            saveOrderAttributesToQuote();
+                        }
+                    });
+                }
+            });
+        }
+
+        function getAttributeCode(attribute){
+            return 'mpOrderAttributes-' + attribute.attribute_code;
+        }
+
+        function processAttributes() {
+            afterTrigger = false;
+
+            $.each(attributeDepend, function (index, attribute) {
+                var elem = $('#' + getAttributeCode(attribute));
+
+                if (elem.length && elem.prop('type') === 'select-one') {
+                    checkAttributeDepend(elem);
+
+                    elem.trigger('change');
+                }
+            });
+
+            afterTrigger = true;
+
+            $.each(contentType, function (index, attribute) {
+                var elem = $('#' + getAttributeCode(attribute));
+
+                if (elem.length) {
+                    initEditorContent(elem, true,false,tinymceConfig);
+                }
+            });
+
+            checkShippingDepend(shippingMethod);
+        }
+
+        function saveOrderAttributesToQuote() {
+            clearTimeout(saveTimeout);
+
+            saveTimeout = setTimeout(function () {
+                $.ajax({
+                    method: 'POST',
+                    url: config.loadBaseUrl,
+                    data: $('#edit_form').serialize()
+                });
+            }, 2000);
+        }
+
+        (function (parent) {
+            AdminOrder.prototype.setShippingMethod = function (method) {
+                parent.call(this, method);
+
+                shippingMethod = method;
+
+                checkShippingDepend(method);
+            };
+        }(AdminOrder.prototype.setShippingMethod));
+
+        (function (parent) {
+            AdminOrder.prototype.loadAreaResponseHandler = function (response) {
+                parent.call(this, response);
+
+                processAttributes();
+            };
+        }(AdminOrder.prototype.loadAreaResponseHandler));
+
+        function checkAttributeDepend(elem) {
+            $('body').on('change', elem.selector, function () {
+                var self = this,
+                    attrId;
+
+                $.each(attributeDepend, function (index, attribute) {
+                    if (getAttributeCode(attribute) === self.id) {
+                        attrId = attribute.attribute_id;
+                    }
+                });
+
+                $.each(attributeDepend, function (index, attribute) {
+                    if (attribute.field_depend === attrId && attribute.value_depend) {
+                        var elem = $('#' + getAttributeCode(attribute));
+
+                        if (elem.length) {
+                            var valueDepend = attribute.value_depend.split(',');
+
+                            if ($.inArray(attrId + '_' + self.value, valueDepend) === -1 || isShippingDepend(elem)) {
+                                elem.parents('.field').hide();
+                                elem.prop('disabled', true);
+                                elem.val(null);
+                            } else {
+                                elem.parents('.field').show();
+                                elem.prop('disabled', false);
+                            }
+                        }
+                    }
+                });
+            });
+        }
+
+        function isShippingDepend(elem) {
+            var result = false;
+
+            $.each(shippingDepend, function (index, attribute) {
+                if (getAttributeCode(attribute) === elem.attr('id')) {
+                    var dependMethod = attribute.shipping_depend.split(',');
+                    result = $.inArray(shippingMethod, dependMethod) === -1;
+                    return false;
+                }
+            });
+
+            return result;
+        }
+
+        function checkShippingDepend(method) {
+            $.each(shippingDepend, function (index, attribute) {
+                var elem = $('#' + getAttributeCode(attribute));
+                if (elem.length) {
+                    var dependMethod = attribute.shipping_depend.split(',');
+                    if ($.inArray(method, dependMethod) === -1 || isAttributeDepend(elem)) {
+                        elem.parents('.field').hide();
+                        elem.prop('disabled', true);
+                        elem.val(null);
+                    } else {
+                        elem.parents('.field').show();
+                        elem.prop('disabled', false);
+                    }
+                }
+            });
+        }
+
+        function isAttributeDepend(elem) {
+            var result = false;
+
+            $.each(shippingDepend, function (index, attribute) {
+                if (getAttributeCode(attribute) === elem.attr('id') && attribute.value_depend) {
+                    var parentElem = getAttributeById(attribute.field_depend);
+                    if (parentElem) {
+                        var dependValue = attribute.value_depend.split(',');
+                        result = ($.inArray(attribute.field_depend + '_' + parentElem.val(), dependValue) === -1);
+                        return false;
+                    }
+                }
+            });
+
+            return result;
+        }
+
+        function getAttributeById(id) {
+            var result = false;
+
+            $.each(attributeDepend, function (index, attribute) {
+                if (attribute.attribute_id === id) {
+                    result = $('#' + getAttributeCode(attribute));
+                    return false;
+                }
+            });
+
+            return result;
+        }
+    });
+
+</script>

@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<container xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Ui:etc/ui_configuration.xsd">
+    <argument name="data" xsi:type="array">
+        <item name="template" xsi:type="string">templates/containers/container</item>
+    </argument>
+
+    <dataSource>
+        <argument name="dataProvider" xsi:type="configurableObject">
+            <argument name="class" xsi:type="string">Mirasvit\Stability\Ui\DataProvider</argument>
+        </argument>
+    </dataSource>
+
+    <container name="toolbar" class="Mirasvit\Stability\Ui\General\ToolbarComponent">
+        <argument name="data" xsi:type="array">
+            <item name="config" xsi:type="array">
+                <item name="component" xsi:type="string">Mirasvit_Stability/js/general/toolbar</item>
+                <item name="componentType" xsi:type="string">container</item>
+                <item name="template" xsi:type="string">Mirasvit_Stability/general/toolbar</item>
+            </item>
+        </argument>
+    </container>
+</container>

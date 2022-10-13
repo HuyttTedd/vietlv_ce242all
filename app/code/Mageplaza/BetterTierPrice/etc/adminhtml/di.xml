@@ -1,0 +1,65 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_BetterTierPrice
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <virtualType name="Magento\Catalog\Ui\DataProvider\Product\Form\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="mp_specific_customer" xsi:type="array">
+                    <item name="class" xsi:type="string">Mageplaza\BetterTierPrice\Ui\DataProvider\Product\Form\Modifier\SpecificCustomer</item>
+                    <item name="sortOrder" xsi:type="number">160</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Magento\Bundle\Ui\DataProvider\Product\Form\Modifier\Composite">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="mpbundlePanel" xsi:type="string">Mageplaza\BetterTierPrice\Ui\DataProvider\Product\Form\Modifier\BundlePanel</item>
+            </argument>
+        </arguments>
+    </type>
+    <virtualType name="Mageplaza\BetterTierPrice\Ui\DataProvider\Product\Form\Modifier\Pool" type="Magento\Ui\DataProvider\Modifier\Pool">
+        <arguments>
+            <argument name="modifiers" xsi:type="array">
+                <item name="mp_specific_customer" xsi:type="array">
+                    <item name="class" xsi:type="string">Mageplaza\BetterTierPrice\Ui\DataProvider\Product\Form\Modifier\TierPrice</item>
+                    <item name="sortOrder" xsi:type="number">160</item>
+                </item>
+            </argument>
+        </arguments>
+    </virtualType>
+    <type name="Mageplaza\BetterTierPrice\Ui\DataProvider\Product\Form\TierPriceDataProvider">
+        <arguments>
+            <argument name="pool" xsi:type="object">Mageplaza\BetterTierPrice\Ui\DataProvider\Product\Form\Modifier\Pool</argument>
+        </arguments>
+    </type>
+    <type name="Magento\Catalog\Controller\Adminhtml\Product\Builder">
+        <plugin name="mp_tier_price_set_empty_specific_customer" type="Mageplaza\BetterTierPrice\Plugin\Catalog\Controller\Adminhtml\Product\Builder"/>
+    </type>
+    <type name="Magento\Catalog\Controller\Adminhtml\Product\Validate">
+        <plugin name="mp_validate_specific_customer" type="Mageplaza\BetterTierPrice\Plugin\Catalog\Controller\Adminhtml\Product\Validate"/>
+    </type>
+    <type name="Magento\Catalog\Controller\Adminhtml\Product\Action\Attribute\Validate">
+        <plugin name="mp_validate_tier_price" type="Mageplaza\BetterTierPrice\Plugin\Catalog\Controller\Adminhtml\Product\Action\Attribute\Validate"/>
+    </type>
+</config>

@@ -1,0 +1,69 @@
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_OrderAttributes
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+.wysiwyg-editor ~ .defaultSkin * {
+    border-collapse: collapse;
+}
+
+#add_to_pdf_files, #add_to_confirm_email {
+    line-height: 3.4rem;
+}
+
+.admin__scope-old #manage-tooltips-wrapper .col-store-view .input-text {
+    width: 100%;
+}
+
+.admin__scope-old .form-inline .fieldset > .field > .label span {
+    word-break: unset;
+}
+
+.admin__scope-old .data-table th._required span:after {
+    color: #eb5202;
+    content: '*';
+}
+
+.col-delete .delete-option span {
+    display: none;
+}
+
+.col-delete .delete-option {
+    background-color: transparent;
+    border-color: transparent;
+    box-shadow: none;
+    padding-left: 0;
+    padding-right: 0;
+}
+
+.col-delete .delete-option:before {
+    -webkit-font-smoothing: antialiased;
+    font-family: 'Admin Icons';
+    font-style: normal;
+    font-weight: normal;
+    line-height: 1;
+    speak: none;
+    content: '\e630';
+    font-size: 2rem;
+}
+
+#mp-select-all-container {
+    display: inline-block;
+    vertical-align: top;
+    margin-left: 30px;
+}

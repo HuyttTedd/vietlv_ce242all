@@ -1,0 +1,77 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_BetterChangeQty
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+// @codingStandardsIgnoreFile
+
+/** @var $block \Mageplaza\BetterChangeQty\Block\Product\Renderer\Listing\AbstractProduct */
+$_product = $block->getProduct();
+
+$objectManager = \Magento\Framework\App\ObjectManager::getInstance();
+/** @var \Mageplaza\BetterChangeQty\Helper\Data $helper */
+$helper  = $objectManager->get(\Mageplaza\BetterChangeQty\Helper\Data::class);
+$options = $helper->getQtyOptions($_product);
+$default = $block->getProductDefaultQty() * 1 ?: 1;
+$class = 'product-' . $_product->getId();
+
+$qtyValidators = $helper->determineValidators($block->getQuantityValidators());
+?>
+
+<?php if ($_product->isSaleable() && $helper->isApplied($_product)): ?>
+    <div class="box-tocart mp-better-qty-container <?php echo $class; ?>">
+        <div class="fieldset">
+            <div class="field qty">
+                <div class="control">
+                    <select name="qty" class="mp-better-qty-input">
+                        <?php foreach ($options as $option): ?>
+                            <?php $selected = ($default == $option['value']) ? 'selected="selected"' : ''; ?>
+                            <option value="<?php echo $option['value'] ?>" <?php echo $selected ?>><?php echo $option['title'] ?></option>
+                        <?php endforeach; ?>
+                    </select>
+                    <input type="number"
+                           name="qty"
+                           value="<?php echo $default ?>"
+                           title="<?php echo __('Quantity') ?>" class="input-text qty mp-better-qty-box"
+                           data-validate="<?php echo $block->escapeHtml(json_encode($qtyValidators)) ?>"
+                           style="display: none;"/>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script type="text/x-magento-init">
+    {
+        ".mp-better-qty-container.<?php echo $class; ?>": {
+            "Mageplaza_BetterChangeQty/js/product/listing/renderer": {
+                "step": <?php echo $helper->getStepValue($_product); ?>,
+                "limit": <?php echo $helper->getLimitNumberOption(); ?>,
+                "format": <?php echo $helper->getPriceFormat(); ?>,
+                "finalPrice": <?php echo floatval($_product->getFinalPrice()); ?>,
+                "optTmpl": "<?php echo $helper->getOptionTemplate(); ?>",
+                "optTmplMulti": "<?php echo $helper->getOptionTemplateMultiQty(); ?>",
+                "optTmplTier": "<?php echo $helper->getOptionTemplateTierPrice(); ?>",
+                "optionMap": <?php echo \Mageplaza\BetterChangeQty\Helper\Data::jsonEncode($helper->getOptionMap($_product)); ?>,
+                "configurable": <?php echo \Mageplaza\BetterChangeQty\Helper\Data::jsonEncode($helper->getConfigurableChildren($_product)); ?>,
+                "configurableQty": <?php echo $helper->getMaxQtyConfigurableChildren($_product); ?>
+            }
+        }
+    }
+    </script>
+<?php endif; ?>

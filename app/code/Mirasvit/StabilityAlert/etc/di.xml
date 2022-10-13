@@ -1,0 +1,16 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <!--REPOSITORY-->
+    <preference for="Mirasvit\StabilityAlert\Api\Repository\AlertRepositoryInterface" type="Mirasvit\StabilityAlert\Repository\AlertRepository"/>
+
+
+    <type name="Mirasvit\StabilityAlert\Api\Repository\AlertRepositoryInterface">
+        <arguments>
+            <argument name="pool" xsi:type="array">
+                <item name="cache_status" xsi:type="object">Mirasvit\StabilityAlert\Repository\Alert\CacheStatusAlert</item>
+                <item name="cache_type" xsi:type="object">Mirasvit\StabilityAlert\Repository\Alert\CacheTypeAlert</item>
+                <item name="deploy_mode" xsi:type="object">Mirasvit\StabilityAlert\Repository\Alert\DeployModeAlert</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

@@ -1,0 +1,20 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Mirasvit\StabilitySnapshot\Api\Repository\SnapshotRepositoryInterface">
+        <arguments>
+            <argument name="environmentData" xsi:type="array">
+                <item name="cron" xsi:type="object">Mirasvit\StabilityCron\Repository\EnvironmentData\CronData</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Mirasvit\StabilityAlert\Api\Repository\AlertRepositoryInterface">
+        <arguments>
+            <argument name="pool" xsi:type="array">
+                <item name="cronActivity" xsi:type="object">Mirasvit\StabilityCron\Repository\Alert\ActivityAlert</item>
+                <item name="cronJobError" xsi:type="object">Mirasvit\StabilityCron\Repository\Alert\JobErrorAlert</item>
+                <item name="cronJobRunningTime" xsi:type="object">Mirasvit\StabilityCron\Repository\Alert\JobRunningTimeAlert</item>
+            </argument>
+        </arguments>
+    </type>
+</config>
