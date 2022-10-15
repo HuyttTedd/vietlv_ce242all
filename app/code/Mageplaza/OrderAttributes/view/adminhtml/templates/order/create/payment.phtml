@@ -1,0 +1,36 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_OrderAttributes
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+?>
+
+<?php
+/** @var Mageplaza\OrderAttributes\Block\Adminhtml\SalesOrderCreate $block */
+?>
+
+<?php if (count($block->getAttributes([4, 5]))): ?>
+    <div class="admin__page-section-title additional-payment-information">
+        <span class="title"><?php echo __('Additional Payment Information') ?></span>
+    </div>
+    <div class="admin__page-section-content">
+        <fieldset class="admin__fieldset">
+            <?php echo $block->getForm()->getHtml() ?>
+        </fieldset>
+    </div>
+<?php endif; ?>

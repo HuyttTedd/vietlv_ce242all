@@ -1,0 +1,53 @@
+<!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_OrderAttributes
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+-->
+
+<!-- ko if: isVisible() -->
+<span data-bind="i18n: 'Additional Information'" class="title order-attributes-title"></span>
+<table class="data table table-totals">
+    <caption class="table-caption" data-bind="i18n: 'Additional Information'"></caption>
+    <tbody>
+    <!-- ko foreach: getOrderAttributes() -->
+    <tr>
+        <th data-bind="i18n: label" class="mark order-attributes-label" scope="row"></th>
+        <td class="amount order-attributes-value">
+            <!-- ko if: url && preview == 'image' -->
+            <a class="price" target="_blank" data-bind="attr: {href: url, 'data-th': label}">
+                <img title="View Full Size" data-bind="attr: {alt: value, src: url}">
+            </a>
+            <!-- /ko -->
+            <!-- ko if: url && preview != 'image' -->
+            <a class="price" target="_blank" data-bind="text: value, attr: {href: url, 'data-th': label}"></a>
+            <!-- /ko -->
+            <!-- ko ifnot: url -->
+                <!-- ko if: field_type == 'content' -->
+                <span class="price" data-bind="html: value, attr: {'data-th': label}"></span>
+                <!-- /ko -->
+                <!-- ko ifnot: field_type == 'content' -->
+                <span class="price" data-bind="text: value, attr: {'data-th': label}"></span>
+                <!-- /ko -->
+            <!-- /ko -->
+        </td>
+    </tr>
+    <!-- /ko -->
+    </tbody>
+</table>
+<!--/ko-->

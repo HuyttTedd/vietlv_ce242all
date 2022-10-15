@@ -1,0 +1,54 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+    <preference for="Mirasvit\Banner\Api\Data\BannerInterface" type="Mirasvit\Banner\Model\Banner"/>
+    <preference for="Mirasvit\Banner\Api\Data\PlaceholderInterface" type="Mirasvit\Banner\Model\Placeholder"/>
+    <preference for="Mirasvit\Banner\Api\Data\AnalyticsInterface" type="Mirasvit\Banner\Model\Analytics"/>
+
+    <!--Entity Manager-->
+    <type name="Magento\Framework\EntityManager\MetadataPool">
+        <arguments>
+            <argument name="metadata" xsi:type="array">
+                <item name="Mirasvit\Banner\Api\Data\BannerInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="const">Mirasvit\Banner\Api\Data\BannerInterface::TABLE_NAME</item>
+                    <item name="identifierField" xsi:type="const">Mirasvit\Banner\Api\Data\BannerInterface::ID</item>
+                </item>
+                <item name="Mirasvit\Banner\Api\Data\PlaceholderInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="const">Mirasvit\Banner\Api\Data\PlaceholderInterface::TABLE_NAME</item>
+                    <item name="identifierField" xsi:type="const">Mirasvit\Banner\Api\Data\PlaceholderInterface::ID</item>
+                </item>
+                <item name="Mirasvit\Banner\Api\Data\AnalyticsInterface" xsi:type="array">
+                    <item name="entityTableName" xsi:type="const">Mirasvit\Banner\Api\Data\AnalyticsInterface::TABLE_NAME</item>
+                    <item name="identifierField" xsi:type="const">Mirasvit\Banner\Api\Data\AnalyticsInterface::ID</item>
+                </item>
+            </argument>
+        </arguments>
+    </type>
+    <type name="Magento\Framework\EntityManager\HydratorPool">
+        <arguments>
+            <argument name="hydrators" xsi:type="array">
+                <item name="Mirasvit\Banner\Api\Data\BannerInterface" xsi:type="string">Magento\Framework\EntityManager\AbstractModelHydrator</item>
+                <item name="Mirasvit\Banner\Api\Data\PlaceholderInterface" xsi:type="string">Magento\Framework\EntityManager\AbstractModelHydrator</item>
+                <item name="Mirasvit\Banner\Api\Data\AnalyticsInterface" xsi:type="string">Magento\Framework\EntityManager\AbstractModelHydrator</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Mirasvit\Banner\Repository\PlaceholderRepository">
+        <arguments>
+            <argument name="renderer" xsi:type="array">
+                <item name="rotator" xsi:type="object">Mirasvit\Banner\Placeholder\RotatorRenderer</item>
+                <item name="popup" xsi:type="object">Mirasvit\Banner\Placeholder\PopupRenderer</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <!--UI-->
+    <type name="Magento\Framework\View\Element\UiComponent\DataProvider\CollectionFactory">
+        <arguments>
+            <argument name="collections" xsi:type="array">
+                <item name="mstBanner_banner_listing_data_source" xsi:type="string">Mirasvit\Banner\Model\ResourceModel\Banner\Grid</item>
+                <item name="mstBanner_placeholder_listing_data_source" xsi:type="string">Mirasvit\Banner\Model\ResourceModel\Placeholder\Grid</item>
+            </argument>
+        </arguments>
+    </type>
+</config>

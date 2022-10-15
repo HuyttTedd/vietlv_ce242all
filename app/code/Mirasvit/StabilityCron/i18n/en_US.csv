@@ -1,0 +1,10 @@
+"Cron Job Status","Cron Job Status"
+"Cron job is not working.","Cron job is not working."
+"Last execution time %1.","Last execution time %1."
+"All jobs were registered.","All jobs were registered."
+"Cron Job Errors","Cron Job Errors"
+"All OK.","All OK."
+%1,%1
+"Cron Job Running Time","Cron Job Running Time"
+OK.,OK.
+"Job `%1` started at %2 and still running.","Job `%1` started at %2 and still running."

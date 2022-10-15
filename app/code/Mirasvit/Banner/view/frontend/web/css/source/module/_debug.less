@@ -1,0 +1,39 @@
+& when (@media-common = true) {
+    .mst-banner__placeholder._debug {
+        border: 2px dashed #002f56;
+        background: #b4edff;
+        min-height: 10px;
+    }
+
+    .mst-banner__container-highlight {
+        position: absolute;
+        background: rgba(255, 0, 0, 0.15);
+        border: 3px dashed rgba(252, 84, 84, 0.75);
+        min-height: 10px;
+        min-width: 10px;
+        z-index: 100000000;
+        box-sizing: border-box;
+    }
+
+    .mst-banner__debug {
+        position: fixed;
+        bottom: 0;
+        left: 0;
+        background: #fff;
+        padding: 1rem;
+        border-top: 5px solid #eee;
+        display: flex;
+        flex-wrap: wrap;
+        z-index: 100000001;
+
+        > div {
+            padding: .5rem 1rem;
+            margin: .2rem;
+            cursor: pointer;
+            white-space: nowrap;
+            border: 1px solid #eee;
+            flex-grow: 1;
+            text-align: center;
+        }
+    }
+}

@@ -1,0 +1,128 @@
+<!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_BetterTierPrice
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+-->
+<div class="admin__field" visible="visible" disable="disabled" css="element.setClasses(element)">
+    <label if="element.label" class="admin__field-label label" attr="for: element.uid">
+        <span translate="element.label"/>
+    </label>
+    <div class="admin__field-control control" data-role="grid-wrapper" attr="'data-index': index">
+        <div class="add-before">
+            <span if="!isSpecificCustomers && !isModal" class="customer-group-change-checkbox">
+                <input type="checkbox" id="customer-group-change-checkbox"
+                       name="product[tier_price][customer_group_change_checkbox]" class="checkbox"
+                       onclick="toogleFieldEditMode(this, 'customer_group_price,' +
+                        ' #attributes_update_tabs_tier_price_content div[data-index=tier_price] select,' +
+                        ' #attributes_update_tabs_tier_price_content .admin__control-grouped select,' +
+                        ' #attributes_update_tabs_tier_price_content .admin__control-grouped button,' +
+                         ' #attributes_update_tabs_tier_price_content div[data-index=tier_price] input:not(#customer-group-change-checkbox)')" />
+                <span for="customer-group-change-checkbox" data-bind="text: $t('Change')"></span>
+            </span>
+            <span if="isSpecificCustomers && !isModal" class="specific-customer-change-checkbox">
+                <input type="checkbox" id="specific-customer-change-checkbox"
+                       name="product[mp_specific_customer][specific_customer_change_checkbox]" class="checkbox"
+                       onclick="toogleFieldEditMode(this, 'specific_customers,' +
+                        ' #attributes_update_tabs_tier_price_content div[data-index=mp_specific_customer] select,' +
+                         ' #attributes_update_tabs_tier_price_content div[data-index=mp_specific_customer] input:not(#specific-customer-change-checkbox)')" />
+                <span for="specific-customer-change-checkbox" data-bind="text: $t('Change')"></span>
+            </span>
+        </div>
+        <div class="admin__control-table-wrapper">
+            <div data-role="spinner"
+                 class="admin__data-grid-loading-mask"
+                 if="$data.showSpinner">
+                <div class="spinner">
+                    <span repeat="8"/>
+                </div>
+            </div>
+
+            <table class="admin__dynamic-rows admin__control-table" data-role="grid" attr="{'data-index': index}">
+                <thead if="element.columnsHeader">
+                <tr>
+                    <th if="dndConfig.enabled"/>
+                    <th repeat="foreach: labels, item: '$label'"
+                        css="setClasses($label())"
+                        visible="$label().visible"
+                        disable="$label().disabled">
+                        <span translate="$label().label"/>
+                    </th>
+                </tr>
+                </thead>
+
+                <tbody>
+                <tr class="data-row" repeat="foreach: elems, item: '$record'">
+                    <td if="dndConfig.enabled"
+                        class="col-draggable"
+                        template="name: dndConfig.template, data: dnd"></td>
+
+                    <!-- ko foreach: { data: $record().elems(), as: 'elem'}  -->
+                    <td if="elem.template"
+                        css="$parent.setClasses(elem)"
+                        visible="elem.visible"
+                        disable="elem.disabled"
+                        template="elem.template"></td>
+                    <!-- /ko -->
+                </tr>
+                </tbody>
+
+                <tfoot visible="element.addButton || (!!element.getRecordCount() && (element.pages() > 1))">
+                <tr>
+                    <td attr="{'colspan': element.getColumnsCount()}"
+                        visible="element.addButton || pages() > 1">
+                        <button if="element.addButton && !isSpecificCustomers && !isModal"
+                                attr="{'data-action': 'add_new_row'}"
+                                type="button"
+                                id="customer_group_price"
+                                click="processingAddChild.bind($data, false, false, false)" disabled="disabled">
+                            <span translate="addButtonLabel"/>
+                        </button>
+                        <button if="element.addButton && isSpecificCustomers && !isModal"
+                                attr="{'data-action': 'add_new_row'}"
+                                type="button"
+                                id="specific_customers"
+                                click="processingAddChild.bind($data, false, false, false)" disabled="disabled">
+                            <span translate="addButtonLabel"/>
+                        </button>
+                        <button if="element.addButton && isModal"
+                                attr="{'data-action': 'add_new_row'}"
+                                type="button"
+                                click="processingAddChild.bind($data, false, false, false)">
+                            <span translate="addButtonLabel"/>
+                        </button>
+                        <div class="admin__control-table-pagination"
+                             visible="!!element.getRecordCount() && element.pages() > 1">
+                            <div class="admin__data-grid-pager">
+                                <button class="action-previous" type="button"
+                                        data-bind="attr: {title: $t('Previous Page')}, click: previousPage, disable: isFirst()"></button>
+                                <input class="admin__control-text" type="number"
+                                       data-bind="attr: {id: ++ko.uid}, value: currentPage">
+                                <label class="admin__control-support-text"
+                                       data-bind="attr: {for: ko.uid}, text: 'of ' + pages()"></label>
+                                <button class="action-next" type="button"
+                                        data-bind="attr: {title: $t('Next Page')}, click: nextPage, disable: isLast()"></button>
+                            </div>
+                        </div>
+                    </td>
+                </tr>
+                </tfoot>
+            </table>
+        </div>
+    </div>
+</div>

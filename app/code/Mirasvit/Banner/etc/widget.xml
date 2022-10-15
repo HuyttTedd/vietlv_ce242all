@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<widgets xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Widget:etc/widget.xsd">
+    <widget id="promo_banner_placeholder" class="Mirasvit\Banner\Block\Widget\Placeholder" placeholder_image="Magento_Cms::images/widget_page_link.png">
+        <label translate="true">Banner Placeholder</label>
+        <description translate="true">Banner Placeholder Widget</description>
+
+        <parameters>
+            <parameter name="placeholder_id" xsi:type="select" visible="true" source_model="Mirasvit\Banner\Ui\Banner\Source\PlaceholderSource">
+                <label translate="true">Placeholder</label>
+            </parameter>
+        </parameters>
+    </widget>
+</widgets>

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Mageplaza_ReportCustomize::menu"
+             title="HuyTT" module="Mageplaza_ReportCustomize"
+             sortOrder="10"
+             resource="Magento_Backend::content"
+        />
+        <!-- START: new node -->
+        <add id="Mageplaza_ReportCustomize::report_customize"
+             title="Report Customize" module="Mageplaza_ReportCustomize"
+             sortOrder="10" parent="Mageplaza_ReportCustomize::menu"
+             action="mpcustomize/show"
+             resource="Mageplaza_ReportCustomize::report_customize"
+        />
+        <!-- END:   new node -->
+    </menu>
+</config>

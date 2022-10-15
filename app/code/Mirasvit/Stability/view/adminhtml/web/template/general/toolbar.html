@@ -1,0 +1,8 @@
+<ul class="stability-general__toolbar">
+    <li repeat="foreach: tabs, item: '$tab'">
+        <a data-bind="attr: { href: $tab().url }, css: { _active: $tab().active }">
+            <span text="$tab().label"/>
+            <i text="$tab().extra"/>
+        </a>
+    </li>
+</ul>

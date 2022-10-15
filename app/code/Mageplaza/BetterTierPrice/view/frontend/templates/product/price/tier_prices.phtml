@@ -1,0 +1,248 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_BetterTierPrice
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+use Magento\Catalog\Pricing\Price\TierPrice;
+use Magento\Catalog\Pricing\Render\PriceBox;
+use Magento\Checkout\Helper\Cart;
+use Magento\Framework\Pricing\Render;
+use Mageplaza\BetterTierPrice\Helper\Data;
+
+?>
+
+<?php
+/** @var PriceBox $block */
+$tierPriceModel    = $block->getPrice();
+/** @var TierPrice $tierPriceModel */
+$tierPrices        = $tierPriceModel->getTierPriceList();
+$msrpShowOnGesture = $block->getPriceType('msrp_price')->isShowPriceOnGesture();
+$product           = $block->getSaleableItem();
+/** @var Data $helperData */
+$helperData        = $this->helper(Data::class);
+$isTabularEnabled  = $helperData->isEnabled($block->getStoreId())
+                        && $helperData->isTabularEnabled($block->getStoreId());
+$uniqueId          = uniqid('', true);
+
+?>
+<?php if (count($tierPrices)) : ?>
+    <?php if ($isTabularEnabled) : ?>
+    <h3><?= /* @noEscape */ $helperData->getTierPriceTitle($block->getStoreId()) ?></h3>
+    <table class="mp-tabular">
+        <thead>
+        <tr>
+            <th scope="col" class="col quantity"><?= $block->escapeHtml(__('QUANTITY')) ?></th>
+            <th scope="col" class="col save-amount"><?= $block->escapeHtml(__('SAVE AMOUNT')) ?></th>
+            <th scope="col" class="col price"><?= $block->escapeHtml(__('PRICE PER ITEM')) ?></th>
+            <?php if ($helperData->isAutoChange()) : ?>
+                <th scope="col" class="col radio">
+                    <div class="mp-btp-reset"></div>
+                </th>
+            <?php endif; ?>
+        </tr>
+        </thead>
+        <tbody>
+    <?php else : ?>
+        <ul class="<?= /* @noEscape */ ($block->hasListClass() ? $block->getListClass() : 'prices-tier items') ?>">
+    <?php endif; ?>
+            <?php foreach ($tierPrices as $index => $price) : ?>
+                <?php if ($isTabularEnabled) : ?>
+                    <tr>
+                <?php else : ?>
+                    <li class="item">
+                <?php endif; ?>
+                <?php
+                $productId  = $product->getId();
+                $isSaleable = $product->isSaleable();
+                $popupId    = 'msrp-popup-' . $productId . $block->getRandomString(20);
+                if ($msrpShowOnGesture && $price['price']->getValue() < $product->getMsrp()) :
+                    $addToCartUrl = '';
+                    if ($isSaleable) {
+                        $addToCartUrl = $this->helper(Cart::class)
+                            ->getAddUrl($product, ['qty' => $price['price_qty']]);
+                    }
+                    $tierPriceData = [
+                        'addToCartUrl' => $addToCartUrl,
+                        'name'         => $product->getName(),
+                        'realPrice'    => $block->renderAmount(
+                            $price['price'],
+                            [
+                                'price_id'          => $index,
+                                'id_suffix'         => '-' . $index,
+                                'include_container' => true
+                            ]
+                        ),
+                        'msrpPrice'    => $block->renderAmount(
+                            $block->getPriceType('msrp_price')->getAmount(),
+                            [
+                                'price_id'          => $index,
+                                'id_suffix'         => '-' . $index,
+                                'include_container' => true
+                            ]
+                        ),
+                    ];
+                    if ($block->getCanDisplayQty($product)) {
+                        $tierPriceData['qty'] = $price['price_qty'];
+                    }
+                    ?>
+                    <div>
+                        <?= /* @noEscape */ __('Buy %1 for: ', $price['price_qty']) ?>
+                        <a href="javascript:void(0);"
+                           id="<?= /* @noEscape */ $popupId ?>"
+                           data-tier-price="<?= $block->escapeHtml($block->jsonEncode($tierPriceData)) ?>">
+                            <?= $block->escapeHtml(__('Click for price')) ?></a>
+                    </div>
+                <?php else :
+                    $priceAmountBlock = $block->renderAmount(
+                        $price['price'],
+                        [
+                            'price_id'          => $index,
+                            'id_suffix'         => '-' . $index,
+                            'include_container' => true,
+                            'zone'              => Render::ZONE_ITEM_OPTION
+                        ]
+                    );
+                    ?>
+                    <?php if ($isTabularEnabled) : ?>
+                    <td><?= /* @noEscape */ $price['price_qty'] ?></td>
+                    <td><?= /* @noEscape */ $helperData->formatPercent($tierPriceModel->getSavePercent($price['price'])) . '%' ?></td>
+                    <td><?= /* @noEscape */ $priceAmountBlock ?></td>
+                        <?php if ($helperData->isAutoChange()) : ?>
+                        <td><input class="mp-tier-price" type="radio" value="<?= /* @noEscape */ $price['price_qty'] ?>"
+                                   name="<?= /* @noEscape */ $uniqueId ?>"></td>
+                        <?php endif; ?>
+                    <?php else : ?>
+                        <?= /* @noEscape */ ($block->getShowDetailedPrice() !== false)
+                        ? __(
+                            'Buy %1 for %2 each and <strong class="benefit">save<span class="percent tier-%3">&nbsp;%4</span>%</strong>',
+                            $price['price_qty'],
+                            $priceAmountBlock,
+                            $index,
+                            $helperData->formatPercent($tierPriceModel->getSavePercent($price['price']))
+                        )
+                        : __('Buy %1 for %2 each', $price['price_qty'], $priceAmountBlock)
+                        ?>
+                    <?php endif; ?>
+                <?php endif; ?>
+                <?php if (!$isTabularEnabled) : ?>
+                    </li>
+                <?php else : ?>
+                    </tr>
+                <?php endif; ?>
+            <?php endforeach; ?>
+            <?php if (!$isTabularEnabled) : ?>
+        </ul>
+            <?php else : ?>
+        </tbody>
+    </table>
+            <?php endif; ?>
+    <?php if ($msrpShowOnGesture) : ?>
+        <script type="text/x-magento-init">
+            {
+                ".product-info-main": {
+                    "addToCart": {
+                        "origin": "tier",
+                        "addToCartButton": "#product_addtocart_form [type=submit]",
+                        "inputQty": "#qty",
+                        "attr": "[data-tier-price]",
+                        "productForm": "#product_addtocart_form",
+                        "productId": "<?= /* @noEscape */ $productId ?>",
+                        "productIdInput": "input[type=hidden][name=product]",
+                        "isSaleable": "<?= /* @noEscape */ $isSaleable ?>"
+                    }
+                }
+            }
+        </script>
+    <?php endif; ?>
+    <?php if ($isTabularEnabled && $helperData->isAutoChange()) : ?>
+        <script>
+            require([
+                'jquery'
+            ], function ($) {
+                $('input.mp-tier-price').on('click', function (e) {
+                    var qtyInputEl,
+                        resetEl = $(this).parents('.mp-tabular').find('div.mp-btp-reset');
+
+                    e.stopPropagation();
+                    // e.preventDefault();
+                    // $(this).attr('checked',true);
+                    if ($(this).parents('.grouped').length) {
+                        qtyInputEl = $(this).parents('.row-tier-price').prev().find('.input-text.qty');
+
+                        if (!qtyInputEl.length) {
+                            qtyInputEl = $(this).parents('.row-tier-price').parents('tbody').find('.input-text.qty');
+                        }
+                        qtyInputEl.val($(this).val());
+                    } else if ($(this).parents('.field.option').length) {
+                        qtyInputEl = $(this).parents('.field.option').find('.qty-holder .control .input-text.qty');
+
+                        if (qtyInputEl.length
+                            && ($(this).parents('.field.choice').find('input:checked.bundle.option').length > 0
+                            || $(this).parents('.options-list').find('input[type="hidden"].bundle.option').length > 0)
+                        ) {
+                            qtyInputEl.val($(this).val());
+                            qtyInputEl.trigger('change');
+                        }
+                    } else {
+                        $('.box-tocart .field.qty input#qty').val($(this).val());
+                    }
+                    resetEl.show();
+                });
+                $('input.bundle.option').on('click', function (e) {
+                    e.stopPropagation();
+                    if ($(this).parents('.nested').find('.mp-tabular').length) {
+                        $(this).parents('.nested').find('.mp-tabular .mp-tier-price').prop('checked', false);
+                        $(this).parents('.nested').find('.mp-tabular .mp-btp-reset').hide();
+                        $(this).parents('.nested').find('.qty-holder .control .input-text.qty').val(1);
+                    }
+                });
+                $('body').on('click', 'div.mp-btp-reset', function () {
+                    var qtyInputEl;
+
+                    $(this).parents('.mp-tabular').find('.mp-tier-price').prop('checked', false);
+                    if ($(this).parents('.grouped').length) {
+                        qtyInputEl = $(this).parents('.row-tier-price').prev().find('.input-text.qty');
+
+                        if (!qtyInputEl.length) {
+                            qtyInputEl = $(this).parents('.row-tier-price').parents('tbody').find('.input-text.qty');
+                        }
+                        qtyInputEl.val(1);
+                        $(this).hide();
+                    } else if ($(this).parents('.field.option').length) {
+                        qtyInputEl = $(this).parents('.field.option').find('.qty-holder .control .input-text.qty');
+
+                        if (qtyInputEl.length
+                            && ($(this).parents('.field.choice').find('input:checked.bundle.option').length > 0
+                            || $(this).parents('.options-list').find('input[type="hidden"].bundle.option').length > 0)
+                        ) {
+                            qtyInputEl.val(1);
+                            qtyInputEl.trigger('change');
+                        }
+                    } else {
+                        $('.box-tocart .field.qty input#qty').val(1);
+                        $(this).hide();
+                    }
+                });
+                if (!$('.mp-tabular tbody tr td').length) {
+                    $('.mp-tabular').hide();
+                }
+            })
+        </script>
+    <?php endif; ?>
+<?php endif; ?>

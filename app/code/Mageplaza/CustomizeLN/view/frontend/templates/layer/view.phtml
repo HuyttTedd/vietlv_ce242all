@@ -1,0 +1,60 @@
+<div class="block filter" id="layered-filter-blocka" data-mage-init='
+    {
+        "collapsible":
+        {
+            "openedState": "active",
+            "collapsible": true,
+            "active": false,
+            "collateral":
+            {
+                "openedState": "filter-active",
+                "element": "body"
+            }
+        }
+    }'>
+    <div class="block-title filter-title" data-count="<?= /* @noEscape */ 3 ?>">
+        <strong data-role="title"><?= $block->escapeHtml(__('Shop By')); ?></strong>
+    </div>
+    <div class="block-content filter-content">
+        <strong role="heading" aria-level="2" class="block-subtitle filter-subtitle"><?= $block->escapeHtml(__('Shopping Options')) ?></strong>
+        <div class="filter-options" id="narrow-by-list" data-role="content" data-mage-init='
+                        {
+                            "accordion":
+                            {
+                                "openedState": "active",
+                                "collapsible": true,
+                                "active": false,
+                                "multipleCollapsible": true
+                            }
+                        }'>
+            <div data-role="collapsible" class="filter-options-item">
+                <div data-role="title" class="filter-options-title">aaaaaaa</div>
+                <div data-role="content" class="filter-options-content">fffffffff</div>
+            </div>
+            <div data-role="collapsible" class="filter-options-item">
+                <div data-role="title" class="filter-options-title">bbbbbbbb</div>
+                <div data-role="content" class="filter-options-content">ggggggggggg</div>
+            </div>
+            <div data-role="collapsible" class="filter-options-item">
+                <div data-role="title" class="filter-options-title">ccccccccc</div>
+                <div data-role="content" class="filter-options-content">hhhhhhhhhhhh</div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div data-mage-init='{
+    "collapsible":{
+        "animate":{ "duration" :1000, "easing":"easeOutCubic"}
+    }}'>
+    <div data-role="title">
+        <h4>Exams</h4>
+    </div>
+    <div data-role="content">
+        <ul>
+            <li>Maths</li>
+            <li>English</li>
+            <li>Science</li>
+        </ul>
+    </div>
+</div>

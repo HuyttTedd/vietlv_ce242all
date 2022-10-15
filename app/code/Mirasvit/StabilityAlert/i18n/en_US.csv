@@ -1,0 +1,12 @@
+"Cache Status","Cache Status"
+"All caches are enabled.","All caches are enabled."
+"Disabled caches: %1","Disabled caches: %1"
+"Cache Management","Cache Management"
+"Cache Type","Cache Type"
+"Varnish cache is active.","Varnish cache is active."
+"Switch Magento cache to Varnish for archiving in better response time.","Switch Magento cache to Varnish for archiving in better response time."
+"Deploy Mode","Deploy Mode"
+"Magento in Production Mode.","Magento in Production Mode."
+"Run command `bin/magento deploy:mode:set production` to switch to Magento in Production Mode","Run command `bin/magento deploy:mode:set production` to switch to Magento in Production Mode"
+"Open Health Monitoring Suite","Open Health Monitoring Suite"
+Alerts,Alerts

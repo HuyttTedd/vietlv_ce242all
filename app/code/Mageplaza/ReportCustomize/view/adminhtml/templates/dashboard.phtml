@@ -1,0 +1,73 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_Reports
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+/** @var \Mageplaza\ReportCustomize\Block\Dashboard $block */
+/** @var \Mageplaza\ReportCustomize\Block\Dashboard\AbstractClass $card */
+
+$cards = $block->getCards();
+
+?>
+    <div class="date-range-picker"
+         data-mage-init='{"initDateRange":{"url":"<?= /** @noEscape */ $block->getUrl('mpcustomize/show/index', ['_current' => true]) ?>","isCompare":false,"date":<?= /** @noEscape */ $block->getDate() ?>}}'>
+        <div id="daterange">
+            <i class="fa fa-calendar"></i>
+            <span></span>
+            <i class="fa fa-caret-down"></i>
+        </div>
+    </div>
+    <div class="top-container">
+        <div class="mp-ar-card admin__action-dropdown-wrap admin__data-grid-action-columns"
+             style="float: right">
+            <button id="mp-ar-card" class="admin__action-dropdown" type="button">
+                <span class="admin__action-dropdown-text"><?= $block->escapeHtml(__('Card')) ?></span>
+            </button>
+            <div class="admin__action-dropdown-menu admin__data-grid-action-columns-menu _overflow">
+                <div class="admin__action-dropdown-menu-header"></div>
+                <div class="admin__action-dropdown-menu-content">
+                    <?php foreach ($cards as $card): ?>
+                        <div class="admin__field-option" data-repeat-index="0">
+                            <input class="admin__control-checkbox"
+                                   type="checkbox" <?= $card->getVisible() ? 'checked' : '' ?>
+                                   id="card-<?= /** @noEscape */ $card->getCardId() ?>"
+                                   data-card-id="<?= /** @noEscape */ $card->getCardId() ?>">
+                            <label class="admin__field-label"
+                                   title="<?= $block->escapeHtml($card->getTitle()) ?>"
+                                   for="card-<?= /** @noEscape */ $card->getCardId() ?>">
+                                <?= $block->escapeHtml($card->getTitle()) ?>
+                            </label>
+                        </div>
+                    <?php endforeach; ?>
+                </div>
+            </div>
+        </div>
+        <?= $block->getChildHtml('mpreports_additional_header') ?>
+    </div>
+
+    <div>Hlo</div>
+
+    <div class="grid-stack"
+         data-mage-init='{"initGridStack":<?= \Mageplaza\ReportCustomize\Helper\Data::jsonEncode($block->getGridStackConfig()) ?>}'>
+        <?php foreach ($cards as $card): ?>
+            <?php if ($card->getVisible()): ?>
+                <?= $block->getChildBlock('small_card')->setCard($card)->toHtml() ?>
+            <?php endif; ?>
+        <?php endforeach; ?>
+    </div>

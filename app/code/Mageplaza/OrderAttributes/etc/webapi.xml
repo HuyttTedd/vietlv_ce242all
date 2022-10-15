@@ -1,0 +1,45 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_OrderAttributes
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+-->
+<routes xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Webapi:etc/webapi.xsd">
+    <route url="/V1/mpOrderAttributes" method="GET">
+        <service class="Mageplaza\OrderAttributes\Api\AttributesRepositoryInterface" method="getList"/>
+        <resources>
+            <resource ref="Mageplaza_OrderAttributes::orderattributes"/>
+        </resources>
+    </route>
+    <route url="/V1/guest-carts/:cartId/mp-order-attributes/upload" method="POST">
+        <service class="Mageplaza\OrderAttributes\Api\AttributesRepositoryInterface" method="guestUpload"/>
+        <resources>
+            <resource ref="anonymous"/>
+        </resources>
+    </route>
+    <route url="/V1/carts/mine/mp-order-attributes/upload" method="POST">
+        <service class="Mageplaza\OrderAttributes\Api\AttributesRepositoryInterface" method="upload"/>
+        <resources>
+            <resource ref="self"/>
+        </resources>
+        <data>
+            <parameter name="cartId" force="true">%cart_id%</parameter>
+        </data>
+    </route>
+</routes>

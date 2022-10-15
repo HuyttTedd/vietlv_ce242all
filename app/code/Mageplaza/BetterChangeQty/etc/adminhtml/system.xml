@@ -1,0 +1,119 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_BetterChangeQty
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Config:etc/system_file.xsd">
+    <system>
+        <section id="mpbetterchangeqty" translate="label" type="text" sortOrder="300" showInDefault="1" showInWebsite="1" showInStore="1">
+            <label>Better Change Quantity</label>
+            <tab>mageplaza</tab>
+            <resource>Mageplaza_BetterChangeQty::configuration</resource>
+            <group id="general" translate="label" type="text" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                <label>General</label>
+                <field id="enabled" translate="label comment" type="select" sortOrder="10" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Enable</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment><![CDATA[Select <b>Yes</b> to enable this module.]]></comment>
+                </field>
+                <field id="change_qty_step" translate="label" type="select" sortOrder="20" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Change Quantity Step</label>
+                    <source_model>Mageplaza\BetterChangeQty\Model\Config\Source\ChangeQtyStep</source_model>
+                </field>
+                <field id="qty_step_value" translate="label" type="text" sortOrder="30" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Quantity Step Value</label>
+                    <depends>
+                        <field id="change_qty_step">2</field>
+                    </depends>
+                    <validate>required-entry validate-digits</validate>
+                </field>
+                <field id="limit_number_option" translate="label comment" type="text" sortOrder="40" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Limit Number of Options</label>
+                    <comment>If empty or zero, no limitation.</comment>
+                    <depends>
+                        <field id="change_qty_step" negative="1">3</field>
+                    </depends>
+                    <validate>required-entry validate-digits</validate>
+                </field>
+                <field id="custom_step" translate="label" type="text" sortOrder="50" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Custom Step</label>
+                    <comment>Comma-separated</comment>
+                    <depends>
+                        <field id="change_qty_step">3</field>
+                    </depends>
+                    <backend_model>Mageplaza\BetterChangeQty\Model\Config\Backend\Pagination</backend_model>
+                    <validate>required-entry</validate>
+                </field>
+                <field id="max_qty_step" translate="label comment" type="select" sortOrder="60" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Max Quantity Step</label>
+                    <source_model>Mageplaza\BetterChangeQty\Model\Config\Source\MaxQtyStep</source_model>
+                    <comment>The maximum of steps depends on the selected value. If Both, the lower value will be used</comment>
+                </field>
+                <field id="max_qty_value" translate="label" type="text" sortOrder="70" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Max Quantity Value</label>
+                    <validate>required-entry validate-digits</validate>
+                    <depends>
+                        <field id="max_qty_step" negative="1">1</field>
+                    </depends>
+                </field>
+                <field id="allow_open_qty" translate="label comment" type="select" sortOrder="80" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Allow Open Quantity</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                    <comment>If yes, an input box will appear to allow customers to fill in another quantity.</comment>
+                </field>
+                <field id="opt_tmpl" translate="label comment" type="text" sortOrder="90" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Option Template</label>
+                    <comment>Used when the quantity is 1 item.</comment>
+                </field>
+                <field id="opt_tmpl_multi_qty" translate="label" type="text" sortOrder="100" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Option Template for Multiple Quantity</label>
+                    <comment><![CDATA[Variables: {{qty}}, {{price}}, {{total}}, {{percent}}]]></comment>
+                </field>
+                <field id="opt_tmpl_tier_price" translate="label" type="text" sortOrder="110" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Option Template with Tier Price</label>
+                    <comment>
+                        <![CDATA[
+                        Used when tier price is applied. If empty, "Option Template" will be used.
+                        <br/>
+                        Variables: {{qty}}, {{price}}, {{total}}, {{percent}}
+                        ]]>
+                    </comment>
+                </field>
+                <field id="apply_category" translate="label comment" sortOrder="120" showInDefault="1" showInWebsite="1" showInStore="1">
+                    <label>Apply for Categories</label>
+                    <frontend_model>Mageplaza\BetterChangeQty\Block\Adminhtml\System\Category</frontend_model>
+                    <comment>If empty, all categories will be applied.</comment>
+                </field>
+                <field id="apply_product" translate="label" type="multiselect" sortOrder="130" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Apply for Product Types</label>
+                    <source_model>Mageplaza\BetterChangeQty\Model\Config\Source\ProductType</source_model>
+                </field>
+                <field id="apply_page" translate="label" type="multiselect" sortOrder="140" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Apply on</label>
+                    <source_model>Mageplaza\BetterChangeQty\Model\Config\Source\ApplyPage</source_model>
+                </field>
+                <field id="hide_tier_price_notice" translate="label" type="select" sortOrder="150" showInDefault="1" showInWebsite="1" showInStore="1" canRestore="1">
+                    <label>Hide Tier Price Notice</label>
+                    <source_model>Magento\Config\Model\Config\Source\Yesno</source_model>
+                </field>
+            </group>
+        </section>
+    </system>
+</config>

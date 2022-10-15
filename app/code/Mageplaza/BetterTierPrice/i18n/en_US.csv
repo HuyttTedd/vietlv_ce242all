@@ -1,0 +1,56 @@
+"Customer ID","Customer ID"
+Name,Name
+Email,Email
+"Tier Price","Tier Price"
+"Something went wrong while updating tier group","Something went wrong while updating tier group"
+Fixed,Fixed
+"Discount Percent","Discount Percent"
+"Discount Amount","Discount Amount"
+"Tier prices data should be array, but actually other type is received","Tier prices data should be array, but actually other type is received"
+"Something went wrong while saving tier price","Something went wrong while saving tier price"
+"Required fields cannot empty","Required fields cannot empty"
+"We found a duplicate website, tier price, customer group and quantity.","We found a duplicate website, tier price, customer group and quantity."
+"Discount Fixed value must be a number greater than 0.","Discount Fixed value must be a number greater than 0."
+"Percentage value must be a number between 0 and 100.","Percentage value must be a number between 0 and 100."
+"All Websites","All Websites"
+"Tier Price for Specific Customer(s)","Tier Price for Specific Customer(s)"
+Website,Website
+"Customer Id","Customer Id"
+Customer,Customer
+Quantity,Quantity
+Price,Price
+"New Tier Group","New Tier Group"
+Add,Add
+"Group Name","Group Name"
+"Edit Tier Group","Edit Tier Group"
+Save,Save
+Delete,Delete
+"Tier Group","Tier Group"
+"Please Select","Please Select"
+"Add New","Add New"
+Edit,Edit
+"Customer Group Price","Customer Group Price"
+"Customer Group","Customer Group"
+QUANTITY,QUANTITY
+"SAVE AMOUNT","SAVE AMOUNT"
+"Buy %1 with %2 discount each","Buy %1 with %2 discount each"
+"PRICE PER ITEM","PRICE PER ITEM"
+"Buy %1 for: ","Buy %1 for: "
+"Click for price","Click for price"
+"Buy %1 for %2 each and <strong class=""benefit"">save<span class=""percent tier-%3"">&nbsp;%4</span>%</strong>","Buy %1 for %2 each and <strong class=""benefit"">save<span class=""percent tier-%3"">&nbsp;%4</span>%</strong>"
+"Buy %1 for %2 each","Buy %1 for %2 each"
+"Select Customer","Select Customer"
+"Buy %1 for %2 each and","Buy %1 for %2 each and"
+save,save
+"Better Tier Price","Better Tier Price"
+General,General
+Enable,Enable
+"Select <strong>Yes</strong> to enable the module.","Select <strong>Yes</strong> to enable the module."
+"Enable Pricing Table","Enable Pricing Table"
+"Auto Qty Change","Auto Qty Change"
+"If <strong>Yes</strong>, after selecting a price option, the quantity box will change automatically accordingly.","If <strong>Yes</strong>, after selecting a price option, the quantity box will change automatically accordingly."
+"Only Show Optimal Options","Only Show Optimal Options"
+"If <strong>Yes</strong>, only optimal price suggestions are displayed at the storefront.","If <strong>Yes</strong>, only optimal price suggestions are displayed at the storefront."
+"Apply for Specific Customers","Apply for Specific Customers"
+"If <strong>Yes</strong>, Tier Price will be applied based on the specific customers.","If <strong>Yes</strong>, Tier Price will be applied based on the specific customers."
+Title,Title

@@ -1,0 +1,142 @@
+.stability-alert__listing {
+    ul {
+        list-style: none;
+
+        li {
+            border: 1px solid #eaeaea;
+            margin-bottom: 1rem;
+            padding: 1rem;
+            display: flex;
+            align-items: center;
+
+            .col-status {
+                width: 5rem;
+
+                > span {
+                    width: 4rem;
+                    height: 4rem;
+                    font: normal normal normal 2rem/1 FontAwesome;
+                    color: #fff;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    border-radius: .2rem;
+
+                    &[data-status="success"] {
+                        background: #9AD84F;
+
+                        &:before {
+                            content: "\f058";
+                        }
+                    }
+                    &[data-status="warning"] {
+                        background: #FFBA6D;
+                        &:before {
+                            content: "\f058";
+                        }
+                    }
+                    &[data-status="error"] {
+                        background: #EC6F86;
+                        &:before {
+                            content: "\f06a";
+                        }
+                    }
+                }
+            }
+
+            .col-importance {
+                width: 2rem;
+            }
+
+            .col-info {
+                .name {
+                    font-weight: 600;
+                    margin-bottom: .5rem;
+                }
+
+                .description {
+                    font-size: 1.3rem;
+                }
+            }
+        }
+    }
+}
+
+.stability-general__listing {
+    .test {
+        border-bottom: 1px solid #dfe3e8;
+        display: flex;
+        margin-bottom: 2rem;
+        padding-bottom: 2rem;
+
+        .col-info {
+            width: 60%;
+            padding-right: 1rem;
+            //display: flex;
+            //align-items: center;
+            //flex-direction: column;
+
+            .name {
+                font-size: 1.6rem;
+                font-weight: 600;
+                margin-top: 1rem;
+            }
+
+            .howToFix {
+                margin-top: 1rem;
+                font-size: 1.3rem;
+            }
+
+        }
+
+        .col-importance {
+            width: 20%;
+            text-transform: uppercase;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            color: #666;
+            font-size: 1.3rem;
+            //[data-importance="4"] {
+            //    color: #f00;
+            //}
+        }
+
+        .col-status {
+            display: flex;
+            align-items: center;
+
+            .result {
+                width: 4rem;
+                height: 4rem;
+                font: normal normal normal 2rem/1 FontAwesome;
+                color: #fff;
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                border-radius: .2rem;
+
+                &[data-result="passed"] {
+                    background: #9AD84F;
+                    &:before {
+                        content: "\f058";
+                    }
+                }
+                &[data-result="partially_passed"] {
+                    background: #FFBA6D;
+                    &:before {
+                        content: "\f058";
+                    }
+                }
+                &[data-result="failed"] {
+                    background: #EC6F86;
+                    &:before {
+                        content: "\f06a";
+                    }
+                }
+            }
+
+            //
+        }
+    }
+}

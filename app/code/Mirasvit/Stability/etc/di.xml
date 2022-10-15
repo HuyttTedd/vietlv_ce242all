@@ -1,0 +1,38 @@
+<?xml version="1.0"?>
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+
+
+    <!--REPOSITORY-->
+    <preference for="Mirasvit\Stability\Api\Repository\StorageRepositoryInterface" type="Mirasvit\Stability\Repository\StorageRepository"/>
+
+    <preference for="Mirasvit\Stability\Api\Repository\TestRepositoryInterface" type="Mirasvit\Stability\Repository\TestRepository"/>
+
+
+    <type name="Mirasvit\Stability\Api\Repository\TestRepositoryInterface">
+        <arguments>
+            <argument name="generalTests" xsi:type="array">
+                <item name="cacheStatus" xsi:type="object">Mirasvit\Stability\Test\General\CacheStatusTest</item>
+                <item name="cacheType" xsi:type="object">Mirasvit\Stability\Test\General\CacheTypeTest</item>
+                <item name="deployMode" xsi:type="object">Mirasvit\Stability\Test\General\DeployModeTest</item>
+                <item name="mergeJs" xsi:type="object">Mirasvit\Stability\Test\General\MergeJsTest</item>
+                <item name="minifyJs" xsi:type="object">Mirasvit\Stability\Test\General\MinifyJsTest</item>
+                <item name="mergeCss" xsi:type="object">Mirasvit\Stability\Test\General\MergeCssTest</item>
+                <item name="minifyCss" xsi:type="object">Mirasvit\Stability\Test\General\MinifyCssTest</item>
+                <item name="flatCatalogCategory" xsi:type="object">Mirasvit\Stability\Test\General\FlatCatalogCategoryTest</item>
+                <item name="flatCatalogProduct" xsi:type="object">Mirasvit\Stability\Test\General\FlatCatalogProductTest</item>
+                <item name="cdnStaticFiles" xsi:type="object">Mirasvit\Stability\Test\General\CdnStaticFilesTest</item>
+                <item name="cdnMediaFiles" xsi:type="object">Mirasvit\Stability\Test\General\CdnMediaFilesTest</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Framework\Console\CommandListInterface">
+        <arguments>
+            <argument name="commands" xsi:type="array">
+                <item name="mstStabilityCron" xsi:type="object">Mirasvit\Stability\Console\Command\CronCommand</item>
+            </argument>
+        </arguments>
+    </type>
+
+</config>

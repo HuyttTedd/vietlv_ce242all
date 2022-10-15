@@ -1,0 +1,119 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_BetterTierPrice
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+use Mageplaza\BetterTierPrice\Helper\Data;
+
+/** @var Data $helperData */
+$helperData       = $this->helper(Data::class);
+$isTabularEnabled = $helperData->isEnabled($block->getStoreId()) && $helperData->isTabularEnabled($block->getStoreId());
+$isApplicableOnly = (bool)$helperData->isApplicableOnly($block->getStoreId()) ? 'true' : 'false';
+?>
+<?php if ($isTabularEnabled) : ?>
+    <script type="text/x-magento-template" id="tier-prices-template">
+        <% var tierPricesClone = tierPrices.sort(function(tierPriceA,tierPriceB){return tierPriceA.qty - tierPriceB.qty}); %>
+        <% if(_.size(tierPricesClone)) { %>
+        <h3><?= /* @noEscape */ $helperData->getTierPriceTitle($block->getStoreId()) ?></h3>
+        <table class="mp-tabular">
+            <thead>
+            <tr>
+                <th scope="col" class="col quantity"><?= $block->escapeHtml(__('QUANTITY')) ?></th>
+                <th scope="col" class="col save-amount"><?= $block->escapeHtml(__('SAVE AMOUNT')) ?></th>
+                <th scope="col" class="col price"><?= $block->escapeHtml(__('PRICE PER ITEM')) ?></th>
+                <?php if ($helperData->isAutoChange()) : ?>
+                    <th scope="col" class="col radio">
+                        <div class="mp-btp-reset"></div>
+                    </th>
+                <?php endif; ?>
+            </tr>
+            </thead>
+            <tbody>
+            <% var min = null; %>
+            <% _.each(tierPricesClone, function(item, key) { %>
+            <% var priceStr = '<span class="price-container price-tier_price">'
+                            + '<span data-price-amount="' + priceUtils.formatPrice(item.price, currencyFormat) + '"'
+                            + ' data-price-type=""' + ' class="price-wrapper ">'
+                            + '<span class="price">' + priceUtils.formatPrice(item.price, currencyFormat) + '</span>'
+                            + '</span>'
+            + '</span>'; %>
+            <% if(!<?= /* @noEscape */ $isApplicableOnly ?>) { %>
+            <tr>
+                <td><%- item.qty %></td>
+                <td><%- item.percentage %>%</td>
+                <td><%= priceStr %></td>
+                <?php if ($helperData->isAutoChange()) : ?>
+                    <td><input class="mp-tier-price" name="mp-tier-price" type="radio" value="<%- item.qty %>"></td>
+                <?php endif; ?>
+            </tr>
+            <% }else{ %>
+            <% if((min === null || min > item.price)) { %>
+            <tr>
+                <td><%- item.qty %></td>
+                <td><%- item.percentage %>%</td>
+                <td><%= priceStr %></td>
+                <?php if ($helperData->isAutoChange()) : ?>
+                    <td><input class="mp-tier-price" name="mp-tier-price" type="radio" value="<%- item.qty %>"></td>
+                <?php endif; ?>
+            </tr>
+            <% min = item.price; %>
+            <% } %>
+            <% } %>
+            <% }); %>
+            </tbody>
+        </table>
+        <% } %>
+    </script>
+    <?php if ($helperData->isAutoChange()) : ?>
+        <script>
+            require([
+                'jquery'
+            ], function ($) {
+                $('body').on('click', 'input.mp-tier-price', function () {
+                    $('.box-tocart .field.qty input#qty').val($(this).val());
+                    $('div.mp-btp-reset').show();
+                }).on('click', 'div.mp-btp-reset', function () {
+                    $('.mp-tier-price').prop('checked', false);
+                    $('.box-tocart .field.qty input#qty').val(1);
+                    $(this).hide();
+                });
+            })
+        </script>
+    <?php endif; ?>
+<?php else : ?>
+    <script type="text/x-magento-template" id="tier-prices-template">
+        <ul class="prices-tier items">
+            <% _.each(tierPrices, function(item, key) { %>
+            <% var priceStr = '<span class="price-container price-tier_price">'
+                    + '<span data-price-amount="' + priceUtils.formatPrice(item.price, currencyFormat) + '"'
+                    + ' data-price-type=""' + ' class="price-wrapper ">'
+                    + '<span class="price">' + priceUtils.formatPrice(item.price, currencyFormat) + '</span>'
+                    + '</span>'
+            + '</span>'; %>
+            <li class="item">
+                <%= $t('Buy %1 for %2 each and').replace('%1', item.qty).replace('%2', priceStr) %>
+                <strong class="benefit">
+                    <%= $t('save') %><span class="percent tier-<%= key %>">&nbsp;<%= item.percentage %></span>%
+                </strong>
+            </li>
+            <% }); %>
+        </ul>
+    </script>
+<?php endif; ?>
+<div data-role="tier-price-block"></div>

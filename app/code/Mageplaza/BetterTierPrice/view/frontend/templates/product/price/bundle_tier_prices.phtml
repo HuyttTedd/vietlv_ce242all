@@ -1,0 +1,92 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_BetterTierPrice
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+use Magento\Bundle\Pricing\Price\TierPrice;
+use Magento\Framework\Pricing\Render\PriceBox;
+use Mageplaza\BetterTierPrice\Helper\Data;
+
+/** @var PriceBox $block */
+$tierPriceModel   = $block->getPrice();
+/** @var TierPrice $tierPriceModel */
+$tierPrices       = $tierPriceModel->getTierPriceList();
+/** @var Data $helperData */
+$helperData       = $this->helper(Data::class);
+$isTabularEnabled = $helperData->isEnabled($block->getStoreId()) && $helperData->isTabularEnabled($block->getStoreId());
+?>
+<?php if (count($tierPrices)) : ?>
+    <?php if ($isTabularEnabled) : ?>
+        <h3><?= $block->escapeHtml($helperData->getTierPriceTitle($block->getStoreId())) ?></h3>
+        <table class="mp-tabular mp-tabular-bundle">
+            <thead>
+            <tr>
+                <th scope="col" class="col quantity"><?= $block->escapeHtml(__('QUANTITY')) ?></th>
+                <th scope="col" class="col save-amount"><?= $block->escapeHtml(__('SAVE AMOUNT')) ?></th>
+                <?php if ($helperData->isAutoChange()) : ?>
+                    <th scope="col" class="col radio">
+                        <div class="mp-btp-reset"></div>
+                    </th>
+                <?php endif; ?>
+            </tr>
+            </thead>
+            <tbody>
+            <?php foreach ($tierPrices as $index => $price) : ?>
+                <tr>
+                    <td><?= /* @noEscape */ $price['price_qty'] ?></td>
+                    <td><strong class="benefit"><?= /* @noEscape */ round($price['percentage_value']) ?>%</strong></td>
+                    <?php if ($helperData->isAutoChange()) : ?>
+                        <td><input class="mp-tier-price" name="mp-tier-price" type="radio"
+                                   value="<?= /* @noEscape */ $price['price_qty'] ?>"></td>
+                    <?php endif; ?>
+                </tr>
+            <?php endforeach; ?>
+            </tbody>
+        </table>
+        <?php if ($helperData->isAutoChange()) : ?>
+            <script>
+                require([
+                    'jquery'
+                ], function ($) {
+                    $('.mp-tabular-bundle input.mp-tier-price').on('click', function () {
+                        $('.box-tocart .field.qty input#qty').val($(this).val());
+                        $(this).parents('.mp-tabular').find('div.mp-btp-reset').show();
+                    });
+                    $('.mp-tabular-bundle .mp-btp-reset').on('click', function () {
+                        $('.mp-tabular-bundle .mp-tier-price').prop('checked', false);
+                        $('.box-tocart .field.qty input#qty').val(1);
+                        $(this).hide();
+                    });
+                })
+            </script>
+        <?php endif; ?>
+    <?php else : ?>
+        <ul class="<?= /* @noEscape */ ($block->hasListClass() ? $block->getListClass() : 'prices-tier items') ?>">
+            <?php foreach ($tierPrices as $index => $price) : ?>
+                <li class="item">
+                    <?= /* @noEscape */ __(
+                        'Buy %1 with %2 discount each',
+                        $price['price_qty'],
+                        '<strong class="benefit">' . round($price['percentage_value']) . '%</strong>'
+                    ) ?>
+                </li>
+            <?php endforeach; ?>
+        </ul>
+    <?php endif; ?>
+<?php endif; ?>

@@ -1,0 +1,29 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_OrderAttributes
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+-->
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:module:Magento_Backend:etc/menu.xsd">
+    <menu>
+        <add id="Mageplaza_OrderAttributes::orderattributes" title="Order Attributes" translate="title" module="Mageplaza_OrderAttributes" sortOrder="30" resource="Mageplaza_OrderAttributes::orderattributes" parent="Magento_Sales::sales"/>
+        <add id="Mageplaza_OrderAttributes::attribute" title="Manage Attributes" translate="title" module="Mageplaza_OrderAttributes" sortOrder="10" action="mporderattributes/attribute" resource="Mageplaza_OrderAttributes::attribute" parent="Mageplaza_OrderAttributes::orderattributes"/>
+        <add id="Mageplaza_OrderAttributes::configuration" title="Configuration" translate="title" module="Mageplaza_OrderAttributes" sortOrder="20" action="adminhtml/system_config/edit/section/mporderattributes" resource="Mageplaza_OrderAttributes::configuration" parent="Mageplaza_OrderAttributes::orderattributes"/>
+    </menu>
+</config>

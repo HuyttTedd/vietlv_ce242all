@@ -1,0 +1,13 @@
+<config xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:ObjectManager/etc/config.xsd">
+    <type name="Mirasvit\Core\Block\Adminhtml\Menu">
+        <arguments>
+            <argument name="menu" xsi:type="array">
+                <item name="mst_banner" xsi:type="object">Mirasvit\Banner\Block\Adminhtml\Menu</item>
+            </argument>
+        </arguments>
+    </type>
+
+    <type name="Magento\Widget\Model\ResourceModel\Widget\Instance">
+        <plugin name="mstBannerSetIdentifier" type="Mirasvit\Banner\Plugin\Widget\Model\ResourceModel\Widget\Instance\SetIdentifierPlugin"/>
+    </type>
+</config>

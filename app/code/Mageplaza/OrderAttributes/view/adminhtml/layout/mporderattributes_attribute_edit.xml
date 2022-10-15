@@ -1,0 +1,53 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_OrderAttributes
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+-->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" layout="admin-2columns-left" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Magento_Swatches::css/swatches.css"/>
+        <css src="jquery/colorpicker/css/colorpicker.css"/>
+        <css src="Mageplaza_OrderAttributes::css/style.css"/>
+    </head>
+    <body>
+
+<!--            <container name="mp.OrderAttributes.additional" htmlTag="div" htmlClass="message order-attributes" after="page.messages">-->
+<!--            </container>-->
+        <referenceContainer name="left">
+            <block class="Mageplaza\OrderAttributes\Block\Adminhtml\Attribute\Edit\Tabs" name="mporderattributes_attribute_edit_tabs">
+                <block class="Mageplaza\OrderAttributes\Block\Adminhtml\Attribute\Edit\Tab\Main" name="mporderattributes_attribute_edit_tabs.main" as="main"/>
+                <block class="Mageplaza\OrderAttributes\Block\Adminhtml\Attribute\Edit\Tab\Front" name="mporderattributes_attribute_edit_tabs.front" as="front"/>
+                <container name="mporderattributes_attribute_edit_tabs.manage" as="manage">
+                    <block class="Mageplaza\OrderAttributes\Block\Adminhtml\Attribute\Edit\Options\Labels" name="manage.labels" as="labels"/>
+                    <block class="Mageplaza\OrderAttributes\Block\Adminhtml\Attribute\Edit\Options\Tooltips" name="manage.tooltips" as="tooltips"/>
+                    <block class="Mageplaza\OrderAttributes\Block\Adminhtml\Attribute\Edit\Options\Options" name="manage.options" as="options"/>
+                    <block class="Mageplaza\OrderAttributes\Block\Adminhtml\Attribute\Edit\Options\Visual" name="manage.visual" as="visual"/>
+                </container>
+                <block class="Mageplaza\OrderAttributes\Block\Adminhtml\Attribute\Edit\Tab\Depend" name="mporderattributes_attribute_edit_tabs.depend" as="depend"/>
+            </block>
+        </referenceContainer>
+        <referenceContainer name="content">
+            <block class="Mageplaza\OrderAttributes\Block\Adminhtml\Attribute\Edit" name="mporderattributes_attribute_edit_content"/>
+        </referenceContainer>
+        <referenceContainer name="js">
+            <block class="Mageplaza\OrderAttributes\Block\Adminhtml\Attribute\EditTemplate" name="attribute_edit_js" template="Mageplaza_OrderAttributes::attribute/js.phtml"/>
+        </referenceContainer>
+    </body>
+</page>

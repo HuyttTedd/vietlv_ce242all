@@ -1,0 +1,33 @@
+{
+  "name": "mirasvit/module-stability",
+  "description": "Health Monitoring Suite",
+  "require": {
+    "magento/framework": "101.0.*|100.1.*|102.0.*|103.0.*",
+    "mirasvit/module-core": "dev-master|^1.2"
+  },
+  "type": "magento2-module",
+  "version": "1.1.0",
+  "license": [
+    "proprietary"
+  ],
+  "autoload": {
+    "files": [
+      "src/Stability/registration.php",
+      "src/StabilityAlert/registration.php",
+      "src/StabilityConflict/registration.php",
+      "src/StabilityCron/registration.php",
+      "src/StabilityError/registration.php",
+      "src/StabilitySnapshot/registration.php",
+      "src/StabilityTiming/registration.php"
+    ],
+    "psr-4": {
+      "Mirasvit\\Stability\\": "src/Stability",
+      "Mirasvit\\StabilityAlert\\": "src/StabilityAlert",
+      "Mirasvit\\StabilityConflict\\": "src/StabilityConflict",
+      "Mirasvit\\StabilityCron\\": "src/StabilityCron",
+      "Mirasvit\\StabilityError\\": "src/StabilityError",
+      "Mirasvit\\StabilitySnapshot\\": "src/StabilitySnapshot",
+      "Mirasvit\\StabilityTiming\\": "src/StabilityTiming"
+    }
+  }
+}

@@ -1,0 +1,47 @@
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_BetterChangeQty
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+.mp-better-qty-input {
+    width: auto;
+}
+
+@media (max-width: 768px), print {
+    .mp-better-qty-input {
+        font-size: .8em;
+    }
+
+    .mp-better-qty-input {
+        max-width: 65%;
+    }
+}
+
+body .product-info-main .fieldset > .field.qty {
+    width: 100%;
+}
+
+body .product-info-main .qty.field .control {
+    width: 100%;
+    margin-left: 0;
+    margin-bottom: 15px;
+}
+
+.qty.field .control {
+    margin-bottom: 10px;
+}

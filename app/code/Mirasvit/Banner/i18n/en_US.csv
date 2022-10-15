@@ -1,0 +1,56 @@
+Banners,Banners
+Placeholders,Placeholders
+"The banner has been deleted.","The banner has been deleted."
+"This banner no longer exists.","This banner no longer exists."
+"New banner","New banner"
+"You have saved the banner.","You have saved the banner."
+"The placeholder has been deleted.","The placeholder has been deleted."
+"This placeholder no longer exists.","This placeholder no longer exists."
+"New placeholder","New placeholder"
+Category,Category
+"Conditions Combination","Conditions Combination"
+"Action Name","Action Name"
+URI,URI
+"Page Top","Page Top"
+"Page Bottom","Page Bottom"
+"Page Attributes","Page Attributes"
+Conditions,Conditions
+"Conditions (leave blank for all pages)","Conditions (leave blank for all pages)"
+Back,Back
+Delete,Delete
+"Are you sure you want to do this?","Are you sure you want to do this?"
+Reset,Reset
+"Save and Continue Edit","Save and Continue Edit"
+"Save Banner","Save Banner"
+Edit,Edit
+"Save Placeholder","Save Placeholder"
+"All Pages","All Pages"
+"Promo banners","Promo banners"
+"Banner Placeholders","Banner Placeholders"
+"Banner Placeholder","Banner Placeholder"
+"Banner Placeholder Widget","Banner Placeholder Widget"
+Placeholder,Placeholder
+"General Information","General Information"
+Active,Active
+"Internal Name","Internal Name"
+"Active From","Active From"
+"Active To","Active To"
+"Store Views","Store Views"
+"Customer Groups","Customer Groups"
+Priority,Priority
+URL,URL
+"Add New Banner","Add New Banner"
+ID,ID
+Name,Name
+Status,Status
+Position,Position
+Analytics,Analytics
+"Ignored CMS Pages","Ignored CMS Pages"
+"Display Mode","Display Mode"
+"Use predefined position","Use predefined position"
+"Display on","Display on"
+Container,Container
+Before,Before
+Identifier,Identifier
+"Additional CSS","Additional CSS"
+"Add New Placeholder","Add New Placeholder"

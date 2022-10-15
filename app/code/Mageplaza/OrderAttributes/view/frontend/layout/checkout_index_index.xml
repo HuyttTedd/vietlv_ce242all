@@ -1,0 +1,199 @@
+<?xml version="1.0"?>
+<!--
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_OrderAttributes
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+ -->
+<page xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:noNamespaceSchemaLocation="urn:magento:framework:View/Layout/etc/page_configuration.xsd">
+    <head>
+        <css src="Mageplaza_OrderAttributes::css/style.css"/>
+        <css src="Mageplaza_Core::css/font-awesome.min.css"/>
+    </head>
+    <body>
+        <referenceBlock name="checkout.root">
+            <arguments>
+                <argument name="jsLayout" xsi:type="array">
+                    <item name="components" xsi:type="array">
+                        <item name="checkout" xsi:type="array">
+                            <item name="children" xsi:type="array">
+                                <item name="sidebar" xsi:type="array">
+                                    <item name="children" xsi:type="array">
+                                        <item name="summary" xsi:type="array">
+                                            <item name="children" xsi:type="array">
+                                                <item name="itemsAfter" xsi:type="array">
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="mpOrderAttributes" xsi:type="array">
+                                                            <item name="component" xsi:type="string">Mageplaza_OrderAttributes/js/view/attributes</item>
+                                                            <item name="scope" xsi:type="string">mpOrderSummaryAttributes</item>
+                                                            <item name="displayArea" xsi:type="string">mpOrderAttributes</item>
+                                                            <item name="config" xsi:type="array">
+                                                                <item name="template" xsi:type="string">Mageplaza_OrderAttributes/container/order-summary-fieldset</item>
+                                                                <item name="componentDisabled" xsi:type="helper" helper="Mageplaza\OrderAttributes\Helper\Data::isDisabled"/>
+                                                            </item>
+                                                        </item>
+                                                        <item name="mp-summary-information" xsi:type="array">
+                                                            <item name="component" xsi:type="string">Mageplaza_OrderAttributes/js/view/summary-information</item>
+                                                            <item name="displayArea" xsi:type="string">mp-summary-information</item>
+                                                            <item name="config" xsi:type="array">
+                                                                <item name="template" xsi:type="string">Mageplaza_OrderAttributes/container/summary-information</item>
+                                                                <item name="componentDisabled" xsi:type="helper" helper="Mageplaza\OrderAttributes\Helper\Data::isDisabled"/>
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                        <item name="place-order-information-left" xsi:type="array">
+                                            <item name="children" xsi:type="array">
+                                                <item name="addition-information" xsi:type="array">
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="mpOrderAttributes" xsi:type="array">
+                                                            <item name="component" xsi:type="string">Mageplaza_OrderAttributes/js/view/attributes</item>
+                                                            <item name="scope" xsi:type="string">mpOrderSummaryOscAttributes</item>
+                                                            <item name="displayArea" xsi:type="string">mpOrderAttributes</item>
+                                                            <item name="sortOrder" xsi:type="string">300</item>
+                                                            <item name="config" xsi:type="array">
+                                                                <item name="template" xsi:type="string">Mageplaza_OrderAttributes/container/order-summary-fieldset</item>
+                                                                <item name="componentDisabled" xsi:type="helper" helper="Mageplaza\OrderAttributes\Helper\Data::isDisabled"/>
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                </item>
+                                <item name="steps" xsi:type="array">
+                                    <item name="children" xsi:type="array">
+                                        <item name="billing-step" xsi:type="array">
+                                            <item name="children" xsi:type="array">
+                                                <item name="payment" xsi:type="array">
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="beforeMethods" xsi:type="array">
+                                                            <item name="children" xsi:type="array">
+                                                                <item name="mpOrderAttributes" xsi:type="array">
+                                                                    <item name="component" xsi:type="string">Mageplaza_OrderAttributes/js/view/attributes</item>
+                                                                    <item name="scope" xsi:type="string">mpPaymentMethodTopAttributes</item>
+                                                                    <item name="displayArea" xsi:type="string">mpOrderAttributes</item>
+                                                                    <item name="config" xsi:type="array">
+                                                                        <item name="template" xsi:type="string">Mageplaza_OrderAttributes/container/payment-method-top-fieldset</item>
+                                                                        <item name="componentDisabled" xsi:type="helper" helper="Mageplaza\OrderAttributes\Helper\Data::isDisabled"/>
+                                                                    </item>
+                                                                </item>
+                                                                <item name="mpOrderAttributesValidator" xsi:type="array">
+                                                                    <item name="component" xsi:type="string">Mageplaza_OrderAttributes/js/view/payment-custom-validator</item>
+                                                                    <item name="config" xsi:type="array">
+                                                                        <item name="componentDisabled" xsi:type="helper" helper="Mageplaza\OrderAttributes\Helper\Data::isDisabled"/>
+                                                                    </item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+                                                        <item name="afterMethods" xsi:type="array">
+                                                            <item name="children" xsi:type="array">
+                                                                <item name="mpOrderAttributes" xsi:type="array">
+                                                                    <item name="component" xsi:type="string">Mageplaza_OrderAttributes/js/view/attributes</item>
+                                                                    <item name="scope" xsi:type="string">mpPaymentMethodBottomAttributes</item>
+                                                                    <item name="displayArea" xsi:type="string">mpOrderAttributes</item>
+                                                                    <item name="config" xsi:type="array">
+                                                                        <item name="template" xsi:type="string">Mageplaza_OrderAttributes/container/payment-method-bottom-fieldset</item>
+                                                                        <item name="componentDisabled" xsi:type="helper" helper="Mageplaza\OrderAttributes\Helper\Data::isDisabled"/>
+                                                                    </item>
+                                                                </item>
+                                                                <item name="mpOrderAttributesValidator" xsi:type="array">
+                                                                    <item name="component" xsi:type="string">Mageplaza_OrderAttributes/js/view/payment-custom-validator</item>
+                                                                    <item name="config" xsi:type="array">
+                                                                        <item name="componentDisabled" xsi:type="helper" helper="Mageplaza\OrderAttributes\Helper\Data::isDisabled"/>
+                                                                    </item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                        <item name="shipping-step" xsi:type="array">
+                                            <item name="children" xsi:type="array">
+                                                <item name="shippingAddress" xsi:type="array">
+                                                    <item name="children" xsi:type="array">
+                                                        <item name="before-form" xsi:type="array">
+                                                            <item name="component" xsi:type="string">uiComponent</item>
+                                                            <item name="displayArea" xsi:type="string">before-form</item>
+                                                            <item name="children" xsi:type="array">
+                                                                <item name="mpOrderAttributes" xsi:type="array">
+                                                                    <item name="component" xsi:type="string">Mageplaza_OrderAttributes/js/view/attributes</item>
+                                                                    <item name="scope" xsi:type="string">mpShippingAddressNewAttributes</item>
+                                                                    <item name="displayArea" xsi:type="string">mpOrderAttributes</item>
+                                                                    <item name="config" xsi:type="array">
+                                                                        <item name="template" xsi:type="string">Mageplaza_OrderAttributes/container/shipping-address-login-fieldset</item>
+                                                                        <item name="componentDisabled" xsi:type="helper" helper="Mageplaza\OrderAttributes\Helper\Data::isDisabled"/>
+                                                                    </item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+                                                        <item name="before-shipping-method-form" xsi:type="array">
+                                                            <item name="children" xsi:type="array">
+                                                                <item name="mpOrderAttributes" xsi:type="array">
+                                                                    <item name="component" xsi:type="string">Mageplaza_OrderAttributes/js/view/attributes</item>
+                                                                    <item name="scope" xsi:type="string">mpShippingMethodTopAttributes</item>
+                                                                    <item name="displayArea" xsi:type="string">mpOrderAttributes</item>
+                                                                    <item name="config" xsi:type="array">
+                                                                        <item name="template" xsi:type="string">Mageplaza_OrderAttributes/container/shipping-method-top-fieldset</item>
+                                                                        <item name="componentDisabled" xsi:type="helper" helper="Mageplaza\OrderAttributes\Helper\Data::isDisabled"/>
+                                                                    </item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+                                                        <item name="mpOrderAttributes" xsi:type="array">
+                                                            <item name="component" xsi:type="string">Mageplaza_OrderAttributes/js/view/attributes</item>
+                                                            <item name="scope" xsi:type="string">mpShippingMethodBottomAttributes</item>
+                                                            <item name="displayArea" xsi:type="string">shippingAdditional</item>
+                                                            <item name="config" xsi:type="array">
+                                                                <item name="template" xsi:type="string">Mageplaza_OrderAttributes/container/shipping-method-bottom-fieldset</item>
+                                                                <item name="componentDisabled" xsi:type="helper" helper="Mageplaza\OrderAttributes\Helper\Data::isDisabled"/>
+                                                            </item>
+                                                        </item>
+                                                        <item name="shipping-address-fieldset" xsi:type="array">
+                                                            <item name="children" xsi:type="array">
+                                                                <item name="mpOrderAttributes" xsi:type="array">
+                                                                    <item name="component" xsi:type="string">Mageplaza_OrderAttributes/js/view/attributes</item>
+                                                                    <item name="scope" xsi:type="string">mpShippingAddressAttributes</item>
+                                                                    <item name="config" xsi:type="array">
+                                                                        <item name="template" xsi:type="string">Mageplaza_OrderAttributes/container/shipping-address-fieldset</item>
+                                                                        <item name="componentDisabled" xsi:type="helper" helper="Mageplaza\OrderAttributes\Helper\Data::isDisabled"/>
+                                                                    </item>
+                                                                </item>
+                                                            </item>
+                                                        </item>
+                                                    </item>
+                                                </item>
+                                            </item>
+                                        </item>
+                                    </item>
+                                </item>
+                            </item>
+                        </item>
+                        <item name="mpOrderAttributesCheckoutProvider" xsi:type="array">
+                            <item name="component" xsi:type="string">uiComponent</item>
+                        </item>
+                    </item>
+                </argument>
+            </arguments>
+        </referenceBlock>
+    </body>
+</page>

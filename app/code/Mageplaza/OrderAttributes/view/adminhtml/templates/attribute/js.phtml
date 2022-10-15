@@ -1,0 +1,223 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_OrderAttributes
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+?>
+<script>
+    require([
+        'jquery',
+        'uiRegistry',
+        'Mageplaza_OrderAttributes/js/init-editor-content',
+        'prototype'
+    ], function (jQuery, registry, initEditorContent) {
+
+        function bindAttributeInputType () {
+            checkOptionsPanelVisibility();
+            switchDefaultValueField();
+        }
+
+        function checkOptionsPanelVisibility () {
+            var selectOptionsPanel = $('manage-options-panel'),
+                visualOptionsPanel = $('swatch-visual-options-panel');
+
+            if ($('frontend_input') && selectOptionsPanel && visualOptionsPanel) {
+                hidePanel(selectOptionsPanel);
+                hidePanel(visualOptionsPanel);
+
+                switch ($F('frontend_input')){
+                    case 'select':
+                    case 'multiselect':
+                        showPanel(selectOptionsPanel);
+                        break;
+
+                    case 'select_visual':
+                    case 'multiselect_visual':
+                        showPanel(visualOptionsPanel);
+                        break;
+                }
+            }
+        }
+
+        function showPanel (elem) {
+            elem.up('.fieldset').show();
+
+            registry.get(elem.id, function () {
+                jQuery('#' + elem.id).trigger('render');
+            });
+        }
+
+        function hidePanel (elem) {
+            elem.up('.fieldset').hide();
+        }
+
+        function switchDefaultValueField () {
+            if (!$('frontend_input')) {
+                return;
+            }
+
+            var defaultValueTextVisibility     = false,
+                defaultValueTextareaVisibility = false,
+                defaultValueDateVisibility     = false,
+                defaultValueYesnoVisibility    = false,
+                defaultValueContentVisibility  = false,
+                useProductImageForSwatch       = false,
+                optionDefaultInputType         = '',
+                inputFilterVisibility          = false,
+                inputAllowExtensions           = false,
+                inputMaxSizeVisibility         = false;
+
+            $('is_required').disable = false;
+            setRowVisibility('is_required', true);
+            setRowVisibility('frontend_class', false);
+
+            switch ($F('frontend_input')){
+                case 'text':
+                    defaultValueTextVisibility = true;
+                    inputFilterVisibility      = true;
+                    setRowVisibility('frontend_class', true);
+                    break;
+
+                case 'textarea':
+                    inputFilterVisibility          = true;
+                    defaultValueTextareaVisibility = true;
+                    break;
+
+                case 'date':
+                    defaultValueDateVisibility = true;
+                    break;
+
+                case 'boolean':
+                    defaultValueYesnoVisibility = true;
+                    break;
+
+                case 'select_visual':
+                    useProductImageForSwatch = true;
+                case 'select':
+                    optionDefaultInputType = 'radio';
+                    break;
+
+                case 'multiselect_visual':
+                    useProductImageForSwatch = true;
+                case 'multiselect':
+                    optionDefaultInputType = 'checkbox';
+                    break;
+
+                case 'image':
+                case 'file':
+                    $('is_required').disable = true;
+                    setRowVisibility('is_required', false);
+                    inputMaxSizeVisibility = true;
+                    inputAllowExtensions = true;
+                    break;
+
+                case 'textarea_visual':
+                    defaultValueContentVisibility = true;
+                    break;
+            }
+
+            setRowVisibility('default_value_text', defaultValueTextVisibility);
+            setRowVisibility('default_value_textarea', defaultValueTextareaVisibility);
+            setRowVisibility('default_value_date', defaultValueDateVisibility);
+            setRowVisibility('default_value_yesno', defaultValueYesnoVisibility);
+            setRowVisibility('default_value_content', defaultValueContentVisibility);
+            setRowVisibility('use_product_image_for_swatch', useProductImageForSwatch);
+            setRowVisibility('input_filter', inputFilterVisibility);
+            setRowVisibility('max_file_size', inputMaxSizeVisibility);
+            setRowVisibility('allow_extensions', inputMaxSizeVisibility);
+
+            var elems = [document.getElementsByName('default[]'), document.getElementsByName('defaultvisual[]')];
+            elems.forEach(function (elem) {
+                for (var i = 0; i < elem.length; i++){
+                    elem[i].type = optionDefaultInputType;
+                }
+            });
+        }
+
+        function setRowVisibility (id, isVisible) {
+            if ($(id)) {
+                var td = $(id).parentNode;
+                var tr = $(td.parentNode);
+
+                if (isVisible) {
+                    tr.show();
+                } else {
+                    tr.hide();
+                }
+            }
+        }
+
+        function updateDependFields () {
+            var id    = $F('field_depend'),
+                elems = $('value_depend');
+
+            for (var i = 0; i < elems.length; i++){
+                elems[i].hide();
+
+                if (elems[i].value.substr(0, elems[i].value.indexOf('_')) == id) {
+                    elems[i].show();
+                }
+            }
+        }
+
+        function bindUseTooltip () {
+            var useTooltip = ($F('use_tooltip') === '1');
+
+            if (useTooltip) {
+                $('manage-tooltips-wrapper').show();
+            } else {
+                $('manage-tooltips-wrapper').hide();
+            }
+        }
+
+        if ($('frontend_input')) {
+            Event.observe($('frontend_input'), 'change', bindAttributeInputType);
+        }
+
+        if ($('use_tooltip')) {
+            Event.observe($('use_tooltip'), 'change', bindUseTooltip);
+        }
+
+        if ($('field_depend')) {
+            Event.observe($('field_depend'), 'change', updateDependFields);
+        }
+
+        bindAttributeInputType();
+        updateDependFields();
+        bindUseTooltip();
+
+        initEditorContent(
+            jQuery('#default_value_content'),
+            false,
+            false,
+            <?= /* @noEscape */ $block->getTinymceConfig()?>
+        );
+
+        var selectAllMethod = jQuery('#mp-select-all'),
+            shippingDepend  = jQuery('#shipping_depend');
+
+        shippingDepend.on('change', function () {
+            if (!jQuery(this).prop('selected')) {
+                selectAllMethod.prop('checked', false);
+            }
+        });
+        selectAllMethod.on('change', function () {
+            shippingDepend.find('option').prop('selected', jQuery(this).prop('checked'));
+        });
+    });
+</script>

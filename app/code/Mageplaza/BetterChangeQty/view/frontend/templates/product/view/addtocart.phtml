@@ -1,0 +1,127 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_BetterChangeQty
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+
+// @codingStandardsIgnoreFile
+use Magento\Catalog\Block\Product\View;
+use Magento\Framework\App\ObjectManager;
+use Mageplaza\BetterChangeQty\Helper\Data;
+
+/** @var $block View */
+$product       = $block->getProduct();
+$buttonTitle   = __('Add to Cart');
+
+$objectManager = ObjectManager::getInstance();
+/** @var Data $helper */
+$helper        = $objectManager->get(Data::class);
+$options       = $helper->getQtyOptions($product);
+$isApplied     = $helper->isApplied($product);
+$default       = $block->getProductDefaultQty() * 1 ?: 1;
+$finalPrice    = floatval($product->getPriceInfo()->getPrice('final_price')->getValue());
+$qtyValidators = $helper->determineValidators($block->getQuantityValidators());
+?>
+
+<?php if ($helper->isHideTierPriceNotice()): ?>
+    <style type="text/css">
+        .prices-tier {
+            display: none;
+        }
+    </style>
+<?php endif; ?>
+
+<?php if ($product->isSaleable()): ?>
+    <div class="box-tocart">
+        <div class="fieldset">
+            <?php if ($block->shouldRenderQuantity()): ?>
+                <div class="field qty">
+                    <label class="label" for="qty"><span><?php echo __('Quantity') ?></span></label>
+                    <div class="control">
+                        <?php if ($isApplied): ?>
+                            <select name="qty" class="mp-better-qty-input">
+                                <?php foreach ($options as $option): ?>
+                                    <?php $selected = ($default == $option['value']) ? 'selected="selected"' : ''; ?>
+                                    <option value="<?php echo $option['value'] ?>" <?php echo $selected ?>><?php echo $option['title'] ?></option>
+                                <?php endforeach; ?>
+                            </select>
+                        <?php endif; ?>
+                        <input type="number"
+                               name="qty"
+                               id="qty"
+                               value="<?php echo $default ?>"
+                               title="<?php echo __('Quantity') ?>" class="input-text qty"
+                               data-validate="<?php echo $block->escapeHtml(Data::jsonEncode($qtyValidators)) ?>"
+                            <?php if ($isApplied): ?> style="display: none;" <?php endif; ?>/>
+                    </div>
+                </div>
+            <?php endif; ?>
+            <div class="actions">
+                <button type="submit"
+                        title="<?php echo $buttonTitle ?>"
+                        class="action primary tocart"
+                        id="product-addtocart-button">
+                    <span><?php echo $buttonTitle ?></span>
+                </button>
+                <?php echo $block->getChildHtml('', true) ?>
+            </div>
+        </div>
+    </div>
+
+    <?php if ($block->shouldRenderQuantity() && $isApplied): ?>
+        <script type="text/x-magento-init">
+        {
+            ".box-tocart": {
+                "Mageplaza_BetterChangeQty/js/product/view/add-to-cart": {
+                    "step": <?php echo $helper->getStepValue($product); ?>,
+                    "limit": <?php echo $helper->getLimitNumberOption(); ?>,
+                    "format": <?php echo $helper->getPriceFormat(); ?>,
+                    "tierPrices": <?php echo Data::jsonEncode($helper->getTierPrices($product)); ?>,
+                    "finalPrice": <?php echo $helper->getTaxHelper()->getTaxPrice($product, $finalPrice, true); ?>,
+                    "optTmpl": "<?php echo $helper->getOptionTemplate(); ?>",
+                    "optTmplMulti": "<?php echo $helper->getOptionTemplateMultiQty(); ?>",
+                    "optTmplTier": "<?php echo $helper->getOptionTemplateTierPrice(); ?>",
+                    "optionMap": <?php echo Data::jsonEncode($helper->getOptionMap($product)); ?>,
+                    "configurable": <?php echo Data::jsonEncode($helper->getConfigurableChildren($product)); ?>,
+                    "configurableQty": <?php echo $helper->getMaxQtyConfigurableChildren($product); ?>
+                }
+            }
+        }
+        </script>
+    <?php endif; ?>
+<?php endif; ?>
+<script type="text/x-magento-init">
+    {
+        "#product_addtocart_form": {
+            "Magento_Catalog/product/view/validation": {
+                "radioCheckboxClosest": ".nested"
+            }
+        }
+    }
+</script>
+<?php if (!$block->isRedirectToCartEnabled()) : ?>
+    <script type="text/x-magento-init">
+    {
+        "#product_addtocart_form": {
+            "catalogAddToCart": {
+                "bindSubmit": false
+            }
+        }
+    }
+</script>
+<?php endif; ?>

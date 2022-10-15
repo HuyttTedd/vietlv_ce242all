@@ -1,0 +1,66 @@
+<?php
+/**
+ * Mageplaza
+ *
+ * NOTICE OF LICENSE
+ *
+ * This source file is subject to the Mageplaza.com license that is
+ * available through the world-wide-web at this URL:
+ * https://www.mageplaza.com/LICENSE.txt
+ *
+ * DISCLAIMER
+ *
+ * Do not edit or add to this file if you wish to upgrade this extension to newer
+ * version in the future.
+ *
+ * @category    Mageplaza
+ * @package     Mageplaza_OrderAttributes
+ * @copyright   Copyright (c) Mageplaza (https://www.mageplaza.com/)
+ * @license     https://www.mageplaza.com/LICENSE.txt
+ */
+?>
+
+<?php
+/** @var Mageplaza\OrderAttributes\Block\Order\View\Additional $block */
+?>
+
+<?php if ($html = $block->getAttributes([1, 6], 'customer')): ?>
+    <div class="block block-order-additional-information">
+        <div class="block-title">
+            <strong><?php echo __('Additional Information') ?></strong>
+        </div>
+        <div class="block-content">
+            <?php echo $html ?>
+        </div>
+    </div>
+<?php endif ?>
+
+<?php if ($html = $block->getAttributes([2, 3], 'customer')): ?>
+    <div class="box-content additional-shipping-information">
+        <br/><?php echo $html ?>
+    </div>
+
+    <script type="text/javascript">
+        require(['jquery'], function ($) {
+            $('.box-order-shipping-method').append($('.additional-shipping-information'));
+        });
+    </script>
+<?php endif ?>
+
+<?php if ($html = $block->getAttributes([4, 5], 'customer')): ?>
+    <div class="box-content additional-payment-information">
+        <?php echo $html ?>
+    </div>
+
+    <script type="text/javascript">
+        require(['jquery'], function ($) {
+            $('.box-order-billing-method').append($('.additional-payment-information'));
+        });
+    </script>
+<?php endif ?>
+
+<style type="text/css">
+    .textarea-attribute {
+        white-space: pre-wrap;
+    }
+</style>

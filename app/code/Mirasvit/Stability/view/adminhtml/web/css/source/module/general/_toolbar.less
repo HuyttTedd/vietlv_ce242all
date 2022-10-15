@@ -1,0 +1,51 @@
+.stability-general__toolbar {
+    display: flex;
+    list-style: none;
+    border-bottom: .1rem solid #eaeaea;
+
+    li {
+        a {
+            display: block;
+            padding: 1rem 2rem;
+            position: relative;
+
+            i {
+                font-style: normal;
+                display: inline-block;
+                margin-left: .5rem;
+
+                &:empty {
+                    display: none;
+                }
+            }
+
+            &:before {
+                position: absolute;
+                content: '';
+                bottom: -.1rem;
+                left: 0;
+                width: 100%;
+                height: .2rem;
+                z-index: 1;
+            }
+
+            &:hover {
+                text-decoration: none;
+                color: #ff7878;
+
+                &:before {
+                    background: #ff7878;
+                }
+            }
+
+            &._active {
+                color: #41362f;
+
+                &:before {
+                    height: .4rem;
+                    background: #f86c05;
+                }
+            }
+        }
+    }
+}
