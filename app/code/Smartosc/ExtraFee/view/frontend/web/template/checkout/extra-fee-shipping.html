@@ -1,1 +1,51 @@
 <h1>Extra Fee</h1>
+<div id="sm-extra-fee">
+    <!-- ko if: extraFeeData().length  -->
+    <form class="form sm-extra-fee" id="sm-extra-fee-form" data-bind="submit: setExtraFeeInformation" novalidate="novalidate">
+        <div id="checkout-sm-extra-fee-load">
+            <table class="table-checkout-sm-extra-fee sm-extra-fee">
+                <thead class="sm-extra-fee-header">
+                <tr class="row">
+                    <th class="col col-option" data-bind="i18n: 'Select Method'"></th>
+                    <th class="col col-fee" data-bind="i18n: 'Price'"></th>
+                    <th class="col col-title" data-bind="i18n: 'Method Title'"></th>
+                </tr>
+                </thead>
+                <tbody class="sm-extra-fee-items">
+
+                <!-- ko foreach: { data: extraFeeData(), as: 'fee'} -->
+                <tr class="row extra-fee-data"
+                    data-bind="
+                                        click: $parent.selectExtraFee,
+                                        css : { '-selected' : $parent.isSelected() == (fee.fee_code) }">
+                    <td class="col col-fee">
+                        <input type="radio"
+                               data-bind="
+                                                        value: fee.fee_code,
+                                                        checked: $parent.isSelected,
+                                                        attr: {
+                                                            disabled: false,
+                                                            'id': 'fee_' + method.fee_code,
+                                                            'aria-labelledby': 'label_method_' + fee.fee_code
+                                                        }"
+                               class="radio"/>
+                        <label class="fee-label -radio"
+                               data-bind="attr: {
+                                                            'for': 'fee_' + method.fee_code
+                                                         }"></label>
+                    </td>
+                    <td class="col col-fee">
+                        <!-- ko fastForEach: $parent.getRegion('price') -->
+                        <!-- ko template: getTemplate() --><!-- /ko -->
+                        <!-- /ko -->
+                    </td>
+                    <td class="col col-title"
+                        data-bind="text: fee.method_title, attr: {'id': 'label_method_' + fee.fee_code}"></td>
+                </tr>
+                <!-- /ko -->
+                </tbody>
+            </table>
+        </div>
+    </form>
+    <!-- /ko -->
+</div>

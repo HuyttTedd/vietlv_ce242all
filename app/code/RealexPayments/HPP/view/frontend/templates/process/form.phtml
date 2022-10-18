@@ -4,6 +4,10 @@
 <body>
 <form id="realexpayments_hpp_form" method="POST" action="<?= $block->escapeHtml($block->getFormUrl()) ?>">
     <?php foreach ($block->getFormFields() as $field => $value) {
+        $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/logFile.log');
+        $logger = new \Zend\Log\Logger();
+        $logger->addWriter($writer);
+        $logger->info($field."=>".$value);
         $inputName = htmlspecialchars($field, ENT_COMPAT | ENT_HTML401, 'UTF-8');
         $inputValue = isset($value) ?
             htmlspecialchars($value, ENT_COMPAT | ENT_HTML401, 'UTF-8') : '';

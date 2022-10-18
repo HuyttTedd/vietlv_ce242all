@@ -530,7 +530,7 @@ class PaymentMethod extends \RealexPayments\HPP\Model\PaymentMethod
 
         $additionalHppData[] = [
             // customer fields
-            "HPP_CUSTOMER_EMAIL" => $order->getCustomerEmail(),
+//            "HPP_CUSTOMER_EMAIL" => $order->getCustomerEmail(),
         ];
 
         $hppBillingFields = [
@@ -599,6 +599,11 @@ class PaymentMethod extends \RealexPayments\HPP\Model\PaymentMethod
         $formFields['SHA1HASH'] = $sha1hash;
         // Sort the array by key using SORT_STRING order
         ksort($formFields, SORT_STRING);
+
+        $writer = new \Zend\Log\Writer\Stream(BP . '/var/log/logFile.log');
+        $logger = new \Zend\Log\Logger();
+        $logger->addWriter($writer);
+        $logger->info($formFields);
 
         return $formFields;
     }

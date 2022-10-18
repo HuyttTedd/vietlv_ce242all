@@ -21,19 +21,20 @@
 define([
     'jquery',
     'ko',
-    'Mageplaza_ExtraFee/js/view/abstract-extra-fee',
-    'Mageplaza_ExtraFee/js/action/update-extra-fee-rule',
-    'Mageplaza_ExtraFee/js/model/extra-fee',
+    'uiComponent',
     'Magento_Checkout/js/model/quote',
     'mage/translate',
-    'Magento_Checkout/js/model/payment/additional-validators'
-], function ($, ko, Component, updateRule, extraFee, quote, $t, additionalValidators) {
+    'Magento_Checkout/js/model/payment/additional-validators',
+    'Smartosc_ExtraFee/js/model/extra-fee-service'
+], function ($, ko, Component, quote, $t, additionalValidators, extraFeeService) {
     'use strict';
 
     return Component.extend({
         defaults: {
             template: 'Smartosc_ExtraFee/checkout/extra-fee-shipping'
         },
+
+        extraFeeData: extraFeeService.getExtraFeeData(),
 
         initialize: function () {
             this._super();
